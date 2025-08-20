@@ -31,3 +31,180 @@ Simple preprocess 입력: torch.Size([1, 16, 3, 480, 640])
 Simple preprocess 출력: torch.Size([1, 16, 3, 320, 320])
 Simple preprocess 후 형태: torch.Size([1, 16, 3, 320, 320])
 모델 입력용 변환 후: torch.Size([1, 3, 16, 320, 320])
+
+913base 오류
+(VAD_p396) PS C:\Users\User\Documents\repos\SHIBAL> python test_custom.py
+모델 로드 중: ./saved_models/913base.pkl
+❌ 테스트 실행 중 오류 발생: Error(s) in loading state_dict for Model:
+        Missing key(s) in state_dict: "stages.1.0.weight", "stages.1.0.bias", "stages.1.1.weight", "stages.1.1.bias", "stages.2.performer.net.layers.0.0.norm.weight", "stages.2.performer.net.layers.0.0.norm.bias", "stages.2.perf
+ormer.net.layers.0.0.fn.fast_attention.projection_matrix", "stages.2.performer.net.layers.0.0.fn.local_attn.rel_pos.inv_freq", "stages.2.performer.net.layers.0.0.fn.to_q.weight", "stages.2.performer.net.layers.0.0.fn.to_q.bias",
+ "stages.2.performer.net.layers.0.0.fn.to_k.weight", "stages.2.performer.net.layers.0.0.fn.to_k.bias", "stages.2.performer.net.layers.0.0.fn.to_v.weight", "stages.2.performer.net.layers.0.0.fn.to_v.bias", "stages.2.performer.net
+.layers.0.0.fn.to_out.weight", "stages.2.performer.net.layers.0.0.fn.to_out.bias", "stages.2.performer.net.layers.0.1.norm.weight", "stages.2.performer.net.layers.0.1.norm.bias", "stages.2.performer.net.layers.0.1.fn.fn.w1.weigh
+t", "stages.2.performer.net.layers.0.1.fn.fn.w1.bias", "stages.2.performer.net.layers.0.1.fn.fn.w2.weight", "stages.2.performer.net.layers.0.1.fn.fn.w2.bias", "stages.2.performer.proj_updater.calls_since_last_redraw", "stages.2.
+performer.proj_updater.instance.layers.0.0.norm.weight", "stages.2.performer.proj_updater.instance.layers.0.0.norm.bias", "stages.2.performer.proj_updater.instance.layers.0.0.fn.fast_attention.projection_matrix", "stages.2.perfo
+rmer.proj_updater.instance.layers.0.0.fn.local_attn.rel_pos.inv_freq", "stages.2.performer.proj_updater.instance.layers.0.0.fn.to_q.weight", "stages.2.performer.proj_updater.instance.layers.0.0.fn.to_q.bias", "stages.2.performer
+.proj_updater.instance.layers.0.0.fn.to_k.weight", "stages.2.performer.proj_updater.instance.layers.0.0.fn.to_k.bias", "stages.2.performer.proj_updater.instance.layers.0.0.fn.to_v.weight", "stages.2.performer.proj_updater.instan
+ce.layers.0.0.fn.to_v.bias", "stages.2.performer.proj_updater.instance.layers.0.0.fn.to_out.weight", "stages.2.performer.proj_updater.instance.layers.0.0.fn.to_out.bias", "stages.2.performer.proj_updater.instance.layers.0.1.norm
+.weight", "stages.2.performer.proj_updater.instance.layers.0.1.norm.bias", "stages.2.performer.proj_updater.instance.layers.0.1.fn.fn.w1.weight", "stages.2.performer.proj_updater.instance.layers.0.1.fn.fn.w1.bias", "stages.2.performer.proj_updater.instance.layers.0.1.fn.fn.w2.weight", "stages.2.performer.proj_updater.instance.layers.0.1.fn.fn.w2.bias".
+        Unexpected key(s) in state_dict: "stages.3.0.weight", "stages.3.0.bias", "stages.3.1.weight", "stages.3.1.bias", "stages.4.performer.net.layers.0.0.norm.weight", "stages.4.performer.net.layers.0.0.norm.bias", "stages.4.p
+erformer.net.layers.0.0.fn.fast_attention.projection_matrix", "stages.4.performer.net.layers.0.0.fn.local_attn.rel_pos.inv_freq", "stages.4.performer.net.layers.0.0.fn.to_q.weight", "stages.4.performer.net.layers.0.0.fn.to_q.bia
+s", "stages.4.performer.net.layers.0.0.fn.to_k.weight", "stages.4.performer.net.layers.0.0.fn.to_k.bias", "stages.4.performer.net.layers.0.0.fn.to_v.weight", "stages.4.performer.net.layers.0.0.fn.to_v.bias", "stages.4.performer.
+net.layers.0.0.fn.to_out.weight", "stages.4.performer.net.layers.0.0.fn.to_out.bias", "stages.4.performer.net.layers.0.1.norm.weight", "stages.4.performer.net.layers.0.1.norm.bias", "stages.4.performer.net.layers.0.1.fn.fn.w1.we
+ight", "stages.4.performer.net.layers.0.1.fn.fn.w1.bias", "stages.4.performer.net.layers.0.1.fn.fn.w2.weight", "stages.4.performer.net.layers.0.1.fn.fn.w2.bias", "stages.4.performer.proj_updater.calls_since_last_redraw", "stages
+.4.performer.proj_updater.instance.layers.0.0.norm.weight", "stages.4.performer.proj_updater.instance.layers.0.0.norm.bias", "stages.4.performer.proj_updater.instance.layers.0.0.fn.fast_attention.projection_matrix", "stages.4.pe
+rformer.proj_updater.instance.layers.0.0.fn.local_attn.rel_pos.inv_freq", "stages.4.performer.proj_updater.instance.layers.0.0.fn.to_q.weight", "stages.4.performer.proj_updater.instance.layers.0.0.fn.to_q.bias", "stages.4.perfor
+mer.proj_updater.instance.layers.0.0.fn.to_k.weight", "stages.4.performer.proj_updater.instance.layers.0.0.fn.to_k.bias", "stages.4.performer.proj_updater.instance.layers.0.0.fn.to_v.weight", "stages.4.performer.proj_updater.ins
+tance.layers.0.0.fn.to_v.bias", "stages.4.performer.proj_updater.instance.layers.0.0.fn.to_out.weight", "stages.4.performer.proj_updater.instance.layers.0.0.fn.to_out.bias", "stages.4.performer.proj_updater.instance.layers.0.1.n
+orm.weight", "stages.4.performer.proj_updater.instance.layers.0.1.norm.bias", "stages.4.performer.proj_updater.instance.layers.0.1.fn.fn.w1.weight", "stages.4.performer.proj_updater.instance.layers.0.1.fn.fn.w1.bias", "stages.4.
+performer.proj_updater.instance.layers.0.1.fn.fn.w2.weight", "stages.4.performer.proj_updater.instance.layers.0.1.fn.fn.w2.bias", "stages.5.performer.net.layers.0.0.norm.weight", "stages.5.performer.net.layers.0.0.norm.bias", "s
+tages.5.performer.net.layers.0.0.fn.fast_attention.projection_matrix", "stages.5.performer.net.layers.0.0.fn.local_attn.rel_pos.inv_freq", "stages.5.performer.net.layers.0.0.fn.to_q.weight", "stages.5.performer.net.layers.0.0.fn
+.to_q.bias", "stages.5.performer.net.layers.0.0.fn.to_k.weight", "stages.5.performer.net.layers.0.0.fn.to_k.bias", "stages.5.performer.net.layers.0.0.fn.to_v.weight", "stages.5.performer.net.layers.0.0.fn.to_v.bias", "stages.5.p
+erformer.net.layers.0.0.fn.to_out.weight", "stages.5.performer.net.layers.0.0.fn.to_out.bias", "stages.5.performer.net.layers.0.1.norm.weight", "stages.5.performer.net.layers.0.1.norm.bias", "stages.5.performer.net.layers.0.1.fn
+.fn.w1.weight", "stages.5.performer.net.layers.0.1.fn.fn.w1.bias", "stages.5.performer.net.layers.0.1.fn.fn.w2.weight", "stages.5.performer.net.layers.0.1.fn.fn.w2.bias", "stages.5.performer.proj_updater.calls_since_last_redraw"
+, "stages.5.performer.proj_updater.instance.layers.0.0.norm.weight", "stages.5.performer.proj_updater.instance.layers.0.0.norm.bias", "stages.5.performer.proj_updater.instance.layers.0.0.fn.fast_attention.projection_matrix", "st
+ages.5.performer.proj_updater.instance.layers.0.0.fn.local_attn.rel_pos.inv_freq", "stages.5.performer.proj_updater.instance.layers.0.0.fn.to_q.weight", "stages.5.performer.proj_updater.instance.layers.0.0.fn.to_q.bias", "stages
+.5.performer.proj_updater.instance.layers.0.0.fn.to_k.weight", "stages.5.performer.proj_updater.instance.layers.0.0.fn.to_k.bias", "stages.5.performer.proj_updater.instance.layers.0.0.fn.to_v.weight", "stages.5.performer.proj_up
+dater.instance.layers.0.0.fn.to_v.bias", "stages.5.performer.proj_updater.instance.layers.0.0.fn.to_out.weight", "stages.5.performer.proj_updater.instance.layers.0.0.fn.to_out.bias", "stages.5.performer.proj_updater.instance.lay
+ers.0.1.norm.weight", "stages.5.performer.proj_updater.instance.layers.0.1.norm.bias", "stages.5.performer.proj_updater.instance.layers.0.1.fn.fn.w1.weight", "stages.5.performer.proj_updater.instance.layers.0.1.fn.fn.w1.bias", "
+stages.5.performer.proj_updater.instance.layers.0.1.fn.fn.w2.weight", "stages.5.performer.proj_updater.instance.layers.0.1.fn.fn.w2.bias", "stages.6.performer.net.layers.0.0.norm.weight", "stages.6.performer.net.layers.0.0.norm.
+bias", "stages.6.performer.net.layers.0.0.fn.fast_attention.projection_matrix", "stages.6.performer.net.layers.0.0.fn.local_attn.rel_pos.inv_freq", "stages.6.performer.net.layers.0.0.fn.to_q.weight", "stages.6.performer.net.laye
+rs.0.0.fn.to_q.bias", "stages.6.performer.net.layers.0.0.fn.to_k.weight", "stages.6.performer.net.layers.0.0.fn.to_k.bias", "stages.6.performer.net.layers.0.0.fn.to_v.weight", "stages.6.performer.net.layers.0.0.fn.to_v.bias", "s
+tages.6.performer.net.layers.0.0.fn.to_out.weight", "stages.6.performer.net.layers.0.0.fn.to_out.bias", "stages.6.performer.net.layers.0.1.norm.weight", "stages.6.performer.net.layers.0.1.norm.bias", "stages.6.performer.net.laye
+rs.0.1.fn.fn.w1.weight", "stages.6.performer.net.layers.0.1.fn.fn.w1.bias", "stages.6.performer.net.layers.0.1.fn.fn.w2.weight", "stages.6.performer.net.layers.0.1.fn.fn.w2.bias", "stages.6.performer.proj_updater.calls_since_las
+t_redraw", "stages.6.performer.proj_updater.instance.layers.0.0.norm.weight", "stages.6.performer.proj_updater.instance.layers.0.0.norm.bias", "stages.6.performer.proj_updater.instance.layers.0.0.fn.fast_attention.projection_mat
+rix", "stages.6.performer.proj_updater.instance.layers.0.0.fn.local_attn.rel_pos.inv_freq", "stages.6.performer.proj_updater.instance.layers.0.0.fn.to_q.weight", "stages.6.performer.proj_updater.instance.layers.0.0.fn.to_q.bias"
+, "stages.6.performer.proj_updater.instance.layers.0.0.fn.to_k.weight", "stages.6.performer.proj_updater.instance.layers.0.0.fn.to_k.bias", "stages.6.performer.proj_updater.instance.layers.0.0.fn.to_v.weight", "stages.6.performe
+r.proj_updater.instance.layers.0.0.fn.to_v.bias", "stages.6.performer.proj_updater.instance.layers.0.0.fn.to_out.weight", "stages.6.performer.proj_updater.instance.layers.0.0.fn.to_out.bias", "stages.6.performer.proj_updater.ins
+tance.layers.0.1.norm.weight", "stages.6.performer.proj_updater.instance.layers.0.1.norm.bias", "stages.6.performer.proj_updater.instance.layers.0.1.fn.fn.w1.weight", "stages.6.performer.proj_updater.instance.layers.0.1.fn.fn.w1
+.bias", "stages.6.performer.proj_updater.instance.layers.0.1.fn.fn.w2.weight", "stages.6.performer.proj_updater.instance.layers.0.1.fn.fn.w2.bias", "stages.1.norm1.weight", "stages.1.norm1.bias", "stages.1.norm2.weight", "stages
+.1.norm2.bias", "stages.1.conv.norm2d.weight", "stages.1.conv.norm2d.bias", "stages.1.conv.norm2d.running_mean", "stages.1.conv.norm2d.running_var", "stages.1.conv.norm2d.num_batches_tracked", "stages.1.conv.norm1d.weight", "sta
+ges.1.conv.norm1d.bias", "stages.1.conv.norm1d.running_mean", "stages.1.conv.norm1d.running_var", "stages.1.conv.norm1d.num_batches_tracked", "stages.1.conv.conv2d.weight", "stages.1.conv.conv2d.bias", "stages.1.conv.conv1d.weig
+ht", "stages.1.conv.conv1d.bias", "stages.1.ff.0.weight", "stages.1.ff.0.bias", "stages.1.ff.3.weight", "stages.1.ff.3.bias", "stages.2.norm1.weight", "stages.2.norm1.bias", "stages.2.norm2.weight", "stages.2.norm2.bias", "stage
+s.2.conv.norm2d.weight", "stages.2.conv.norm2d.bias", "stages.2.conv.norm2d.running_mean", "stages.2.conv.norm2d.running_var", "stages.2.conv.norm2d.num_batches_tracked", "stages.2.conv.norm1d.weight", "stages.2.conv.norm1d.bias
+", "stages.2.conv.norm1d.running_mean", "stages.2.conv.norm1d.running_var", "stages.2.conv.norm1d.num_batches_tracked", "stages.2.conv.conv2d.weight", "stages.2.conv.conv2d.bias", "stages.2.conv.conv1d.weight", "stages.2.conv.conv1d.bias", "stages.2.ff.0.weight", "stages.2.ff.0.bias", "stages.2.ff.3.weight", "stages.2.ff.3.bias".
+        size mismatch for stages.0.norm1.weight: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.norm1.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.norm2.weight: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.norm2.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.conv.norm2d.weight: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.conv.norm2d.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.conv.norm2d.running_mean: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.conv.norm2d.running_var: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.conv.norm1d.weight: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.conv.norm1d.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.conv.norm1d.running_mean: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.conv.norm1d.running_var: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.conv.conv2d.weight: copying a param with shape torch.Size([192, 12, 3, 3]) from checkpoint, the shape in current model is torch.Size([32, 2, 3, 3]).
+        size mismatch for stages.0.conv.conv2d.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.conv.conv1d.weight: copying a param with shape torch.Size([192, 12, 3]) from checkpoint, the shape in current model is torch.Size([32, 2, 3]).
+        size mismatch for stages.0.conv.conv1d.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.ff.0.weight: copying a param with shape torch.Size([768, 192]) from checkpoint, the shape in current model is torch.Size([32, 32]).
+        size mismatch for stages.0.ff.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.ff.3.weight: copying a param with shape torch.Size([192, 768]) from checkpoint, the shape in current model is torch.Size([32, 32]).
+        size mismatch for stages.0.ff.3.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for linear.weight: copying a param with shape torch.Size([192, 192]) from checkpoint, the shape in current model is torch.Size([32, 192]).
+        size mismatch for linear.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for norm.weight: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for norm.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for fc.weight: copying a param with shape torch.Size([1, 128]) from checkpoint, the shape in current model is torch.Size([1, 32]).
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\repos\SHIBAL\test_custom.py", line 325, in main
+    tester = CustomTester(args.model_path, stead_args)
+  File "C:\Users\User\Documents\repos\SHIBAL\test_custom.py", line 24, in __init__
+    self.model = self.load_model(model_path)
+  File "C:\Users\User\Documents\repos\SHIBAL\test_custom.py", line 37, in load_model
+    model.load_state_dict(torch.load(model_path, map_location=self.device))
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\module.py", line 2593, in load_state_dict
+    raise RuntimeError(
+RuntimeError: Error(s) in loading state_dict for Model:
+        Missing key(s) in state_dict: "stages.1.0.weight", "stages.1.0.bias", "stages.1.1.weight", "stages.1.1.bias", "stages.2.performer.net.layers.0.0.norm.weight", "stages.2.performer.net.layers.0.0.norm.bias", "stages.2.perf
+ormer.net.layers.0.0.fn.fast_attention.projection_matrix", "stages.2.performer.net.layers.0.0.fn.local_attn.rel_pos.inv_freq", "stages.2.performer.net.layers.0.0.fn.to_q.weight", "stages.2.performer.net.layers.0.0.fn.to_q.bias",
+ "stages.2.performer.net.layers.0.0.fn.to_k.weight", "stages.2.performer.net.layers.0.0.fn.to_k.bias", "stages.2.performer.net.layers.0.0.fn.to_v.weight", "stages.2.performer.net.layers.0.0.fn.to_v.bias", "stages.2.performer.net
+.layers.0.0.fn.to_out.weight", "stages.2.performer.net.layers.0.0.fn.to_out.bias", "stages.2.performer.net.layers.0.1.norm.weight", "stages.2.performer.net.layers.0.1.norm.bias", "stages.2.performer.net.layers.0.1.fn.fn.w1.weigh
+t", "stages.2.performer.net.layers.0.1.fn.fn.w1.bias", "stages.2.performer.net.layers.0.1.fn.fn.w2.weight", "stages.2.performer.net.layers.0.1.fn.fn.w2.bias", "stages.2.performer.proj_updater.calls_since_last_redraw", "stages.2.
+performer.proj_updater.instance.layers.0.0.norm.weight", "stages.2.performer.proj_updater.instance.layers.0.0.norm.bias", "stages.2.performer.proj_updater.instance.layers.0.0.fn.fast_attention.projection_matrix", "stages.2.perfo
+rmer.proj_updater.instance.layers.0.0.fn.local_attn.rel_pos.inv_freq", "stages.2.performer.proj_updater.instance.layers.0.0.fn.to_q.weight", "stages.2.performer.proj_updater.instance.layers.0.0.fn.to_q.bias", "stages.2.performer
+.proj_updater.instance.layers.0.0.fn.to_k.weight", "stages.2.performer.proj_updater.instance.layers.0.0.fn.to_k.bias", "stages.2.performer.proj_updater.instance.layers.0.0.fn.to_v.weight", "stages.2.performer.proj_updater.instan
+ce.layers.0.0.fn.to_v.bias", "stages.2.performer.proj_updater.instance.layers.0.0.fn.to_out.weight", "stages.2.performer.proj_updater.instance.layers.0.0.fn.to_out.bias", "stages.2.performer.proj_updater.instance.layers.0.1.norm
+.weight", "stages.2.performer.proj_updater.instance.layers.0.1.norm.bias", "stages.2.performer.proj_updater.instance.layers.0.1.fn.fn.w1.weight", "stages.2.performer.proj_updater.instance.layers.0.1.fn.fn.w1.bias", "stages.2.performer.proj_updater.instance.layers.0.1.fn.fn.w2.weight", "stages.2.performer.proj_updater.instance.layers.0.1.fn.fn.w2.bias".
+        Unexpected key(s) in state_dict: "stages.3.0.weight", "stages.3.0.bias", "stages.3.1.weight", "stages.3.1.bias", "stages.4.performer.net.layers.0.0.norm.weight", "stages.4.performer.net.layers.0.0.norm.bias", "stages.4.p
+erformer.net.layers.0.0.fn.fast_attention.projection_matrix", "stages.4.performer.net.layers.0.0.fn.local_attn.rel_pos.inv_freq", "stages.4.performer.net.layers.0.0.fn.to_q.weight", "stages.4.performer.net.layers.0.0.fn.to_q.bia
+s", "stages.4.performer.net.layers.0.0.fn.to_k.weight", "stages.4.performer.net.layers.0.0.fn.to_k.bias", "stages.4.performer.net.layers.0.0.fn.to_v.weight", "stages.4.performer.net.layers.0.0.fn.to_v.bias", "stages.4.performer.
+net.layers.0.0.fn.to_out.weight", "stages.4.performer.net.layers.0.0.fn.to_out.bias", "stages.4.performer.net.layers.0.1.norm.weight", "stages.4.performer.net.layers.0.1.norm.bias", "stages.4.performer.net.layers.0.1.fn.fn.w1.we
+ight", "stages.4.performer.net.layers.0.1.fn.fn.w1.bias", "stages.4.performer.net.layers.0.1.fn.fn.w2.weight", "stages.4.performer.net.layers.0.1.fn.fn.w2.bias", "stages.4.performer.proj_updater.calls_since_last_redraw", "stages
+.4.performer.proj_updater.instance.layers.0.0.norm.weight", "stages.4.performer.proj_updater.instance.layers.0.0.norm.bias", "stages.4.performer.proj_updater.instance.layers.0.0.fn.fast_attention.projection_matrix", "stages.4.pe
+rformer.proj_updater.instance.layers.0.0.fn.local_attn.rel_pos.inv_freq", "stages.4.performer.proj_updater.instance.layers.0.0.fn.to_q.weight", "stages.4.performer.proj_updater.instance.layers.0.0.fn.to_q.bias", "stages.4.perfor
+mer.proj_updater.instance.layers.0.0.fn.to_k.weight", "stages.4.performer.proj_updater.instance.layers.0.0.fn.to_k.bias", "stages.4.performer.proj_updater.instance.layers.0.0.fn.to_v.weight", "stages.4.performer.proj_updater.ins
+tance.layers.0.0.fn.to_v.bias", "stages.4.performer.proj_updater.instance.layers.0.0.fn.to_out.weight", "stages.4.performer.proj_updater.instance.layers.0.0.fn.to_out.bias", "stages.4.performer.proj_updater.instance.layers.0.1.n
+orm.weight", "stages.4.performer.proj_updater.instance.layers.0.1.norm.bias", "stages.4.performer.proj_updater.instance.layers.0.1.fn.fn.w1.weight", "stages.4.performer.proj_updater.instance.layers.0.1.fn.fn.w1.bias", "stages.4.
+performer.proj_updater.instance.layers.0.1.fn.fn.w2.weight", "stages.4.performer.proj_updater.instance.layers.0.1.fn.fn.w2.bias", "stages.5.performer.net.layers.0.0.norm.weight", "stages.5.performer.net.layers.0.0.norm.bias", "s
+tages.5.performer.net.layers.0.0.fn.fast_attention.projection_matrix", "stages.5.performer.net.layers.0.0.fn.local_attn.rel_pos.inv_freq", "stages.5.performer.net.layers.0.0.fn.to_q.weight", "stages.5.performer.net.layers.0.0.fn
+.to_q.bias", "stages.5.performer.net.layers.0.0.fn.to_k.weight", "stages.5.performer.net.layers.0.0.fn.to_k.bias", "stages.5.performer.net.layers.0.0.fn.to_v.weight", "stages.5.performer.net.layers.0.0.fn.to_v.bias", "stages.5.p
+erformer.net.layers.0.0.fn.to_out.weight", "stages.5.performer.net.layers.0.0.fn.to_out.bias", "stages.5.performer.net.layers.0.1.norm.weight", "stages.5.performer.net.layers.0.1.norm.bias", "stages.5.performer.net.layers.0.1.fn
+.fn.w1.weight", "stages.5.performer.net.layers.0.1.fn.fn.w1.bias", "stages.5.performer.net.layers.0.1.fn.fn.w2.weight", "stages.5.performer.net.layers.0.1.fn.fn.w2.bias", "stages.5.performer.proj_updater.calls_since_last_redraw"
+, "stages.5.performer.proj_updater.instance.layers.0.0.norm.weight", "stages.5.performer.proj_updater.instance.layers.0.0.norm.bias", "stages.5.performer.proj_updater.instance.layers.0.0.fn.fast_attention.projection_matrix", "st
+ages.5.performer.proj_updater.instance.layers.0.0.fn.local_attn.rel_pos.inv_freq", "stages.5.performer.proj_updater.instance.layers.0.0.fn.to_q.weight", "stages.5.performer.proj_updater.instance.layers.0.0.fn.to_q.bias", "stages
+.5.performer.proj_updater.instance.layers.0.0.fn.to_k.weight", "stages.5.performer.proj_updater.instance.layers.0.0.fn.to_k.bias", "stages.5.performer.proj_updater.instance.layers.0.0.fn.to_v.weight", "stages.5.performer.proj_up
+dater.instance.layers.0.0.fn.to_v.bias", "stages.5.performer.proj_updater.instance.layers.0.0.fn.to_out.weight", "stages.5.performer.proj_updater.instance.layers.0.0.fn.to_out.bias", "stages.5.performer.proj_updater.instance.lay
+ers.0.1.norm.weight", "stages.5.performer.proj_updater.instance.layers.0.1.norm.bias", "stages.5.performer.proj_updater.instance.layers.0.1.fn.fn.w1.weight", "stages.5.performer.proj_updater.instance.layers.0.1.fn.fn.w1.bias", "
+stages.5.performer.proj_updater.instance.layers.0.1.fn.fn.w2.weight", "stages.5.performer.proj_updater.instance.layers.0.1.fn.fn.w2.bias", "stages.6.performer.net.layers.0.0.norm.weight", "stages.6.performer.net.layers.0.0.norm.
+bias", "stages.6.performer.net.layers.0.0.fn.fast_attention.projection_matrix", "stages.6.performer.net.layers.0.0.fn.local_attn.rel_pos.inv_freq", "stages.6.performer.net.layers.0.0.fn.to_q.weight", "stages.6.performer.net.laye
+rs.0.0.fn.to_q.bias", "stages.6.performer.net.layers.0.0.fn.to_k.weight", "stages.6.performer.net.layers.0.0.fn.to_k.bias", "stages.6.performer.net.layers.0.0.fn.to_v.weight", "stages.6.performer.net.layers.0.0.fn.to_v.bias", "s
+tages.6.performer.net.layers.0.0.fn.to_out.weight", "stages.6.performer.net.layers.0.0.fn.to_out.bias", "stages.6.performer.net.layers.0.1.norm.weight", "stages.6.performer.net.layers.0.1.norm.bias", "stages.6.performer.net.laye
+rs.0.1.fn.fn.w1.weight", "stages.6.performer.net.layers.0.1.fn.fn.w1.bias", "stages.6.performer.net.layers.0.1.fn.fn.w2.weight", "stages.6.performer.net.layers.0.1.fn.fn.w2.bias", "stages.6.performer.proj_updater.calls_since_las
+t_redraw", "stages.6.performer.proj_updater.instance.layers.0.0.norm.weight", "stages.6.performer.proj_updater.instance.layers.0.0.norm.bias", "stages.6.performer.proj_updater.instance.layers.0.0.fn.fast_attention.projection_mat
+rix", "stages.6.performer.proj_updater.instance.layers.0.0.fn.local_attn.rel_pos.inv_freq", "stages.6.performer.proj_updater.instance.layers.0.0.fn.to_q.weight", "stages.6.performer.proj_updater.instance.layers.0.0.fn.to_q.bias"
+, "stages.6.performer.proj_updater.instance.layers.0.0.fn.to_k.weight", "stages.6.performer.proj_updater.instance.layers.0.0.fn.to_k.bias", "stages.6.performer.proj_updater.instance.layers.0.0.fn.to_v.weight", "stages.6.performe
+r.proj_updater.instance.layers.0.0.fn.to_v.bias", "stages.6.performer.proj_updater.instance.layers.0.0.fn.to_out.weight", "stages.6.performer.proj_updater.instance.layers.0.0.fn.to_out.bias", "stages.6.performer.proj_updater.ins
+tance.layers.0.1.norm.weight", "stages.6.performer.proj_updater.instance.layers.0.1.norm.bias", "stages.6.performer.proj_updater.instance.layers.0.1.fn.fn.w1.weight", "stages.6.performer.proj_updater.instance.layers.0.1.fn.fn.w1
+.bias", "stages.6.performer.proj_updater.instance.layers.0.1.fn.fn.w2.weight", "stages.6.performer.proj_updater.instance.layers.0.1.fn.fn.w2.bias", "stages.1.norm1.weight", "stages.1.norm1.bias", "stages.1.norm2.weight", "stages
+.1.norm2.bias", "stages.1.conv.norm2d.weight", "stages.1.conv.norm2d.bias", "stages.1.conv.norm2d.running_mean", "stages.1.conv.norm2d.running_var", "stages.1.conv.norm2d.num_batches_tracked", "stages.1.conv.norm1d.weight", "sta
+ges.1.conv.norm1d.bias", "stages.1.conv.norm1d.running_mean", "stages.1.conv.norm1d.running_var", "stages.1.conv.norm1d.num_batches_tracked", "stages.1.conv.conv2d.weight", "stages.1.conv.conv2d.bias", "stages.1.conv.conv1d.weig
+ht", "stages.1.conv.conv1d.bias", "stages.1.ff.0.weight", "stages.1.ff.0.bias", "stages.1.ff.3.weight", "stages.1.ff.3.bias", "stages.2.norm1.weight", "stages.2.norm1.bias", "stages.2.norm2.weight", "stages.2.norm2.bias", "stage
+s.2.conv.norm2d.weight", "stages.2.conv.norm2d.bias", "stages.2.conv.norm2d.running_mean", "stages.2.conv.norm2d.running_var", "stages.2.conv.norm2d.num_batches_tracked", "stages.2.conv.norm1d.weight", "stages.2.conv.norm1d.bias
+", "stages.2.conv.norm1d.running_mean", "stages.2.conv.norm1d.running_var", "stages.2.conv.norm1d.num_batches_tracked", "stages.2.conv.conv2d.weight", "stages.2.conv.conv2d.bias", "stages.2.conv.conv1d.weight", "stages.2.conv.conv1d.bias", "stages.2.ff.0.weight", "stages.2.ff.0.bias", "stages.2.ff.3.weight", "stages.2.ff.3.bias".
+        size mismatch for stages.0.norm1.weight: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.norm1.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.norm2.weight: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.norm2.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.conv.norm2d.weight: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.conv.norm2d.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.conv.norm2d.running_mean: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.conv.norm2d.running_var: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.conv.norm1d.weight: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.conv.norm1d.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.conv.norm1d.running_mean: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.conv.norm1d.running_var: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.conv.conv2d.weight: copying a param with shape torch.Size([192, 12, 3, 3]) from checkpoint, the shape in current model is torch.Size([32, 2, 3, 3]).
+        size mismatch for stages.0.conv.conv2d.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.conv.conv1d.weight: copying a param with shape torch.Size([192, 12, 3]) from checkpoint, the shape in current model is torch.Size([32, 2, 3]).
+        size mismatch for stages.0.conv.conv1d.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.ff.0.weight: copying a param with shape torch.Size([768, 192]) from checkpoint, the shape in current model is torch.Size([32, 32]).
+        size mismatch for stages.0.ff.0.bias: copying a param with shape torch.Size([768]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for stages.0.ff.3.weight: copying a param with shape torch.Size([192, 768]) from checkpoint, the shape in current model is torch.Size([32, 32]).
+        size mismatch for stages.0.ff.3.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for linear.weight: copying a param with shape torch.Size([192, 192]) from checkpoint, the shape in current model is torch.Size([32, 192]).
+        size mismatch for linear.bias: copying a param with shape torch.Size([192]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for norm.weight: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for norm.bias: copying a param with shape torch.Size([128]) from checkpoint, the shape in current model is torch.Size([32]).
+        size mismatch for fc.weight: copying a param with shape torch.Size([1, 128]) from checkpoint, the shape in current model is torch.Size([1, 32]).
+(VAD_p396) PS C:\Users\User\Documents\repos\SHIBAL> python test_custom.py
+모델 로드 중: ./saved_models/888tiny.pkl
+✅ 모델 로드 완료
+테스트 데이터: 9534개
+=== 커스텀 데이터 테스트 시작 ===
+테스트 진행:   0%|                                                                                                                                                                                         | 0/596 [00:00<?, ?it/s]
+❌ 테스트 실행 중 오류 발생: permute(sparse_coo): number of dimensions in the tensor input does not match the length of the desired ordering of dimensions i.e. input.dim() = 6 is not equal to len(dims) = 5
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\repos\SHIBAL\test_custom.py", line 342, in main
+    results, overall_metrics, segment_metrics = tester.test_custom_data(
+  File "C:\Users\User\Documents\repos\SHIBAL\test_custom.py", line 64, in test_custom_data
+    scores, feat = self.model(features)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\User\Documents\repos\SHIBAL\model.py", line 103, in forward
+    x = x.permute(0, 2, 3, 4, 1)
+RuntimeError: permute(sparse_coo): number of dimensions in the tensor input does not match the length of the desired ordering of dimensions i.e. input.dim() = 6 is not equal to len(dims) = 5
+(VAD_p396) PS C:\Users\User\Documents\repos\SHIBAL>
