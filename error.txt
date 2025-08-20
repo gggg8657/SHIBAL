@@ -240,3 +240,33 @@ Traceback (most recent call last):
   File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\functional.py", line 2910, in layer_norm
     return torch.layer_norm(
 RuntimeError: Given normalized_shape=[192], expected input with shape [*, 192], but got input of size[16, 16, 192, 10, 10]
+
+(VAD_p396) PS C:\Users\User\Documents\repos\SHIBAL> python test_custom.py
+감지된 모델 아키텍처: base
+모델 로드 중: ./saved_models/913base.pkl
+✅ 모델 로드 완료 (strict=False)
+테스트 데이터: 9425개
+=== 커스텀 데이터 테스트 시작 ===
+테스트 진행: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋| 589/590 [00:17<00:00, 34.45it/s]
+❌ 테스트 실행 중 오류 발생: iteration over a 0-d array
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\repos\SHIBAL\test_custom.py", line 361, in main
+    results, overall_metrics, segment_metrics = tester.test_custom_data(
+  File "C:\Users\User\Documents\repos\SHIBAL\test_custom.py", line 87, in test_custom_data
+    results['predictions'].extend(scores.cpu().numpy())
+TypeError: iteration over a 0-d array
+
+(VAD_p396) PS C:\Users\User\Documents\repos\SHIBAL> python test_custom.py
+감지된 모델 아키텍처: tiny
+모델 로드 중: ./saved_models/888tiny.pkl
+✅ 모델 로드 완료 (strict=False)
+테스트 데이터: 9425개
+=== 커스텀 데이터 테스트 시작 ===
+테스트 진행: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋| 589/590 [00:49<00:00, 11.91it/s]
+❌ 테스트 실행 중 오류 발생: iteration over a 0-d array
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\repos\SHIBAL\test_custom.py", line 361, in main
+    results, overall_metrics, segment_metrics = tester.test_custom_data(
+  File "C:\Users\User\Documents\repos\SHIBAL\test_custom.py", line 87, in test_custom_data
+    results['predictions'].extend(scores.cpu().numpy())
+TypeError: iteration over a 0-d array
