@@ -461,3 +461,136 @@ Traceback (most recent call last):
   File "C:\Users\User\anaconda3\envs\VAD_p396\lib\json\encoder.py", line 179, in default
     raise TypeError(f'Object of type {o.__class__.__name__} '
 TypeError: Object of type ndarray is not JSON serializable
+
+
+(VAD_p396) PS C:\Users\User\Documents\repos\SHIBAL> python test_custom.py
+감지된 모델 아키텍처: base
+모델 로드 중: ./saved_models/913base.pkl
+✅ 모델 로드 완료 (strict=False)
+테스트 데이터: 9425개
+=== 커스텀 데이터 테스트 시작 ===
+테스트 진행: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 590/590 [00:19<00:00, 30.68it/s]
+Label distribution: {0.0: 6153, 1.0: 3272}
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py:1179: UndefinedMetricWarning: No negative samples in y_true, false positive value should be meaningless
+  warnings.warn(
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py:1179: UndefinedMetricWarning: No negative samples in y_true, false positive value should be meaningless
+  warnings.warn(
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py:1179: UndefinedMetricWarning: No negative samples in y_true, false positive value should be meaningless
+  warnings.warn(
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py:1188: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py:1033: UserWarning: No positive class found in y_true, recall is set to one for all thresholds.
+  warnings.warn(
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py:1179: UndefinedMetricWarning: No negative samples in y_true, false positive value should be meaningless
+  warnings.warn(
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py:1179: UndefinedMetricWarning: No negative samples in y_true, false positive value should be meaningless
+  warnings.warn(
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py:1179: UndefinedMetricWarning: No negative samples in y_true, false positive value should be meaningless
+  warnings.warn(
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py:1188: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py:1033: UserWarning: No positive class found in y_true, recall is set to one for all thresholds.
+  warnings.warn(
+
+==================================================
+전체 성능
+==================================================
+ROC AUC: 0.4765
+PR AUC: 0.3496
+정확도: 0.4308
+정밀도(Anomaly): 0.3330
+재현율(Anomaly): 0.6375
+F1-Score(Anomaly): 0.4375
+
+==================================================
+세그먼트별 성능
+==================================================
+
+abnormal movement:
+  샘플 수: 893
+  정상: 0.0, 비정상: 893.0
+  ROC AUC: nan
+  PR AUC: 1.0000
+
+baggage movement:
+  샘플 수: 1019
+  정상: 0.0, 비정상: 1019.0
+  ROC AUC: nan
+  PR AUC: 1.0000
+
+collapse:
+  샘플 수: 154
+  정상: 0.0, 비정상: 154.0
+  ROC AUC: nan
+  PR AUC: 1.0000
+
+normal:
+  샘플 수: 3803
+  정상: 3803.0, 비정상: 0.0
+  ROC AUC: nan
+  PR AUC: 0.5000
+
+rest:
+  샘플 수: 2350
+  정상: 2350.0, 비정상: 0.0
+  ROC AUC: nan
+  PR AUC: 0.5000
+
+suspicious behavior:
+  샘플 수: 207
+  정상: 0.0, 비정상: 207.0
+  ROC AUC: nan
+  PR AUC: 1.0000
+
+unknown:
+  샘플 수: 442
+  정상: 0.0, 비정상: 442.0
+  ROC AUC: nan
+  PR AUC: 1.0000
+
+violence:
+  샘플 수: 557
+  정상: 0.0, 비정상: 557.0
+  ROC AUC: nan
+  PR AUC: 1.0000
+C:\Users\User\Documents\repos\SHIBAL\test_custom.py:291: UserWarning: Glyph 49464 (\N{HANGUL SYLLABLE SE}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+C:\Users\User\Documents\repos\SHIBAL\test_custom.py:291: UserWarning: Glyph 44536 (\N{HANGUL SYLLABLE GEU}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+C:\Users\User\Documents\repos\SHIBAL\test_custom.py:291: UserWarning: Glyph 47676 (\N{HANGUL SYLLABLE MEON}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+C:\Users\User\Documents\repos\SHIBAL\test_custom.py:291: UserWarning: Glyph 53944 (\N{HANGUL SYLLABLE TEU}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+C:\Users\User\Documents\repos\SHIBAL\test_custom.py:291: UserWarning: Glyph 48324 (\N{HANGUL SYLLABLE BYEOL}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+C:\Users\User\Documents\repos\SHIBAL\test_custom.py:291: UserWarning: Glyph 49368 (\N{HANGUL SYLLABLE SAEM}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+C:\Users\User\Documents\repos\SHIBAL\test_custom.py:291: UserWarning: Glyph 54540 (\N{HANGUL SYLLABLE PEUL}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+C:\Users\User\Documents\repos\SHIBAL\test_custom.py:291: UserWarning: Glyph 49688 (\N{HANGUL SYLLABLE SU}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+C:\Users\User\Documents\repos\SHIBAL\test_custom.py:292: UserWarning: Glyph 49464 (\N{HANGUL SYLLABLE SE}) missing from font(s) DejaVu Sans.
+  plt.savefig(f"{output_dir}/custom_test_results.png", dpi=300, bbox_inches='tight')
+C:\Users\User\Documents\repos\SHIBAL\test_custom.py:292: UserWarning: Glyph 44536 (\N{HANGUL SYLLABLE GEU}) missing from font(s) DejaVu Sans.
+  plt.savefig(f"{output_dir}/custom_test_results.png", dpi=300, bbox_inches='tight')
+C:\Users\User\Documents\repos\SHIBAL\test_custom.py:292: UserWarning: Glyph 47676 (\N{HANGUL SYLLABLE MEON}) missing from font(s) DejaVu Sans.
+  plt.savefig(f"{output_dir}/custom_test_results.png", dpi=300, bbox_inches='tight')
+C:\Users\User\Documents\repos\SHIBAL\test_custom.py:292: UserWarning: Glyph 53944 (\N{HANGUL SYLLABLE TEU}) missing from font(s) DejaVu Sans.
+  plt.savefig(f"{output_dir}/custom_test_results.png", dpi=300, bbox_inches='tight')
+C:\Users\User\Documents\repos\SHIBAL\test_custom.py:292: UserWarning: Glyph 48324 (\N{HANGUL SYLLABLE BYEOL}) missing from font(s) DejaVu Sans.
+  plt.savefig(f"{output_dir}/custom_test_results.png", dpi=300, bbox_inches='tight')
+C:\Users\User\Documents\repos\SHIBAL\test_custom.py:292: UserWarning: Glyph 49368 (\N{HANGUL SYLLABLE SAEM}) missing from font(s) DejaVu Sans.
+  plt.savefig(f"{output_dir}/custom_test_results.png", dpi=300, bbox_inches='tight')
+C:\Users\User\Documents\repos\SHIBAL\test_custom.py:292: UserWarning: Glyph 54540 (\N{HANGUL SYLLABLE PEUL}) missing from font(s) DejaVu Sans.
+  plt.savefig(f"{output_dir}/custom_test_results.png", dpi=300, bbox_inches='tight')
+C:\Users\User\Documents\repos\SHIBAL\test_custom.py:292: UserWarning: Glyph 49688 (\N{HANGUL SYLLABLE SU}) missing from font(s) DejaVu Sans.
+  plt.savefig(f"{output_dir}/custom_test_results.png", dpi=300, bbox_inches='tight')
+❌ 테스트 실행 중 오류 발생: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (9552,) + inhomogeneous part.
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\repos\SHIBAL\test_custom.py", line 421, in main
+    results, overall_metrics, segment_metrics = tester.test_custom_data(
+  File "C:\Users\User\Documents\repos\SHIBAL\test_custom.py", line 104, in test_custom_data
+    self.visualize_results(results, overall_metrics, segment_metrics, output_dir)
+  File "C:\Users\User\Documents\repos\SHIBAL\test_custom.py", line 298, in visualize_results
+    feats = np.array(results['features'])
+ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (9552,) + inhomogeneous part.
