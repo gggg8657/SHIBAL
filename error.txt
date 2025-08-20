@@ -208,3 +208,35 @@ Traceback (most recent call last):
     x = x.permute(0, 2, 3, 4, 1)
 RuntimeError: permute(sparse_coo): number of dimensions in the tensor input does not match the length of the desired ordering of dimensions i.e. input.dim() = 6 is not equal to len(dims) = 5
 (VAD_p396) PS C:\Users\User\Documents\repos\SHIBAL>
+
+913base 오류 문구
+(VAD_p396) PS C:\Users\User\Documents\repos\SHIBAL> python test_custom.py
+감지된 모델 아키텍처: base
+모델 로드 중: ./saved_models/913base.pkl
+✅ 모델 로드 완료 (strict=False)
+테스트 데이터: 9425개
+=== 커스텀 데이터 테스트 시작 ===
+테스트 진행:   0%|                                                                                                                                                                                         | 0/590 [00:00<?, ?it/s] 경고: 6차원 텐서 감지, 5차원으로 변환: torch.Size([16, 1, 192, 16, 10, 10])
+모델 입력 텐서 형태: torch.Size([16, 192, 16, 10, 10])
+테스트 진행:   0%|                                                                                                                                                                                         | 0/590 [00:00<?, ?it/s]
+❌ 테스트 실행 중 오류 발생: Given normalized_shape=[192], expected input with shape [*, 192], but got input of size[16, 16, 192, 10, 10]
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\repos\SHIBAL\test_custom.py", line 361, in main
+    results, overall_metrics, segment_metrics = tester.test_custom_data(
+  File "C:\Users\User\Documents\repos\SHIBAL\test_custom.py", line 83, in test_custom_data
+    scores, feat = self.model(features)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\User\Documents\repos\SHIBAL\model.py", line 117, in forward
+    x = self.linear(self.norm0(x))
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\normalization.py", line 217, in forward
+    return F.layer_norm(
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\functional.py", line 2910, in layer_norm
+    return torch.layer_norm(
+RuntimeError: Given normalized_shape=[192], expected input with shape [*, 192], but got input of size[16, 16, 192, 10, 10]

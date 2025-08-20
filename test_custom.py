@@ -319,7 +319,7 @@ class CustomTester:
 
 def main():
     parser = argparse.ArgumentParser(description='커스텀 데이터셋 STEAD 테스트')
-    parser.add_argument('--model_path', required=True, help='훈련된 모델 경로 (saved_models 폴더 내)')
+    parser.add_argument('--model_path', default='./saved_models/888tiny.pkl', help='훈련된 모델 경로 (saved_models 폴더 내)')
     parser.add_argument('--test_list', default='custom_data/custom_test.txt', help='테스트 데이터 리스트')
     parser.add_argument('--output_dir', default='./test_results', help='결과 저장 디렉토리')
     parser.add_argument('--batch_size', type=int, default=16, help='배치 크기')
