@@ -67,30 +67,95 @@ class SegmentFeatureExtractor:
         
         params = transform_params.get(self.model_name, transform_params["x3d_l"])
         
+        # 수정된 Permute 클래스 - 차원 검증 추가
         class Permute(nn.Module):
             def __init__(self, dims):
                 super().__init__()
                 self.dims = dims
+
             def forward(self, x):
-                return torch.permute(x, self.dims)
+                # 차원 수 검증
+                if x.dim() != len(self.dims):
+                    print(f"경고: 입력 텐서 차원 {x.dim()}과 permute 차원 {len(self.dims)}이 일치하지 않습니다.")
+                    print(f"입력 텐서 형태: {x.shape}")
+                    # 차원 수에 맞게 조정
+                    if x.dim() == 5:  # (B, T, C, H, W)
+                        if len(self.dims) == 4:
+                            # 5차원을 4차원으로 변환
+                            B, T, C, H, W = x.shape
+                            x = x.view(B * T, C, H, W)
+                            return x.permute(self.dims)
+                        else:
+                            return x.permute(self.dims)
+                    elif x.dim() == 4:  # (B, C, H, W)
+                        if len(self.dims) == 5:
+                            # 4차원을 5차원으로 변환
+                            B, C, H, W = x.shape
+                            x = x.unsqueeze(1)  # (B, 1, C, H, W)
+                            return x.permute(self.dims)
+                        else:
+                            return x.permute(self.dims)
+                    else:
+                        return x.permute(self.dims)
+                return x.permute(self.dims)
         
-        return ApplyTransformToKey(
-            key="video",
-            transform=Compose([
-                UniformTemporalSubsample(params["num_frames"]),
-                Lambda(lambda x: x/255.0),
-                Permute((1, 0, 2, 3)),
-                Normalize(mean=[0.45, 0.45, 0.45], std=[0.225, 0.225, 0.225]),
-                ShortSideScale(size=params["side_size"]),
-                CenterCrop((params["crop_size"], params["crop_size"])),
-                Permute((1, 0, 2, 3))
-            ]),
-        )
+        # 안전한 transform 생성
+        try:
+            transform = ApplyTransformToKey(
+                key="video",
+                transform=Compose([
+                    UniformTemporalSubsample(params["num_frames"]),
+                    Lambda(lambda x: x/255.0),
+                    Permute((1, 0, 2, 3)),  # (T, C, H, W) -> (C, T, H, W)
+                    Normalize(mean=[0.45, 0.45, 0.45], std=[0.225, 0.225, 0.225]),
+                    ShortSideScale(size=params["side_size"]),
+                    CenterCrop((params["crop_size"], params["crop_size"])),
+                    Permute((1, 0, 2, 3))   # (C, T, H, W) -> (T, C, H, W)
+                ]),
+            )
+            return transform
+        except Exception as e:
+            print(f"Transform 생성 실패: {e}")
+            # 대체 transform 생성
+            return self.create_simple_transform(params)
+    
+    def create_simple_transform(self, params):
+        """간단한 transform 생성 (차원 문제 해결)"""
+        from torchvision.transforms import Compose, Lambda, CenterCrop, Normalize
+        from torchvision.transforms.functional import resize
+        
+        class SimpleTransform:
+            def __init__(self, params):
+                self.params = params
+            
+            def __call__(self, x):
+                # x는 (B, T, C, H, W) 형태
+                B, T, C, H, W = x.shape
+                
+                # 정규화
+                x = x / 255.0
+                
+                # 크기 조정
+                x = x.view(B * T, C, H, W)
+                x = resize(x, [self.params["side_size"], self.params["side_size"]])
+                
+                # 크롭
+                x = CenterCrop(self.params["crop_size"])(x)
+                
+                # 정규화
+                x = Normalize(mean=[0.45, 0.45, 0.45], std=[0.225, 0.225, 0.225])(x)
+                
+                # (B, T, C, H, W) 형태로 복원
+                x = x.view(B, T, C, self.params["crop_size"], self.params["crop_size"])
+                
+                return x
+        
+        return SimpleTransform(params)
     
     def extract_features_from_segments(self, output_dir="./features"):
         """세그먼트별로 특징 추출"""
-        if self.model is None or self.transform is None:
-            print("모델 또는 변환이 로드되지 않았습니다.")
+        if self.model is None:
+            print("모델이 로드되지 않았습니다.")
             return []
         
         os.makedirs(output_dir, exist_ok=True)
@@ -153,8 +218,16 @@ class SegmentFeatureExtractor:
             video_tensor = video_tensor.permute(0, 3, 1, 2).unsqueeze(0)  # (1, 16, 3, H, W)
             
             # 전처리 적용
-            video_data = {'video': video_tensor}
-            processed_video = self.transform(video_data)['video'].to(self.device)
+            if self.transform is not None:
+                try:
+                    video_data = {'video': video_tensor}
+                    processed_video = self.transform(video_data)['video'].to(self.device)
+                except Exception as e:
+                    print(f"Transform 적용 실패: {e}")
+                    # 간단한 전처리로 대체
+                    processed_video = self.simple_preprocess(video_tensor).to(self.device)
+            else:
+                processed_video = self.simple_preprocess(video_tensor).to(self.device)
             
             # 특징 추출
             with torch.no_grad():
@@ -164,6 +237,32 @@ class SegmentFeatureExtractor:
         except Exception as e:
             print(f"특징 추출 실패: {img_path}, 에러: {e}")
             return None
+    
+    def simple_preprocess(self, video_tensor):
+        """간단한 전처리 (차원 문제 해결용)"""
+        # video_tensor: (B, T, C, H, W)
+        B, T, C, H, W = video_tensor.shape
+        
+        # 정규화
+        video_tensor = video_tensor / 255.0
+        
+        # 크기 조정 (320x320)
+        video_tensor = torch.nn.functional.interpolate(
+            video_tensor.view(B * T, C, H, W), 
+            size=(320, 320), 
+            mode='bilinear', 
+            align_corners=False
+        )
+        
+        # 정규화
+        mean = torch.tensor([0.45, 0.45, 0.45]).view(1, 3, 1, 1)
+        std = torch.tensor([0.225, 0.225, 0.225]).view(1, 3, 1, 1)
+        video_tensor = (video_tensor - mean) / std
+        
+        # (B, T, C, H, W) 형태로 복원
+        video_tensor = video_tensor.view(B, T, C, 320, 320)
+        
+        return video_tensor
 
 if __name__ == "__main__":
     # 테스트 실행
