@@ -81,14 +81,14 @@ class CustomTester:
                 
                 # 모델 예측
                 scores, feat = self.model(features)
-                scores = torch.nn.Sigmoid()(scores).squeeze()
+                scores = torch.nn.Sigmoid()(scores)
                 
-                # 결과 수집
-                results['predictions'].extend(scores.cpu().numpy())
-                results['labels'].extend(labels.numpy())
-                results['categories'].extend(categories)
-                results['descriptions'].extend(descriptions)
-                results['features'].extend(feat.cpu().numpy())
+                # 결과 수집 (항상 1차원으로 평탄화)
+                results['predictions'].extend(scores.view(-1).cpu().numpy().tolist())
+                results['labels'].extend(torch.as_tensor(labels).view(-1).cpu().numpy().tolist())
+                results['categories'].extend(list(categories))
+                results['descriptions'].extend(list(descriptions))
+                results['features'].extend(feat.view(feat.shape[0], -1).cpu().numpy().tolist())
         
         # 전체 성능 계산
         overall_metrics = self.calculate_metrics(results['predictions'], results['labels'])
