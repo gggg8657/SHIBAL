@@ -75,8 +75,40 @@ class CustomTester:
         
         print("=== 커스텀 데이터 테스트 시작 ===")
         
+        # ROI 설정 준비
+        roi_spec = getattr(self.args, 'roi_pixels', None)
+        base_size = getattr(self.args, 'roi_base_size', '320,320')
+        if roi_spec:
+            try:
+                rx1, ry1, rx2, ry2 = map(float, roi_spec.split(','))
+            except Exception:
+                rx1, ry1, rx2, ry2 = 0.0, 0.0, 320.0, 320.0
+        else:
+            # 기본: 좌상단 (0,0) ~ (480,270) 를 320x320 기준으로 매핑 (오버는 클램프)
+            rx1, ry1, rx2, ry2 = 0.0, 0.0, 480.0, 270.0
+        try:
+            bw, bh = map(float, base_size.split(','))
+        except Exception:
+            bw, bh = 320.0, 320.0
+
         with torch.no_grad():
             for batch_idx, (features, labels, categories, descriptions) in enumerate(tqdm(test_loader, desc="테스트 진행")):
+                # ROI 적용: features의 공간차원은 항상 마지막 두 축(H,W)로 가정
+                # 픽셀 ROI를 base_size에 대해 정규화 후 feature grid에 매핑
+                x1p = max(0.0, min(rx1, bw)); x2p = max(0.0, min(rx2, bw))
+                y1p = max(0.0, min(ry1, bh)); y2p = max(0.0, min(ry2, bh))
+                nx1, nx2 = x1p / bw, x2p / bw
+                ny1, ny2 = y1p / bh, y2p / bh
+
+                # features: (B, ..., H, W)
+                H = features.shape[-2]
+                W = features.shape[-1]
+                ix1 = int(nx1 * W); ix2 = int(np.ceil(nx2 * W))
+                iy1 = int(ny1 * H); iy2 = int(np.ceil(ny2 * H))
+                ix1 = max(0, min(ix1, W-1)); ix2 = max(ix1+1, min(ix2, W))
+                iy1 = max(0, min(iy1, H-1)); iy2 = max(iy1+1, min(iy2, H))
+
+                features = features[..., iy1:iy2, ix1:ix2]
                 features = features.to(self.device)
                 
                 # 모델 예측
@@ -404,6 +436,9 @@ def main():
     parser.add_argument('--output_dir', default='./test_results', help='결과 저장 디렉토리')
     parser.add_argument('--batch_size', type=int, default=16, help='배치 크기')
     parser.add_argument('--model_arch', default='tiny', help='모델 아키텍처 (base, fast, tiny)')
+    # ROI 픽셀 좌표: x1,y1,x2,y2 (기본: 0,0,480,270), 기준 해상도는 roi_base_size
+    parser.add_argument('--roi_pixels', default='0,0,480,270', help='픽셀 ROI: x1,y1,x2,y2 (기본: 0,0,480,270)')
+    parser.add_argument('--roi_base_size', default='320,320', help='ROI 기준 해상도 w,h (기본: 320,320)')
     
     args = parser.parse_args()
     
@@ -418,6 +453,8 @@ def main():
     stead_args.test_rgb_list = args.test_list
     stead_args.batch_size = args.batch_size
     stead_args.model_arch = args.model_arch
+    stead_args.roi_pixels = args.roi_pixels
+    stead_args.roi_base_size = args.roi_base_size
     
     # 테스트 실행
     try:
