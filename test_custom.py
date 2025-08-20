@@ -111,19 +111,34 @@ class CustomTester:
         predictions = np.array(predictions)
         labels = np.array(labels)
         
-        # ROC AUC
-        fpr, tpr, _ = roc_curve(labels, predictions)
-        roc_auc = auc(fpr, tpr)
+        # 라벨 분포 출력
+        classes, counts = np.unique(labels, return_counts=True)
+        print(f"Label distribution: {dict(zip(classes.tolist(), counts.tolist()))}")
         
-        # PR AUC
-        precision, recall, _ = precision_recall_curve(labels, predictions)
-        pr_auc = auc(recall, precision)
+        # ROC / PR 가드: 단일 클래스면 계산 안 함
+        if len(np.unique(labels)) < 2:
+            roc_auc = float("nan")
+            pr_auc = float("nan")
+            fpr = np.array([])
+            tpr = np.array([])
+            precision = np.array([])
+            recall = np.array([])
+        else:
+            fpr, tpr, _ = roc_curve(labels, predictions)
+            roc_auc = auc(fpr, tpr)
+            precision, recall, _ = precision_recall_curve(labels, predictions)
+            pr_auc = auc(recall, precision)
         
-        # 분류 보고서
+        # 이진 예측 및 보고서 (항상 0/1 포함, zero_division=0)
         binary_predictions = (predictions > 0.5).astype(int)
-        classification_rep = classification_report(labels, binary_predictions, 
-                                               target_names=['Normal', 'Anomaly'], 
-                                               output_dict=True)
+        classification_rep = classification_report(
+            labels,
+            binary_predictions,
+            labels=[0, 1],
+            target_names=['Normal', 'Anomaly'],
+            output_dict=True,
+            zero_division=0,
+        )
         
         return {
             'roc_auc': roc_auc,
@@ -181,12 +196,27 @@ class CustomTester:
         print("\n" + "="*50)
         print("전체 성능")
         print("="*50)
-        print(f"ROC AUC: {overall_metrics['roc_auc']:.4f}")
-        print(f"PR AUC: {overall_metrics['pr_auc']:.4f}")
-        print(f"정확도: {overall_metrics['classification_report']['accuracy']:.4f}")
-        print(f"정밀도: {overall_metrics['classification_report']['1']['precision']:.4f}")
-        print(f"재현율: {overall_metrics['classification_report']['1']['recall']:.4f}")
-        print(f"F1-Score: {overall_metrics['classification_report']['1']['f1-score']:.4f}")
+        roc_auc = overall_metrics['roc_auc']
+        pr_auc = overall_metrics['pr_auc']
+        try:
+            print(f"ROC AUC: {roc_auc:.4f}")
+            print(f"PR AUC: {pr_auc:.4f}")
+        except Exception:
+            print(f"ROC AUC: {roc_auc}")
+            print(f"PR AUC: {pr_auc}")
+        
+        cls = overall_metrics['classification_report']
+        acc = cls.get('accuracy', 0.0)
+        # target_names에 맞춘 키로 접근, 없으면 0으로 대체
+        anomaly = cls.get('Anomaly', {})
+        prec_1 = anomaly.get('precision', 0.0)
+        rec_1  = anomaly.get('recall', 0.0)
+        f1_1   = anomaly.get('f1-score', 0.0)
+        
+        print(f"정확도: {acc:.4f}")
+        print(f"정밀도(Anomaly): {prec_1:.4f}")
+        print(f"재현율(Anomaly): {rec_1:.4f}")
+        print(f"F1-Score(Anomaly): {f1_1:.4f}")
         
         print("\n" + "="*50)
         print("세그먼트별 성능")
@@ -200,27 +230,36 @@ class CustomTester:
     
     def visualize_results(self, results, overall_metrics, segment_metrics, output_dir):
         """결과 시각화"""
-        # 1. ROC 곡선
+        # 1. ROC / PR 서브플롯
         plt.figure(figsize=(12, 8))
         
+        # ROC
         plt.subplot(2, 2, 1)
-        plt.plot(overall_metrics['fpr'], overall_metrics['tpr'], 
-                label=f'Overall (AUC = {overall_metrics["roc_auc"]:.3f})')
-        plt.plot([0, 1], [0, 1], 'k--')
-        plt.xlabel('False Positive Rate')
-        plt.ylabel('True Positive Rate')
-        plt.title('ROC Curve')
-        plt.legend()
+        if overall_metrics['fpr'].size > 0 and overall_metrics['tpr'].size > 0:
+            plt.plot(overall_metrics['fpr'], overall_metrics['tpr'], 
+                     label=f'Overall (AUC = {overall_metrics["roc_auc"]:.3f})')
+            plt.plot([0, 1], [0, 1], 'k--')
+            plt.xlabel('False Positive Rate')
+            plt.ylabel('True Positive Rate')
+            plt.title('ROC Curve')
+            plt.legend()
+        else:
+            plt.text(0.5, 0.5, 'ROC: 단일 클래스 라벨로 계산 불가', ha='center', va='center')
+            plt.axis('off')
         plt.grid(True)
         
-        # 2. PR 곡선
+        # PR
         plt.subplot(2, 2, 2)
-        plt.plot(overall_metrics['recall'], overall_metrics['precision'], 
-                label=f'Overall (AUC = {overall_metrics["pr_auc"]:.3f})')
-        plt.xlabel('Recall')
-        plt.ylabel('Precision')
-        plt.title('Precision-Recall Curve')
-        plt.legend()
+        if overall_metrics['recall'].size > 0 and overall_metrics['precision'].size > 0:
+            plt.plot(overall_metrics['recall'], overall_metrics['precision'], 
+                     label=f'Overall (AUC = {overall_metrics["pr_auc"]:.3f})')
+            plt.xlabel('Recall')
+            plt.ylabel('Precision')
+            plt.title('Precision-Recall Curve')
+            plt.legend()
+        else:
+            plt.text(0.5, 0.5, 'PR: 단일 클래스 라벨로 계산 불가', ha='center', va='center')
+            plt.axis('off')
         plt.grid(True)
         
         # 3. 세그먼트별 ROC AUC 비교
@@ -233,7 +272,6 @@ class CustomTester:
         plt.title('세그먼트별 ROC AUC')
         plt.xticks(rotation=45)
         
-        # 색상으로 성능 구분
         for i, (bar, auc_val) in enumerate(zip(bars, roc_aucs)):
             if auc_val >= 0.8:
                 bar.set_color('green')
