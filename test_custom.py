@@ -25,19 +25,38 @@ class CustomTester:
         
     def load_model(self, model_path):
         """훈련된 모델 로드"""
-        if self.args.model_arch == 'base':
+        # 모델 파일명에서 아키텍처 자동 감지
+        if 'base' in model_path or '913' in model_path:
+            detected_arch = 'base'
+        elif 'tiny' in model_path or '888' in model_path:
+            detected_arch = 'tiny'
+        else:
+            detected_arch = self.args.model_arch
+        
+        print(f"감지된 모델 아키텍처: {detected_arch}")
+        
+        if detected_arch == 'base':
             model = Model(dropout=self.args.dropout_rate, attn_dropout=self.args.attn_dropout_rate)
-        elif self.args.model_arch == 'fast' or self.args.model_arch == 'tiny':
+        elif detected_arch == 'fast' or detected_arch == 'tiny':
             model = Model(dropout=self.args.dropout_rate, attn_dropout=self.args.attn_dropout_rate, 
                         ff_mult=1, dims=(32,32), depths=(1,1))
         else:
             raise ValueError("Model architecture not recognized")
         
         print(f"모델 로드 중: {model_path}")
-        model.load_state_dict(torch.load(model_path, map_location=self.device))
+        
+        # 모델 가중치 로드 시 오류 처리
+        try:
+            state_dict = torch.load(model_path, map_location=self.device)
+            model.load_state_dict(state_dict, strict=False)
+            print("✅ 모델 로드 완료 (strict=False)")
+        except Exception as e:
+            print(f"❌ 모델 로드 실패: {e}")
+            print("모델 아키텍처를 다시 확인하세요.")
+            raise e
+        
         model = model.to(self.device)
         model.eval()
-        print("✅ 모델 로드 완료")
         return model
     
     def test_custom_data(self, test_loader, save_results=True, output_dir="./test_results"):

@@ -99,17 +99,28 @@ class Model(nn.Module):
         self.pooling = nn.AdaptiveMaxPool3d((1, 1, 1))
         
     def forward(self, x):
+        # 텐서 차원 검증 및 수정
+        if x.dim() == 6:
+            print(f"경고: 6차원 텐서 감지, 5차원으로 변환: {x.shape}")
+            # 6차원을 5차원으로 변환 (첫 번째 차원을 배치 차원과 결합)
+            B, extra_dim, T, C, H, W = x.shape
+            x = x.view(B * extra_dim, T, C, H, W)
+        elif x.dim() != 5:
+            raise ValueError(f"예상되지 않은 텐서 차원: {x.dim()}, 형태: {x.shape}")
+        
+        print(f"모델 입력 텐서 형태: {x.shape}")
+        
+        # 원래 순서: (B, T, C, H, W) -> (B, C, T, H, W)
+        x = x.permute(0, 2, 1, 3, 4)
 
-        x = x.permute(0, 2, 3, 4, 1)
-
-        if x.shape[4] != self.init_dim:
+        if x.shape[1] != self.init_dim:
             x = self.linear(self.norm0(x))
 
         for stage in self.stages:
             x = stage(x)
 
         
-        x = x.permute(0, 4, 1, 2, 3)
+        x = x.permute(0, 2, 3, 4, 1)
         x = self.pooling(x).squeeze()
 
         

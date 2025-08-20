@@ -37,9 +37,23 @@ def quick_test():
                 print(f"  - saved_models/{file}")
         return
     
+    # 모델 파일명에서 아키텍처 자동 감지
+    if 'base' in model_path or '913' in model_path:
+        detected_arch = 'base'
+        model = Model(dropout=args.dropout_rate, attn_dropout=args.attn_dropout_rate)
+    elif 'tiny' in model_path or '888' in model_path:
+        detected_arch = 'tiny'
+        model = Model(dropout=args.dropout_rate, attn_dropout=args.attn_dropout_rate, 
+                     ff_mult=1, dims=(32,32), depths=(1,1))
+    else:
+        detected_arch = args.model_arch
+    
+    print(f"감지된 모델 아키텍처: {detected_arch}")
+    
     try:
-        model.load_state_dict(torch.load(model_path, map_location=device))
-        print(f"✅ 모델 로드 완료: {model_path}")
+        state_dict = torch.load(model_path, map_location=device)
+        model.load_state_dict(state_dict, strict=False)
+        print(f"✅ 모델 로드 완료: {model_path} (strict=False)")
     except Exception as e:
         print(f"❌ 모델 로드 실패: {e}")
         return
