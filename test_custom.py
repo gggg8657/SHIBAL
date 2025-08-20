@@ -321,10 +321,32 @@ class CustomTester:
     
     def save_detailed_results(self, results, overall_metrics, segment_metrics, output_dir):
         """상세 결과 저장"""
+        # numpy → Python 네이티브로 변환
+        def to_python(obj):
+            import numpy as np
+            if isinstance(obj, dict):
+                return {k: to_python(v) for k, v in obj.items()}
+            if isinstance(obj, list):
+                return [to_python(v) for v in obj]
+            if isinstance(obj, tuple):
+                return tuple(to_python(v) for v in obj)
+            if isinstance(obj, np.ndarray):
+                return obj.tolist()
+            if isinstance(obj, (np.floating,)):
+                return float(obj)
+            if isinstance(obj, (np.integer,)):
+                return int(obj)
+            if obj is None:
+                return None
+            return obj
+
+        safe_overall = to_python(overall_metrics)
+        safe_segments = to_python(segment_metrics)
+
         # JSON 형태로 결과 저장
         output_results = {
-            'overall_metrics': overall_metrics,
-            'segment_metrics': segment_metrics,
+            'overall_metrics': safe_overall,
+            'segment_metrics': safe_segments,
             'detailed_predictions': []
         }
         
