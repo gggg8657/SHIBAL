@@ -99,31 +99,50 @@ class Model(nn.Module):
         self.pooling = nn.AdaptiveMaxPool3d((1, 1, 1))
         
     def forward(self, x):
-        # 텐서 차원 검증 및 수정
+        # 입력 텐서 차원 정리
         if x.dim() == 6:
-            print(f"경고: 6차원 텐서 감지, 5차원으로 변환: {x.shape}")
-            # 6차원을 5차원으로 변환 (첫 번째 차원을 배치 차원과 결합)
-            B, extra_dim, T, C, H, W = x.shape
-            x = x.view(B * extra_dim, T, C, H, W)
-        elif x.dim() != 5:
+            # 흔히 (B, 1, C, T, H, W) 또는 (B, 1, T, C, H, W) 형태가 들어올 수 있음
+            # 우선 크기가 1인 차원은 제거 (배치/채널 외 단일 차원)
+            if x.shape[1] == 1:
+                x = x.squeeze(1)
+            else:
+                # 일반화: 모든 singleton 차원 제거 (배치 제외)
+                b = x.shape[0]
+                x = x.view(b, *[d for d in x.shape[1:] if d != 1])
+        if x.dim() != 5:
             raise ValueError(f"예상되지 않은 텐서 차원: {x.dim()}, 형태: {x.shape}")
-        
-        print(f"모델 입력 텐서 형태: {x.shape}")
-        
-        # 원래 순서: (B, T, C, H, W) -> (B, C, T, H, W)
-        x = x.permute(0, 2, 1, 3, 4)
 
-        if x.shape[1] != self.init_dim:
+        # 채널 차원 자동 감지 후 (B, T, H, W, C)로 정렬
+        # 후보 채널 크기: 초기 채널 self.init_dim (tiny=32, base=192)
+        b, d1, d2, d3, d4 = x.shape
+        # 가능한 입력 형태: (B, C, T, H, W) 또는 (B, T, C, H, W)
+        if d1 == self.init_dim:
+            # (B, C, T, H, W) -> (B, T, H, W, C)
+            x = x.permute(0, 2, 3, 4, 1)
+        elif d2 == self.init_dim:
+            # (B, T, C, H, W) -> (B, T, H, W, C)
+            x = x.permute(0, 1, 3, 4, 2)
+        else:
+            # base 모델일 때 라벨링된 피처가 (B, 192, 16, 10, 10) 형태일 가능성이 높음
+            # 마지막 축이 채널이 되도록 가장 그럴듯한 축을 채널로 가정
+            if d1 in (32, 64, 128, 192):
+                x = x.permute(0, 2, 3, 4, 1)
+            elif d2 in (32, 64, 128, 192):
+                x = x.permute(0, 1, 3, 4, 2)
+            else:
+                raise ValueError(f"채널 차원을 감지할 수 없습니다: {x.shape}, init_dim={self.init_dim}")
+
+        # 이제 x는 (B, T, H, W, C)
+        if x.shape[-1] != self.init_dim:
             x = self.linear(self.norm0(x))
 
         for stage in self.stages:
             x = stage(x)
 
-        
-        x = x.permute(0, 2, 3, 4, 1)
+        # (B, T, H, W, C) -> (B, C, T, H, W)
+        x = x.permute(0, 4, 1, 2, 3)
         x = self.pooling(x).squeeze()
 
-        
         x = self.drop_out(x)
         x = self.norm(x)
         logits = self.fc(x)
