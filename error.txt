@@ -1,0 +1,25 @@
+Simple preprocess 입력: torch.Size([1, 16, 3, 480, 640])
+Simple preprocess 출력: torch.Size([1, 16, 3, 320, 320])
+Simple preprocess 후 형태: torch.Size([1, 16, 3, 320, 320])
+특징 추출 실패: D:\output_2025\frame_20250728-143012_840.jpg, 에러: Given groups=1, weight of size [24, 3, 1, 3, 3], expected input[1, 16, 3, 320, 320] to have 3 channels, but got 16 channels instead
+입력 텐서 형태: torch.Size([1, 16, 3, 480, 640])
+경고: 입력 텐서 차원 5과 permute 차원 4이 일치하지 않습니다.
+입력 텐서 형태: torch.Size([1, 16, 16, 480, 640])
+Transform 적용 실패: The size of tensor a (16) must match the size of tensor b (3) at non-singleton dimension 1
+Simple preprocess 입력: torch.Size([1, 16, 3, 480, 640])
+Simple preprocess 출력: torch.Size([1, 16, 3, 320, 320])
+Simple preprocess 후 형태: torch.Size([1, 16, 3, 320, 320])
+특징 추출 실패: D:\output_2025\frame_20250728-143012_873.jpg, 에러: Given groups=1, weight of size [24, 3, 1, 3, 3], expected input[1, 16, 3, 320, 320] to have 3 channels, but got 16 channels instead
+입력 텐서 형태: torch.Size([1, 16, 3, 480, 640])
+경고: 입력 텐서 차원 5과 permute 차원 4이 일치하지 않습니다.
+입력 텐서 형태: torch.Size([1, 16, 16, 480, 640])
+Transform 적용 실패: The size of tensor a (16) must match the size of tensor b (3) at non-singleton dimension 1
+Simple preprocess 입력: torch.Size([1, 16, 3, 480, 640])
+Simple preprocess 출력: torch.Size([1, 16, 3, 320, 320])
+Simple preprocess 후 형태: torch.Size([1, 16, 3, 320, 320])
+특징 추출 실패: D:\output_2025\frame_20250728-143012_906.jpg, 에러: Given groups=1, weight of size [24, 3, 1, 3, 3], expected input[1, 16, 3, 320, 320] to have 3 channels, but got 16 channels instead
+입력 텐서 형태: torch.Size([1, 16, 3, 480, 640])
+경고: 입력 텐서 차원 5과 permute 차원 4이 일치하지 않습니다.
+입력 텐서 형태: torch.Size([1, 16, 16, 480, 640])
+Transform 적용 실패: The size of tensor a (16) must match the size of tensor b (3) at non-singleton dimension 1
+Simple preprocess 입력: torch.Size([1, 16, 3, 480, 640])
