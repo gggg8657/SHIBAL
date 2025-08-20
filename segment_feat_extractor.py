@@ -255,6 +255,12 @@ class SegmentFeatureExtractor:
                 processed_video = self.simple_preprocess(video_tensor).to(self.device)
                 print(f"Simple preprocess 후 형태: {processed_video.shape}")
             
+            # X3D 모델에 맞는 형태로 변환: (B, T, C, H, W) -> (B, C, T, H, W)
+            # 이 부분이 핵심! X3D 모델은 (B, C, T, H, W) 형태를 기대합니다.
+            if processed_video.shape[2] == 3:  # 채널이 3인지 확인
+                processed_video = processed_video.permute(0, 2, 1, 3, 4)  # (B, T, C, H, W) -> (B, C, T, H, W)
+                print(f"모델 입력용 변환 후: {processed_video.shape}")
+            
             # 특징 추출
             with torch.no_grad():
                 features = self.model(processed_video)
