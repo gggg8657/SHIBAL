@@ -270,3 +270,48 @@ Traceback (most recent call last):
   File "C:\Users\User\Documents\repos\SHIBAL\test_custom.py", line 87, in test_custom_data
     results['predictions'].extend(scores.cpu().numpy())
 TypeError: iteration over a 0-d array
+
+(VAD_p396) PS C:\Users\User\Documents\repos\SHIBAL> python test_custom.py
+감지된 모델 아키텍처: base
+모델 로드 중: ./saved_models/913base.pkl
+✅ 모델 로드 완료 (strict=False)
+테스트 데이터: 9425개
+=== 커스텀 데이터 테스트 시작 ===
+테스트 진행: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 590/590 [00:21<00:00, 27.93it/s]
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py:1179: UndefinedMetricWarning: No negative samples in y_true, false positive value should be meaningless
+  warnings.warn(
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py:1179: UndefinedMetricWarning: No negative samples in y_true, false positive value should be meaningless
+  warnings.warn(
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py:1188: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py:1033: UserWarning: No positive class found in y_true, recall is set to one for all thresholds.
+  warnings.warn(
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py:1179: UndefinedMetricWarning: No negative samples in y_true, false positive value should be meaningless
+  warnings.warn(
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py:1179: UndefinedMetricWarning: No negative samples in y_true, false positive value should be meaningless
+  warnings.warn(
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py:1188: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py:1033: UserWarning: No positive class found in y_true, recall is set to one for all thresholds.
+  warnings.warn(
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py:1179: UndefinedMetricWarning: No negative samples in y_true, false positive value should be meaningless
+  warnings.warn(
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py:1179: UndefinedMetricWarning: No negative samples in y_true, false positive value should be meaningless
+  warnings.warn(
+
+==================================================
+전체 성능
+==================================================
+ROC AUC: 0.4765
+PR AUC: 0.3496
+정확도: 0.4308
+❌ 테스트 실행 중 오류 발생: '1'
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\repos\SHIBAL\test_custom.py", line 361, in main
+    results, overall_metrics, segment_metrics = tester.test_custom_data(
+  File "C:\Users\User\Documents\repos\SHIBAL\test_custom.py", line 100, in test_custom_data
+    self.print_results(overall_metrics, segment_metrics)
+  File "C:\Users\User\Documents\repos\SHIBAL\test_custom.py", line 187, in print_results
+    print(f"정밀도: {overall_metrics['classification_report']['1']['precision']:.4f}")
+KeyError: '1'
+(VAD_p396) PS C:\Users\User\Documents\repos\SHIBAL>
