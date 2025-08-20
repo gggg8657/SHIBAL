@@ -67,23 +67,32 @@ class SegmentFeatureExtractor:
         
         params = transform_params.get(self.model_name, transform_params["x3d_l"])
         
-        # 수정된 Permute 클래스 - 차원 검증 추가
+        # 수정된 Permute 클래스 - 차원 검증 및 자동 수정
         class Permute(nn.Module):
             def __init__(self, dims):
                 super().__init__()
                 self.dims = dims
 
             def forward(self, x):
-                # 차원 수 검증
+                # 차원 수 검증 및 자동 수정
                 if x.dim() != len(self.dims):
                     print(f"경고: 입력 텐서 차원 {x.dim()}과 permute 차원 {len(self.dims)}이 일치하지 않습니다.")
                     print(f"입력 텐서 형태: {x.shape}")
+                    
                     # 차원 수에 맞게 조정
-                    if x.dim() == 5:  # (B, T, C, H, W)
+                    if x.dim() == 5:  # (B, T, C, H, W) 또는 (B, C, T, H, W)
                         if len(self.dims) == 4:
                             # 5차원을 4차원으로 변환
-                            B, T, C, H, W = x.shape
-                            x = x.view(B * T, C, H, W)
+                            B, dim1, dim2, H, W = x.shape
+                            # 채널 수가 3인지 확인하여 올바른 순서 결정
+                            if dim1 == 3:  # (B, C, T, H, W)
+                                x = x.permute(0, 2, 1, 3, 4)  # (B, T, C, H, W)
+                                x = x.view(B * dim2, dim1, H, W)  # (B*T, C, H, W)
+                            elif dim2 == 3:  # (B, T, C, H, W)
+                                x = x.view(B * dim1, dim2, H, W)  # (B*T, C, H, W)
+                            else:
+                                # 채널 수가 3이 아닌 경우, 첫 번째 차원을 시간으로 간주
+                                x = x.view(B * dim1, dim2, H, W)  # (B*T, C, H, W)
                             return x.permute(self.dims)
                         else:
                             return x.permute(self.dims)
@@ -129,8 +138,18 @@ class SegmentFeatureExtractor:
                 self.params = params
             
             def __call__(self, x):
-                # x는 (B, T, C, H, W) 형태
-                B, T, C, H, W = x.shape
+                # x는 (B, T, C, H, W) 또는 (B, C, T, H, W) 형태
+                B, dim1, dim2, H, W = x.shape
+                
+                # 채널 수가 3인지 확인하여 올바른 순서 결정
+                if dim1 == 3:  # (B, C, T, H, W)
+                    x = x.permute(0, 2, 1, 3, 4)  # (B, T, C, H, W)
+                    T, C = dim2, dim1
+                elif dim2 == 3:  # (B, T, C, H, W)
+                    T, C = dim1, dim2
+                else:
+                    # 채널 수가 3이 아닌 경우, 첫 번째 차원을 시간으로 간주
+                    T, C = dim1, dim2
                 
                 # 정규화
                 x = x / 255.0
@@ -215,19 +234,26 @@ class SegmentFeatureExtractor:
             # 이미지를 비디오 형태로 변환 (단일 프레임을 여러 번 복제)
             frames = [np.array(image)] * 16  # 16프레임으로 확장
             video_tensor = torch.from_numpy(np.stack(frames)).float()
+            
+            # 올바른 형태로 변환: (16, 3, H, W) -> (1, 16, 3, H, W)
             video_tensor = video_tensor.permute(0, 3, 1, 2).unsqueeze(0)  # (1, 16, 3, H, W)
+            
+            print(f"입력 텐서 형태: {video_tensor.shape}")
             
             # 전처리 적용
             if self.transform is not None:
                 try:
                     video_data = {'video': video_tensor}
                     processed_video = self.transform(video_data)['video'].to(self.device)
+                    print(f"Transform 후 형태: {processed_video.shape}")
                 except Exception as e:
                     print(f"Transform 적용 실패: {e}")
                     # 간단한 전처리로 대체
                     processed_video = self.simple_preprocess(video_tensor).to(self.device)
+                    print(f"Simple preprocess 후 형태: {processed_video.shape}")
             else:
                 processed_video = self.simple_preprocess(video_tensor).to(self.device)
+                print(f"Simple preprocess 후 형태: {processed_video.shape}")
             
             # 특징 추출
             with torch.no_grad():
@@ -240,8 +266,10 @@ class SegmentFeatureExtractor:
     
     def simple_preprocess(self, video_tensor):
         """간단한 전처리 (차원 문제 해결용)"""
-        # video_tensor: (B, T, C, H, W)
+        # video_tensor: (B, T, C, H, W) = (1, 16, 3, H, W)
         B, T, C, H, W = video_tensor.shape
+        
+        print(f"Simple preprocess 입력: {video_tensor.shape}")
         
         # 정규화
         video_tensor = video_tensor / 255.0
@@ -261,6 +289,8 @@ class SegmentFeatureExtractor:
         
         # (B, T, C, H, W) 형태로 복원
         video_tensor = video_tensor.view(B, T, C, 320, 320)
+        
+        print(f"Simple preprocess 출력: {video_tensor.shape}")
         
         return video_tensor
 
