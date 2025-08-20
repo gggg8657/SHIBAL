@@ -88,7 +88,20 @@ class CustomTester:
                 results['labels'].extend(torch.as_tensor(labels).view(-1).cpu().numpy().tolist())
                 results['categories'].extend(list(categories))
                 results['descriptions'].extend(list(descriptions))
-                results['features'].extend(feat.view(feat.shape[0], -1).cpu().numpy().tolist())
+
+                # 특징 수집 (배치/차원 안전)
+                if isinstance(feat, torch.Tensor):
+                    if feat.dim() == 1:
+                        feat_b = feat.unsqueeze(0)
+                    elif feat.dim() == 2:
+                        feat_b = feat
+                    else:
+                        # (B, ...) -> (B, -1)
+                        feat_b = feat.view(feat.shape[0], -1)
+                    results['features'].extend(feat_b.cpu().numpy().tolist())
+                else:
+                    # 알 수 없는 타입은 스킵
+                    pass
         
         # 전체 성능 계산
         overall_metrics = self.calculate_metrics(results['predictions'], results['labels'])
@@ -295,7 +308,12 @@ class CustomTester:
         # 5. UMAP 임베딩 시각화
         try:
             import umap
-            feats = np.array(results['features'])
+            # 라그드 방지: 각 요소를 1D로 평탄화하여 2D 배열로 만듦
+            feats_list = results['features']
+            feats = np.array([np.ravel(f) for f in feats_list], dtype=float)
+            if feats.ndim != 2 or feats.shape[0] < 2:
+                raise ValueError("UMAP에 충분한 2D 피처가 없습니다")
+
             fit = umap.UMAP()
             reduced_feats = fit.fit_transform(feats)
             
@@ -318,6 +336,8 @@ class CustomTester:
             
         except ImportError:
             print("UMAP이 설치되지 않아 임베딩 시각화를 건너뜁니다.")
+        except Exception as e:
+            print(f"UMAP 시각화를 건너뜁니다: {e}")
     
     def save_detailed_results(self, results, overall_metrics, segment_metrics, output_dir):
         """상세 결과 저장"""
