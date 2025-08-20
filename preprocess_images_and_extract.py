@@ -3,6 +3,7 @@ import argparse
 import json
 import os
 from pathlib import Path
+import re
 from PIL import Image
 import numpy as np
 import torch
@@ -60,6 +61,20 @@ def extract_feature_from_image_path(model, device, img_path: str, out_npy: str, 
     return True
 
 
+def normalize_win(p: str) -> str:
+    return p.replace('\\', '/').strip()
+
+
+def strip_prefix_case_insensitive(path_norm: str, prefix_norm: str) -> str:
+    # 둘 다 소문자로 비교, trailing slash 강제
+    pfx = prefix_norm
+    if not pfx.endswith('/'):
+        pfx = pfx + '/'
+    if path_norm.lower().startswith(pfx.lower()):
+        return path_norm[len(pfx):]
+    return path_norm
+
+
 def main():
     ap = argparse.ArgumentParser(description='이미지 ROI 크롭 및 특징 추출')
     ap.add_argument('--json_path', default='image_segments.json')
@@ -70,6 +85,7 @@ def main():
     ap.add_argument('--roi_pixels', default='0,0,480,270', help='픽셀 ROI x1,y1,x2,y2')
     ap.add_argument('--frames', type=int, default=16)
     ap.add_argument('--device', default='cuda')
+    ap.add_argument('--verify_first_n', type=int, default=0, help='처음 N개만 처리 후 저장 여부 확인하고 종료 (0이면 전체 처리)')
     args = ap.parse_args()
 
     x1, y1, x2, y2 = map(int, args.roi_pixels.split(','))
@@ -82,12 +98,23 @@ def main():
 
     total = 0
     done = 0
+    verified = 0
+    stop_after_verify = args.verify_first_n > 0
+    verify_target = args.verify_first_n
     for seg in segments:
         for img_win in seg.get('images', []):
-            # 윈도우 경로를 상대 경로로 변환
-            rel = img_win.replace('\\', '/').replace(args.windows_prefix, '')
+            # 윈도우 경로를 안전하게 상대 경로로 변환
+            win_norm = normalize_win(img_win)
+            pfx_norm = normalize_win(args.windows_prefix)
+            rel = strip_prefix_case_insensitive(win_norm, pfx_norm)
+            # 만약 여전히 절대경로 흔적(드라이브 레터)라면 강제 상대화: 드라이브 제거 후 하위만 사용
+            if re.match(r'^[A-Za-z]:/', rel):
+                rel = rel.split(':/', 1)[-1]
+            # 혹시라도 선행 슬래시가 남아있으면 제거
+            rel = rel.lstrip('/')
+
             in_img = os.path.join(args.in_base, rel).replace('\\', '/')
-            # 출력 경로
+            # 출력 경로 (항상 상대 경로가 되도록 보장)
             out_img = os.path.join(args.out_images_dir, rel).replace('\\', '/')
             out_npy = os.path.join(args.out_features_dir, rel).replace('\\', '/')
             out_img = Path(out_img).with_suffix('.jpg').as_posix()
@@ -118,8 +145,20 @@ def main():
             ok = extract_feature_from_image_path(model, device, out_img, out_npy, frames=args.frames)
             if ok:
                 done += 1
-                if done % 100 == 0:
-                    print(f"진행: {done}/{total} 저장")
+                # 검증 모드: 처음 N개 저장 확인
+                if stop_after_verify and verified < verify_target:
+                    img_ok = os.path.exists(out_img)
+                    npy_ok = os.path.exists(out_npy)
+                    print(f"[VERIFY {verified+1}/{verify_target}] IMG {'OK' if img_ok else 'MISS'}: {out_img}")
+                    print(f"[VERIFY {verified+1}/{verify_target}] NPY {'OK' if npy_ok else 'MISS'}: {out_npy}")
+                    verified += 1
+                    if verified >= verify_target:
+                        print(f"검증용 {verify_target}개 처리/확인 완료. 종료합니다.")
+                        print(f"누적: 총 이미지 스캔 {total}개, 처리 {done}개")
+                        return
+                else:
+                    if done % 50 == 0:
+                        print(f"진행: {done}/{total} 저장 -> {out_img} | {out_npy}")
 
     print(f"총 이미지: {total}, 저장된 특징: {done}")
 
