@@ -38,10 +38,12 @@ def train_single_model(config_file, gpu_id=None, additional_args=None, stream=Fa
     print(f"명령어: {' '.join(cmd)}")
     print(f"📄 로그: {log_path}")
     
-    # 환경변수 설정 (GPU 고정)
+    # 환경변수 설정 (GPU 고정 + IO 인코딩 강제)
     env = os.environ.copy()
     if visible:
         env["CUDA_VISIBLE_DEVICES"] = visible
+    env["PYTHONIOENCODING"] = "utf-8"
+    env["PYTHONUTF8"] = "1"
     
     # CWD를 스크립트 디렉토리로 고정
     cwd = str(SCRIPT_DIR)
@@ -49,33 +51,47 @@ def train_single_model(config_file, gpu_id=None, additional_args=None, stream=Fa
     def run_and_log(run_cmd):
         if stream:
             with open(log_path, "w", encoding="utf-8", errors="ignore") as lf:
-                proc = subprocess.Popen(run_cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, env=env, cwd=cwd)
-                for line in proc.stdout:
-                    sys.stdout.write(line)
-                    lf.write(line)
-                proc.wait()
-                return proc.returncode
+                proc = subprocess.Popen(
+                    run_cmd,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                    text=True,
+                    encoding="utf-8",
+                    errors="replace",
+                    env=env,
+                    cwd=cwd,
+                )
+                try:
+                    for line in proc.stdout:
+                        sys.stdout.write(line)
+                        lf.write(line)
+                finally:
+                    proc.wait()
+                return proc.returncode, None
         else:
-            result = subprocess.run(run_cmd, capture_output=True, text=True, timeout=3600*24, env=env, cwd=cwd)
+            result = subprocess.run(
+                run_cmd,
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                timeout=3600*24,
+                env=env,
+                cwd=cwd,
+            )
+            combined = (result.stdout or "") + "\n==== STDERR ====\n" + (result.stderr or "")
             with open(log_path, "w", encoding="utf-8", errors="ignore") as lf:
-                lf.write(result.stdout or "")
-                lf.write("\n==== STDERR ====\n")
-                lf.write(result.stderr or "")
-            return result.returncode, (result.stdout or "") + "\n==== STDERR ====\n" + (result.stderr or "")
+                lf.write(combined)
+            return result.returncode, combined
 
     try:
         # 1차 실행
-        if stream:
-            rc = run_and_log(cmd)
-            stderr_text = ""
-        else:
-            rc, combined = run_and_log(cmd)
-            stderr_text = combined
+        rc, combined = run_and_log(cmd)
+        stderr_text = combined or ""
         
         # --config 인식 실패 폴백: config.json으로 복사 후 무인자 재시도
         if rc != 0 and ("unrecognized arguments" in stderr_text or "error: unrecognized arguments" in stderr_text):
             print("⚠️ --config 인식 실패. 폴백 모드로 재시도 (config.json 복사, 무인자 실행)")
-            # config.json으로 복사
             src = Path(cwd) / config_file
             dst = Path(cwd) / "config.json"
             try:
@@ -83,12 +99,8 @@ def train_single_model(config_file, gpu_id=None, additional_args=None, stream=Fa
             except Exception as e:
                 print(f"❌ config 복사 실패: {e}")
                 return False
-            # 무인자 실행 커맨드
             fallback_cmd = [sys.executable, "train_custom.py"]
-            if stream:
-                rc = run_and_log(fallback_cmd)
-            else:
-                rc, _ = run_and_log(fallback_cmd)
+            rc, _ = run_and_log(fallback_cmd)
         
         if rc == 0:
             print(f"✅ 완료: {config_file}")
@@ -98,12 +110,16 @@ def train_single_model(config_file, gpu_id=None, additional_args=None, stream=Fa
             print(f"🔎 자세한 로그: {log_path}")
             return False
 
+    except KeyboardInterrupt:
+        print("⛔ 사용자 중단 (Ctrl+C)")
+        return False
     except subprocess.TimeoutExpired:
         print(f"⏰ 타임아웃: {config_file}")
         return False
     except Exception as e:
         print(f"❌ 예외: {config_file} - {e}")
         return False
+
 
 def main():
     parser = argparse.ArgumentParser(description='8개 모델 동시 학습')
@@ -177,20 +193,24 @@ def main():
         gpu_id = gpu_assignments[i] if i < len(gpu_assignments) else "auto"
         print(f"  {i+1}. {data_type} {arch_type} {model_type} (GPU: {gpu_id})")
     
-    if args.parallel:
-        print("\n🔄 병렬 실행 시작...")
-        with ProcessPoolExecutor(max_workers=args.max_workers) as executor:
-            futures = []
+    try:
+        if args.parallel:
+            print("\n🔄 병렬 실행 시작...")
+            with ProcessPoolExecutor(max_workers=args.max_workers) as executor:
+                futures = []
+                for config_file, gpu_id in zip(configs, gpu_assignments):
+                    futures.append(executor.submit(train_single_model, config_file, gpu_id, None, args.stream, args.log_dir))
+                results = [f.result() for f in futures]
+        else:
+            print("\n🔄 순차 실행 시작...")
+            results = []
             for config_file, gpu_id in zip(configs, gpu_assignments):
-                futures.append(executor.submit(train_single_model, config_file, gpu_id, None, args.stream, args.log_dir))
-            results = [f.result() for f in futures]
-    else:
-        print("\n🔄 순차 실행 시작...")
-        results = []
-        for config_file, gpu_id in zip(configs, gpu_assignments):
-            ok = train_single_model(config_file, gpu_id, None, args.stream, args.log_dir)
-            results.append(ok)
-            time.sleep(2)
+                ok = train_single_model(config_file, gpu_id, None, args.stream, args.log_dir)
+                results.append(ok)
+                time.sleep(2)
+    except KeyboardInterrupt:
+        print("⛔ 사용자 중단 (Ctrl+C)")
+        return
     
     # 결과 요약
     success_count = sum(results)
