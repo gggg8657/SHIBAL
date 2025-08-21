@@ -14,7 +14,7 @@ import argparse
 
 def train_single_model(config_file, gpu_id=None, additional_args=None):
     """단일 모델 학습 함수"""
-    cmd = ["python3", "train_custom.py", "--config", config_file]
+    cmd = [sys.executable, "train_custom.py", "--config", config_file]
     
     if gpu_id is not None:
         cmd.extend(["--gpu_ids", str(gpu_id)])
