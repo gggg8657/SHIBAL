@@ -594,3 +594,40 @@ Traceback (most recent call last):
   File "C:\Users\User\Documents\repos\SHIBAL\test_custom.py", line 298, in visualize_results
     feats = np.array(results['features'])
 ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (9552,) + inhomogeneous part.
+
+
+(VAD_p396) PS C:\Users\User\Documents\repos\SHIBAL> python .\train_custom.py
+✅ 설정 파일 로드: config.json
+
+=== 훈련 설정 ===
+훈련 데이터: custom_data/balanced_train.txt
+테스트 데이터: custom_data/balanced_test.txt
+모델 경로: saved_models/913base.pkl
+모델 아키텍처: base
+배치 크기: 16
+학습률: 0.0002
+최대 에포크: 100
+저장 디렉토리: ./ckpt
+==============================
+훈련 데이터: 800개
+테스트 데이터: 7790개
+✅ 프리트레인드 모델 로드: saved_models/913base.pkl
+
+=== 훈련 시작 ===
+Epoch 0: 100it [00:12,  8.30it/s]                                                                                                                                                                          | 0/100 [00:00<?, ?it/s]
+train_pr_auc : 0.6139,  9.01it/s]
+train_roc_auc : 0.6239
+테스트: 487it [00:53,  9.10it/s]
+pr_auc : 0.720800:53,  8.93it/s]
+roc_auc : 0.7409
+Epoch 0: AUC=0.7409, PR_AUC=0.7208
+Epoch 1: 100it [00:08, 11.27it/s]                                                                                                                                                                | 1/100 [01:05<1:48:15, 65.61s/it]
+train_pr_auc : 0.5777, 11.38it/s]
+train_roc_auc : 0.6056
+테스트: 487it [00:18, 26.52it/s]
+pr_auc : 0.752000:18, 26.08it/s]
+roc_auc : 0.7598
+Epoch 1: AUC=0.7598, PR_AUC=0.7520
+Epoch 2: 100it [00:08, 11.78it/s]                                                                                                                                                                | 2/100 [01:32<1:10:19, 43.06s/it]
+train_pr_auc : 0.6787 11.44it/s]
+train_roc_auc : 0.6591

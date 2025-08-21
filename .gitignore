@@ -1,3 +1,5 @@
 /features/
 *.jpg
 *.npy
+/ckpt/
+*.zip
