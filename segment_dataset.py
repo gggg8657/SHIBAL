@@ -22,6 +22,14 @@ class SegmentDataset(data.Dataset):
         self.n_len = len(normal_data)    # 정상 데이터 수
         self.a_len = len(abnormal_data)  # 비정상 데이터 수
         
+        # 멀티워커에서도 안전하게: 초기 인덱스 풀 준비
+        self._normal_indices_all = [i for i, path in enumerate(self.data_list) if self.segment_info[path]['label'] == 0.0]
+        self._abnormal_indices_all = [i for i, path in enumerate(self.data_list) if self.segment_info[path]['label'] == 1.0]
+        self.n_ind = self._normal_indices_all.copy()
+        self.a_ind = self._abnormal_indices_all.copy()
+        random.shuffle(self.n_ind)
+        random.shuffle(self.a_ind)
+        
         print(f"📊 데이터 분포: 정상 {self.n_len}개, 비정상 {self.a_len}개")
     
     def load_data_list(self):
@@ -86,27 +94,10 @@ class SegmentDataset(data.Dataset):
     def __getitem__(self, index):
         if not self.test_mode:
             # 훈련 모드: 정상/비정상 쌍으로 반환
-            if index == 0:
-                # 정상/비정상 데이터 인덱스 분리
-                normal_indices = [i for i, path in enumerate(self.data_list) 
-                                if self.segment_info[path]['label'] == 0.0]
-                abnormal_indices = [i for i, path in enumerate(self.data_list) 
-                                  if self.segment_info[path]['label'] == 1.0]
-                
-                self.n_ind = normal_indices.copy()
-                self.a_ind = abnormal_indices.copy()
-                random.shuffle(self.n_ind)
-                random.shuffle(self.a_ind)
-            
-            # 인덱스가 범위를 벗어나면 처음부터 다시 시작
-            if not self.n_ind or not self.a_ind:
-                normal_indices = [i for i, path in enumerate(self.data_list) 
-                                if self.segment_info[path]['label'] == 0.0]
-                abnormal_indices = [i for i, path in enumerate(self.data_list) 
-                                  if self.segment_info[path]['label'] == 1.0]
-                
-                self.n_ind = normal_indices.copy()
-                self.a_ind = abnormal_indices.copy()
+            # 워커에서 첫 호출이 0이 아닐 수 있으므로, 풀 미존재/비었을 때 항상 재초기화
+            if not hasattr(self, 'n_ind') or not hasattr(self, 'a_ind') or not self.n_ind or not self.a_ind:
+                self.n_ind = self._normal_indices_all.copy()
+                self.a_ind = self._abnormal_indices_all.copy()
                 random.shuffle(self.n_ind)
                 random.shuffle(self.a_ind)
             
