@@ -1,0 +1,145 @@
+(VAD_p396) PS C:\Users\User\Documents\repos\SHIBAL> python .\train_all_models.py
+🎯 모든 모델 8개 학습
+설정 파일들: ['config_uncropped_tiny_finetune.json', 'config_uncropped_base_finetune.json', 'config_cropped_tiny_finetune.json', 'config_cropped_base_finetune.json', 'config_uncropped_tiny_scratch.json', 'config_uncropped_base_scratch.json', 'config_cropped_tiny_scratch.json', 'config_cropped_base_scratch.json']
+병렬 실행: True
+최대 워커 수: 2
+GPU 할당: ['0', '1', '0', '1', '0', '1', '0', '1']
+
+📋 학습할 모델 목록:
+  1. Uncropped Tiny 파인튜닝 (GPU: 0)
+  2. Uncropped Base 파인튜닝 (GPU: 1)
+  3. Cropped Tiny 파인튜닝 (GPU: 0)
+  4. Cropped Base 파인튜닝 (GPU: 1)
+  5. Uncropped Tiny From Scratch (GPU: 0)
+  6. Uncropped Base From Scratch (GPU: 1)
+  7. Cropped Tiny From Scratch (GPU: 0)
+  8. Cropped Base From Scratch (GPU: 1)
+
+🔄 병렬 실행 시작...
+🚀 시작: config_uncropped_tiny_finetune.json (GPU: 0)
+명령어: C:\Users\User\anaconda3\envs\VAD_p396\python.exe train_custom.py --config config_uncropped_tiny_finetune.json --gpu_ids 0
+📄 로그: logs\config_uncropped_tiny_finetune.log
+🚀 시작: config_uncropped_base_finetune.json (GPU: 1)
+명령어: C:\Users\User\anaconda3\envs\VAD_p396\python.exe train_custom.py --config config_uncropped_base_finetune.json --gpu_ids 1
+📄 로그: logs\config_uncropped_base_finetune.log
+Exception in thread Thread-1:
+Exception in thread Thread-2:
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\threading.py", line 973, in _bootstrap_inner
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\threading.py", line 910, in run
+    self.run()
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\subprocess.py", line 1479, in _readerthread
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\subprocess.py", line 1479, in _readerthread
+    buffer.append(fh.read())
+UnicodeDecodeError: 'cp949' codec can't decode byte 0xec in position 5: illegal multibyte sequence
+    buffer.append(fh.read())
+UnicodeDecodeError: 'cp949' codec can't decode byte 0xec in position 1: illegal multibyte sequence
+Exception in thread Thread-1:
+Traceback (most recent call last):
+Exception in thread Thread-2:
+Traceback (most recent call last):
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\threading.py", line 973, in _bootstrap_inner
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\threading.py", line 910, in run
+    self.run()
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\subprocess.py", line 1479, in _readerthread
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\subprocess.py", line 1479, in _readerthread
+    buffer.append(fh.read())
+UnicodeDecodeError: 'cp949' codec can't decode byte 0xec in position 1: illegal multibyte sequence
+    buffer.append(fh.read())
+UnicodeDecodeError: 'cp949' codec can't decode byte 0xec in position 5: illegal multibyte sequence
+❌ 실패: config_uncropped_tiny_finetune.json
+🔎 자세한 로그: logs\config_uncropped_tiny_finetune.log
+🚀 시작: config_cropped_tiny_finetune.json (GPU: 0)
+명령어: C:\Users\User\anaconda3\envs\VAD_p396\python.exe train_custom.py --config config_cropped_tiny_finetune.json --gpu_ids 0
+📄 로그: logs\config_cropped_tiny_finetune.log
+❌ 실패: config_uncropped_base_finetune.json
+🔎 자세한 로그: logs\config_uncropped_base_finetune.log
+🚀 시작: config_cropped_base_finetune.json (GPU: 1)
+명령어: C:\Users\User\anaconda3\envs\VAD_p396\python.exe train_custom.py --config config_cropped_base_finetune.json --gpu_ids 1
+📄 로그: logs\config_cropped_base_finetune.log
+Exception in thread Thread-3:
+Exception in thread Thread-4:
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\threading.py", line 973, in _bootstrap_inner
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\threading.py", line 973, in _bootstrap_inner
+    self.run()
+    self.run()
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\threading.py", line 910, in run
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\subprocess.py", line 1479, in _readerthread
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\subprocess.py", line 1479, in _readerthread
+    buffer.append(fh.read())
+    buffer.append(fh.read())
+UnicodeDecodeError: 'cp949' codec can't decode byte 0xec in position 5: illegal multibyte sequence
+UnicodeDecodeError: 'cp949' codec can't decode byte 0xec in position 1: illegal multibyte sequence
+Exception in thread Thread-3:
+Exception in thread Thread-4:
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\threading.py", line 973, in _bootstrap_inner
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\threading.py", line 910, in run
+    self.run()
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\subprocess.py", line 1479, in _readerthread
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\subprocess.py", line 1479, in _readerthread
+    buffer.append(fh.read())
+UnicodeDecodeError: 'cp949' codec can't decode byte 0xec in position 1: illegal multibyte sequence
+    buffer.append(fh.read())
+UnicodeDecodeError: 'cp949' codec can't decode byte 0xec in position 5: illegal multibyte sequence
+🚀 시작: config_uncropped_tiny_scratch.json (GPU: 0)
+명령어: C:\Users\User\anaconda3\envs\VAD_p396\python.exe train_custom.py --config config_uncropped_tiny_scratch.json --gpu_ids 0
+📄 로그: logs\config_uncropped_tiny_scratch.log
+🚀 시작: config_uncropped_base_scratch.json (GPU: 1)
+명령어: C:\Users\User\anaconda3\envs\VAD_p396\python.exe train_custom.py --config config_uncropped_base_scratch.json --gpu_ids 1
+📄 로그: logs\config_uncropped_base_scratch.log
+🚀 시작: config_cropped_tiny_scratch.json (GPU: 0)
+명령어: C:\Users\User\anaconda3\envs\VAD_p396\python.exe train_custom.py --config config_cropped_tiny_scratch.json --gpu_ids 0
+📄 로그: logs\config_cropped_tiny_scratch.log
+🚀 시작: config_cropped_base_scratch.json (GPU: 1)
+명령어: C:\Users\User\anaconda3\envs\VAD_p396\python.exe train_custom.py --config config_cropped_base_scratch.json --gpu_ids 1
+📄 로그: logs\config_cropped_base_scratch.log
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\repos\SHIBAL\train_all_models.py", line 186, in main
+    results = [f.result() for f in futures]
+  File "C:\Users\User\Documents\repos\SHIBAL\train_all_models.py", line 186, in <listcomp>
+    results = [f.result() for f in futures]
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\concurrent\futures\_base.py", line 440, in result
+    self._condition.wait(timeout)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\threading.py", line 312, in wait
+    waiter.acquire()
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\repos\SHIBAL\train_all_models.py", line 205, in <module>
+    main()
+  File "C:\Users\User\Documents\repos\SHIBAL\train_all_models.py", line 186, in main
+    results = [f.result() for f in futures]
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\concurrent\futures\_base.py", line 636, in __exit__
+    self.shutdown(wait=True)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\concurrent\futures\process.py", line 740, in shutdown
+    self._executor_manager_thread.join()
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\threading.py", line 1053, in join
+    self._wait_for_tstate_lock()
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\threading.py", line 1069, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt
