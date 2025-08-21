@@ -19,6 +19,26 @@ from segment_dataset import SegmentDataset
 from model import Model
 from utils import save_best_record
 from timm.scheduler.cosine_lr import CosineLRScheduler
+import argparse
+
+def parse_args():
+    parser = argparse.ArgumentParser(description='커스텀 STEAD 훈련')
+    parser.add_argument('--train_list', default='custom_train.txt', help='훈련 데이터 리스트')
+    parser.add_argument('--test_list', default='custom_test.txt', help='테스트 데이터 리스트')
+    parser.add_argument('--model_path', default='saved_models/888tiny.pkl', help='사전 훈련된 모델 경로')
+    parser.add_argument('--comment', default='custom', help='체크포인트 이름용 코멘트')
+    parser.add_argument('--dropout_rate', type=float, default=0.4, help='드롭아웃 비율')
+    parser.add_argument('--attn_dropout_rate', type=float, default=0.1, help='어텐션 드롭아웃 비율')
+    parser.add_argument('--lr', type=float, default=2e-4, help='학습률 (기본값: 2e-4)')
+    parser.add_argument('--batch_size', type=int, default=16, help='배치 크기 (기본값: 16)')
+    parser.add_argument('--model_name', default='custom_model', help='저장할 모델 이름')
+    parser.add_argument('--model_arch', default='tiny', help='모델 아키텍처 (base, tiny)')
+    parser.add_argument('--max_epoch', type=int, default=100, help='최대 에포크 (기본값: 100)')
+    parser.add_argument('--warmup', type=int, default=1, help='웜업 에포크 수')
+    parser.add_argument('--save_dir', default='./ckpt', help='모델 저장 디렉토리')
+    
+    args = parser.parse_args()
+    return args
 
 class TripletLoss(nn.Module):
     def __init__(self):
@@ -136,31 +156,16 @@ def save_config(save_path, args):
     f.close()
 
 def main():
-    """메인 함수"""
-    args = option.parse_args()
+    args = parse_args()
     
-    # 커스텀 데이터 경로 설정
-    if not hasattr(args, 'rgb_list') or args.rgb_list == 'ucf_x3d_train.txt':
-        args.rgb_list = 'custom_data/custom_train.txt'
-    if not hasattr(args, 'test_rgb_list') or args.test_rgb_list == 'ucf_x3d_test.txt':
-        args.test_rgb_list = 'custom_data/custom_test.txt'
-    
-    print("=== 커스텀 데이터셋 STEAD 훈련 시작 ===")
-    print(f"훈련 데이터: {args.rgb_list}")
-    print(f"테스트 데이터: {args.test_rgb_list}")
-    print(f"모델 아키텍처: {args.model_arch}")
-    print(f"배치 크기: {args.batch_size}")
-    print(f"학습률: {args.lr}")
-    print(f"최대 에포크: {args.max_epoch}")
-    
-    # 데이터 파일 존재 확인
-    if not os.path.exists(args.rgb_list):
-        print(f"❌ 훈련 데이터 리스트를 찾을 수 없습니다: {args.rgb_list}")
+    # 데이터 리스트 파일 존재 확인
+    if not os.path.exists(args.train_list):
+        print(f"❌ 훈련 데이터 리스트를 찾을 수 없습니다: {args.train_list}")
         print("먼저 preprocess_segments.py를 실행하여 데이터를 준비하세요.")
         return
     
-    if not os.path.exists(args.test_rgb_list):
-        print(f"❌ 테스트 데이터 리스트를 찾을 수 없습니다: {args.test_rgb_list}")
+    if not os.path.exists(args.test_list):
+        print(f"❌ 테스트 데이터 리스트를 찾을 수 없습니다: {args.test_list}")
         print("먼저 preprocess_segments.py를 실행하여 데이터를 준비하세요.")
         return
     
@@ -196,20 +201,24 @@ def main():
     
     model.apply(init_weights)
     
-    # 프리트레인드 모델 로드 (선택사항)
-    if args.pretrained_ckpt is not None:
+    # 프리트레인드 모델 로드
+    if os.path.exists(args.model_path):
         try:
-            model_ckpt = torch.load(args.pretrained_ckpt)
-            model.load_state_dict(model_ckpt)
-            print(f"✅ 프리트레인드 모델 로드: {args.pretrained_ckpt}")
+            model_ckpt = torch.load(args.model_path, map_location=device)
+            model.load_state_dict(model_ckpt, strict=False)
+            print(f"✅ 프리트레인드 모델 로드: {args.model_path}")
         except Exception as e:
             print(f"❌ 프리트레인드 모델 로드 실패: {e}")
+            print("새로운 모델로 시작합니다.")
+    else:
+        print(f"⚠️ 프리트레인드 모델을 찾을 수 없습니다: {args.model_path}")
+        print("새로운 모델로 시작합니다.")
     
     model = model.to(device)
     
     # 체크포인트 저장 디렉토리 생성
-    savepath = f'./ckpt/{args.lr}_{args.batch_size}_{args.comment}'
-    save_config(savepath, args)
+    savepath = os.path.join(args.save_dir, f'{args.lr}_{args.batch_size}_{args.comment}')
+    os.makedirs(savepath, exist_ok=True)
     
     # 옵티마이저 및 스케줄러 설정
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=0.2)

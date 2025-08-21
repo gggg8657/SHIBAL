@@ -1,1 +1,25 @@
 python preprocess_images_and_extract.py --json_path image_segments.json --roi_pixels 0,0,480,270 --in_base D:/output_2025/ --windows_prefix D:/output_2025/ --verify_first_n 3
+
+
+# 기본 설정으로 훈련
+python train_custom.py
+
+# 커스텀 설정으로 훈련
+python train_custom.py \
+    --train_list custom_balanced_train.txt \
+    --test_list custom_balanced_test.txt \
+    --model_path saved_models/913base.pkl \
+    --lr 1e-4 \
+    --batch_size 32 \
+    --max_epoch 200 \
+    --comment my_experiment
+
+# 빠른 테스트용
+python train_custom.py --max_epoch 10 --lr 5e-4
+
+for_custom/
+├── ckpt/
+│   └── 2e-4_16_custom/           # lr_batchsize_comment
+│       ├── custom_model0-x3d.pkl
+│       ├── custom_model1-x3d.pkl
+│       └── custom_modelfinal.pkl
