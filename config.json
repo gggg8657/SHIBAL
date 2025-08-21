@@ -1,7 +1,7 @@
 {
     "data": {
-        "train_list": "custom_datav2/custom_train.txt",
-        "test_list": "custom_datav2/custom_test.txt",
+        "train_list": "custom_data/balanced_train.txt",
+        "test_list": "custom_data/balanced_test.txt",
         "model_path": "saved_models/888tiny.pkl"
     },
     "training": {
@@ -14,11 +14,16 @@
         "model_arch": "tiny",
         "max_epoch": 100,
         "warmup": 1,
-        "save_dir": "./ckpt/tiny_uncropped"
+        "save_dir": "./ckpt"
     },
     "model": {
         "ff_mult": 1,
         "dims": [32, 32],
         "depths": [1, 1]
+    },
+    "gpu": {
+        "use_multi_gpu": true,
+        "gpu_ids": [0, 1],
+        "auto_detect": true
     }
 }

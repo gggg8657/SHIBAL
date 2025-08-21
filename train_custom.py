@@ -3,11 +3,13 @@
 커스텀 데이터셋 STEAD 훈련 스크립트
 세그먼트 정보를 활용한 이상 탐지 모델 훈련
 config.json 파일에서 설정을 읽어옵니다.
+멀티 GPU 지원 (GPU 0, 1번 병렬 처리)
 """
 
 import torch
 import torch.nn.functional as F
 from torch import nn
+from torch.nn.parallel import DataParallel
 from tqdm import tqdm
 from sklearn.metrics import auc, roc_curve, precision_recall_curve
 import os
@@ -49,6 +51,39 @@ def print_config(config):
     print(f"저장 디렉토리: {config['training']['save_dir']}")
     print("=" * 30)
 
+def setup_gpu(config):
+    """GPU 설정을 확인하고 설정합니다."""
+    if torch.cuda.is_available():
+        gpu_count = torch.cuda.device_count()
+        print(f"🎮 사용 가능한 GPU: {gpu_count}개")
+        
+        for i in range(gpu_count):
+            gpu_name = torch.cuda.get_device_name(i)
+            gpu_memory = torch.cuda.get_device_properties(i).total_memory / 1024**3
+            print(f"  GPU {i}: {gpu_name} ({gpu_memory:.1f}GB)")
+        
+        # config.json에서 GPU 설정 읽기
+        gpu_config = config.get('gpu', {})
+        use_multi_gpu = gpu_config.get('use_multi_gpu', True)
+        gpu_ids = gpu_config.get('gpu_ids', [0, 1])
+        auto_detect = gpu_config.get('auto_detect', True)
+        
+        if auto_detect and gpu_count >= 2 and use_multi_gpu:
+            print("✅ 멀티 GPU 모드 활성화 (GPU 0, 1번 병렬)")
+            device = torch.device('cuda:0')
+            return device, True, gpu_count, gpu_ids[:2]  # 최대 2개 GPU 사용
+        elif use_multi_gpu and gpu_count >= 2:
+            print(f"✅ 멀티 GPU 모드 활성화 (GPU {gpu_ids} 병렬)")
+            device = torch.device(f'cuda:{gpu_ids[0]}')
+            return device, True, len(gpu_ids), gpu_ids
+        else:
+            print("⚠️ 단일 GPU 모드 (GPU 0번만 사용)")
+            device = torch.device('cuda:0')
+            return device, False, 1, [0]
+    else:
+        print("⚠️ GPU를 사용할 수 없습니다. CPU 모드로 실행합니다.")
+        return torch.device('cpu'), False, 0, []
+
 class TripletLoss(nn.Module):
     def __init__(self):
         super(TripletLoss, self).__init__()
@@ -80,7 +115,7 @@ class Loss(torch.nn.Module):
         loss_triplet = self.triplet(feats)
         return loss_ce, alpha * loss_triplet
 
-def train(loader, model, optimizer, scheduler, device, epoch):
+def train(loader, model, optimizer, scheduler, device, epoch, use_multi_gpu=False):
     """훈련 함수"""
     with torch.set_grad_enabled(True):
         model.train()
@@ -112,7 +147,7 @@ def train(loader, model, optimizer, scheduler, device, epoch):
         print(f'train_roc_auc : {roc_auc:.4f}')
         return loss.item()
 
-def test(dataloader, model, args, device = 'cuda'):
+def test(dataloader, model, config, device, use_multi_gpu=False):
     """테스트 함수"""
     model.to(device)
     with torch.no_grad():
@@ -127,18 +162,16 @@ def test(dataloader, model, args, device = 'cuda'):
             
             labels += label.cpu().detach().tolist()
             input = features.to(device)
-            scores, feat = model(input)
-            scores = torch.nn.Sigmoid()(scores).squeeze()
-            pred_ = scores.cpu().detach().tolist()
-            pred += pred_
+            
+            scores, _ = model(input)
+            pred += scores.cpu().detach().tolist()
         
-        fpr, tpr, threshold = roc_curve(labels, pred)
+        fpr, tpr, _ = roc_curve(labels, pred)
         roc_auc = auc(fpr, tpr)
-        precision, recall, th = precision_recall_curve(labels, pred)
+        precision, recall, _ = precision_recall_curve(labels, pred)
         pr_auc = auc(recall, precision)
         print(f'pr_auc : {pr_auc:.4f}')
         print(f'roc_auc : {roc_auc:.4f}')
-        
         return roc_auc, pr_auc
 
 def init_weights(m):
@@ -172,6 +205,9 @@ def main():
     
     print_config(config)
     
+    # GPU 설정
+    device, use_multi_gpu, gpu_count, gpu_ids = setup_gpu(config)
+    
     # 데이터 리스트 파일 존재 확인
     train_list = config['data']['train_list']
     test_list = config['data']['test_list']
@@ -190,7 +226,6 @@ def main():
     random.seed(2025)
     np.random.seed(2025)
     torch.cuda.manual_seed(2025)
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
     # 데이터 로더 생성
     try:
@@ -203,10 +238,17 @@ def main():
         
         args = Args(config)
         
+        # 멀티 GPU 사용 시 배치 크기 조정
+        if use_multi_gpu:
+            effective_batch_size = config['training']['batch_size'] // gpu_count
+            print(f"🎯 GPU {gpu_count}개 사용으로 배치 크기 조정: {config['training']['batch_size']} → {effective_batch_size} (GPU당)")
+        else:
+            effective_batch_size = config['training']['batch_size']
+        
         train_loader = DataLoader(SegmentDataset(args, test_mode=False),
-                                   batch_size=config['training']['batch_size'] // 2)
+                                   batch_size=effective_batch_size // 2)
         test_loader = DataLoader(SegmentDataset(args, test_mode=True),
-                                 batch_size=config['training']['batch_size'])
+                                 batch_size=effective_batch_size)
         
         print(f"훈련 데이터: {len(train_loader.dataset)}개")
         print(f"테스트 데이터: {len(test_loader.dataset)}개")
@@ -246,6 +288,11 @@ def main():
         print(f"⚠️ 프리트레인드 모델을 찾을 수 없습니다: {model_path}")
         print("새로운 모델로 시작합니다.")
     
+    # 멀티 GPU 설정
+    if use_multi_gpu:
+        model = DataParallel(model, device_ids=gpu_ids)
+        print(f"✅ DataParallel 활성화 (GPU {gpu_ids} 병렬)")
+    
     model = model.to(device)
     
     # 체크포인트 저장 디렉토리 생성
@@ -276,25 +323,35 @@ def main():
     print("\n=== 훈련 시작 ===")
     for step in tqdm(range(0, config['training']['max_epoch']), 
                      total=config['training']['max_epoch'], desc="전체 진행률"):
-        cost = train(train_loader, model, optimizer, scheduler, device, step)
+        cost = train(train_loader, model, optimizer, scheduler, device, step, use_multi_gpu)
         scheduler.step(step + 1)
         
         # 테스트
-        auc, pr_auc = test(test_loader, model, config, device)
+        auc, pr_auc = test(test_loader, model, config, device, use_multi_gpu)
         
         test_info["epoch"].append(step)
         test_info["test_AUC"].append(auc)
         test_info["test_PR"].append(pr_auc)
         
-        # 모델 저장
-        torch.save(model.state_dict(), 
+        # 모델 저장 (DataParallel 사용 시 module 접근)
+        if use_multi_gpu:
+            model_state_dict = model.module.state_dict()
+        else:
+            model_state_dict = model.state_dict()
+            
+        torch.save(model_state_dict, 
                   f'{savepath}/{config["training"]["model_name"]}{step}-x3d.pkl')
         save_best_record(test_info, os.path.join(savepath, f'{step}-step.txt'))
         
         print(f"Epoch {step}: AUC={auc:.4f}, PR_AUC={pr_auc:.4f}")
     
     # 최종 모델 저장
-    torch.save(model.state_dict(), 
+    if use_multi_gpu:
+        model_state_dict = model.module.state_dict()
+    else:
+        model_state_dict = model.state_dict()
+        
+    torch.save(model_state_dict, 
               f'{savepath}/{config["training"]["model_name"]}final.pkl')
     print(f"\n✅ 훈련 완료! 모델이 {savepath}에 저장되었습니다.")
 
