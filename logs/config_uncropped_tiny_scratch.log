@@ -1,11 +1,10 @@
 
 ==== STDERR ====
-usage: train_custom.py [-h] [--rgb_list RGB_LIST]
-                       [--test_rgb_list TEST_RGB_LIST] [--comment COMMENT]
-                       [--dropout_rate DROPOUT_RATE]
-                       [--attn_dropout_rate ATTN_DROPOUT_RATE] [--lr LR]
-                       [--batch_size BATCH_SIZE] [--model_name MODEL_NAME]
-                       [--model_arch MODEL_ARCH]
-                       [--pretrained_ckpt PRETRAINED_CKPT]
-                       [--max_epoch MAX_EPOCH] [--warmup WARMUP]
-train_custom.py: error: unrecognized arguments: --config config_uncropped_tiny_scratch.json --gpu_ids 0
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\repos\SHIBAL\train_custom.py", line 395, in <module>
+    main()
+  File "C:\Users\User\Documents\repos\SHIBAL\train_custom.py", line 224, in main
+    config = load_config(args.config)
+  File "C:\Users\User\Documents\repos\SHIBAL\train_custom.py", line 43, in load_config
+    print(f"\u2705 설정 파일 로드: {config_path}")
+UnicodeEncodeError: 'cp949' codec can't encode character '\u2705' in position 0: illegal multibyte sequence
