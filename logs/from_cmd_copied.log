@@ -143,3 +143,27 @@ Traceback (most recent call last):
   File "C:\Users\User\anaconda3\envs\VAD_p396\lib\threading.py", line 1069, in _wait_for_tstate_lock
     elif lock.acquire(block, timeout):
 KeyboardInterrupt
+
+
+
+전체 진행률:   0%|          | 0/100 [01:23<?, ?it/s]
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\repos\SHIBAL\train_custom.py", line 402, in <module>
+    main()
+  File "C:\Users\User\Documents\repos\SHIBAL\train_custom.py", line 373, in main
+    auc, pr_auc = test(test_loader, model, config, device, use_multi_gpu)
+  File "C:\Users\User\Documents\repos\SHIBAL\train_custom.py", line 195, in test
+    fpr, tpr, _ = roc_curve(labels, pred)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\utils\_param_validation.py", line 216, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py", line 1150, in roc_curve
+    fps, tps, thresholds = _binary_clf_curve(
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\metrics\_ranking.py", line 822, in _binary_clf_curve
+    y_score = column_or_1d(y_score)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\utils\validation.py", line 1456, in column_or_1d
+    y = check_array(
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\utils\validation.py", line 1055, in check_array
+    array = _asarray_with_order(array, order=order, dtype=dtype, xp=xp)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\sklearn\utils\_array_api.py", line 839, in _asarray_with_order
+    array = numpy.asarray(array, order=order, dtype=dtype)
+ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (9425,) + inhomogeneous part.
