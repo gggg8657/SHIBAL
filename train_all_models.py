@@ -13,6 +13,9 @@ from concurrent.futures import ProcessPoolExecutor
 import argparse
 from pathlib import Path
 
+SCRIPT_DIR = Path(__file__).resolve().parent
+
+
 def train_single_model(config_file, gpu_id=None, additional_args=None, stream=False, log_dir="logs"):
     """단일 모델 학습 함수"""
     cmd = [sys.executable, "train_custom.py", "--config", config_file]
@@ -40,24 +43,52 @@ def train_single_model(config_file, gpu_id=None, additional_args=None, stream=Fa
     if visible:
         env["CUDA_VISIBLE_DEVICES"] = visible
     
-    try:
+    # CWD를 스크립트 디렉토리로 고정
+    cwd = str(SCRIPT_DIR)
+
+    def run_and_log(run_cmd):
         if stream:
-            # 실시간 스트리밍 + 파일 저장
             with open(log_path, "w", encoding="utf-8", errors="ignore") as lf:
-                proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, env=env)
+                proc = subprocess.Popen(run_cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, env=env, cwd=cwd)
                 for line in proc.stdout:
                     sys.stdout.write(line)
                     lf.write(line)
                 proc.wait()
-                rc = proc.returncode
+                return proc.returncode
         else:
-            # 캡처 + 파일 저장
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=3600*24, env=env)
+            result = subprocess.run(run_cmd, capture_output=True, text=True, timeout=3600*24, env=env, cwd=cwd)
             with open(log_path, "w", encoding="utf-8", errors="ignore") as lf:
                 lf.write(result.stdout or "")
                 lf.write("\n==== STDERR ====\n")
                 lf.write(result.stderr or "")
-            rc = result.returncode
+            return result.returncode, (result.stdout or "") + "\n==== STDERR ====\n" + (result.stderr or "")
+
+    try:
+        # 1차 실행
+        if stream:
+            rc = run_and_log(cmd)
+            stderr_text = ""
+        else:
+            rc, combined = run_and_log(cmd)
+            stderr_text = combined
+        
+        # --config 인식 실패 폴백: config.json으로 복사 후 무인자 재시도
+        if rc != 0 and ("unrecognized arguments" in stderr_text or "error: unrecognized arguments" in stderr_text):
+            print("⚠️ --config 인식 실패. 폴백 모드로 재시도 (config.json 복사, 무인자 실행)")
+            # config.json으로 복사
+            src = Path(cwd) / config_file
+            dst = Path(cwd) / "config.json"
+            try:
+                dst.write_text(src.read_text(encoding="utf-8"), encoding="utf-8")
+            except Exception as e:
+                print(f"❌ config 복사 실패: {e}")
+                return False
+            # 무인자 실행 커맨드
+            fallback_cmd = [sys.executable, "train_custom.py"]
+            if stream:
+                rc = run_and_log(fallback_cmd)
+            else:
+                rc, _ = run_and_log(fallback_cmd)
         
         if rc == 0:
             print(f"✅ 완료: {config_file}")
@@ -66,6 +97,7 @@ def train_single_model(config_file, gpu_id=None, additional_args=None, stream=Fa
             print(f"❌ 실패: {config_file}")
             print(f"🔎 자세한 로그: {log_path}")
             return False
+
     except subprocess.TimeoutExpired:
         print(f"⏰ 타임아웃: {config_file}")
         return False

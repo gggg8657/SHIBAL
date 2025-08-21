@@ -1,5 +1,6 @@
 import argparse
 
+
 def parse_args():
     parser = argparse.ArgumentParser(description='STEAD')
     parser.add_argument('--rgb_list', default='ucf_x3d_train.txt', help='list of rgb features ')
@@ -12,14 +13,16 @@ def parse_args():
     parser.add_argument('--lr', type=str, default=2e-4, help='learning rates for steps default:2e-4')
     parser.add_argument('--batch_size', type=int, default=16, help='number of instances in a batch of data (default: 16)')
 
-
     parser.add_argument('--model_name', default='model', help='name to save model')
     parser.add_argument('--model_arch', default='fast', help='base or fast')
-    parser.add_argument('--pretrained_ckpt', default= None, help='ckpt for pretrained model (for training)')
+    parser.add_argument('--pretrained_ckpt', default=None, help='ckpt for pretrained model (for training)')
     parser.add_argument('--max_epoch', type=int, default=30, help='maximum iteration to train (default: 10)')
     parser.add_argument('--warmup', type=int, default=1, help='number of warmup epochs')
 
+    # 추가: 외부 스크립트 호환성을 위한 옵션 (무시 가능)
+    parser.add_argument('--config', default=None, help='config file path (optional, for compatibility)')
+    parser.add_argument('--gpu_ids', default=None, help='gpu ids (optional, for compatibility)')
 
-
-    args = parser.parse_args()
+    # 알 수 없는 인자는 무시 (호환성 목적)
+    args, _ = parser.parse_known_args()
     return args
