@@ -24,6 +24,13 @@ from segment_dataset import SegmentDataset
 from model import Model
 from utils import save_best_record
 from timm.scheduler.cosine_lr import CosineLRScheduler
+import sys
+# Windows 콘솔(cp949 등)에서 이모지 출력 시 UnicodeEncodeError 방지
+try:
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+except Exception:
+    pass
 
 def parse_args():
     """커맨드라인 아규먼트 파싱"""
@@ -40,7 +47,7 @@ def load_config(config_path='config.json'):
     try:
         with open(config_path, 'r', encoding='utf-8') as f:
             config = json.load(f)
-        print(f"✅ 설정 파일 로드: {config_path}")
+        print(f"[OK] 설정 파일 로드: {config_path}")
         return config
     except FileNotFoundError:
         print(f"❌ 설정 파일을 찾을 수 없습니다: {config_path}")
@@ -67,7 +74,7 @@ def setup_gpu(config, gpu_ids_arg=None):
     """GPU 설정을 확인하고 설정합니다."""
     if torch.cuda.is_available():
         gpu_count = torch.cuda.device_count()
-        print(f"🎮 사용 가능한 GPU: {gpu_count}개")
+        print(f"[GPU] 사용 가능한 GPU: {gpu_count}개")
         
         for i in range(gpu_count):
             gpu_name = torch.cuda.get_device_name(i)
@@ -78,7 +85,7 @@ def setup_gpu(config, gpu_ids_arg=None):
         if gpu_ids_arg:
             gpu_ids = [int(x.strip()) for x in gpu_ids_arg.split(',')]
             use_multi_gpu = len(gpu_ids) > 1
-            print(f"🎯 커맨드라인 GPU 설정: {gpu_ids}")
+            print(f"[GPU] 커맨드라인 GPU 설정: {gpu_ids}")
         else:
             # config.json에서 GPU 설정 읽기
             gpu_config = config.get('gpu', {})
@@ -92,11 +99,11 @@ def setup_gpu(config, gpu_ids_arg=None):
                 gpu_ids = [0]
         
         if len(gpu_ids) > 1:
-            print(f"✅ 멀티 GPU 모드 활성화 (GPU {gpu_ids} 병렬)")
+            print(f"[GPU] 멀티 GPU 모드 활성화 (GPU {gpu_ids} 병렬)")
             device = torch.device(f'cuda:{gpu_ids[0]}')
             return device, True, len(gpu_ids), gpu_ids
         else:
-            print("⚠️ 단일 GPU 모드 (GPU 0번만 사용)")
+            print("[GPU] 단일 GPU 모드 (GPU 0번만 사용)")
             device = torch.device('cuda:0')
             return device, False, 1, [0]
     else:
@@ -228,15 +235,15 @@ def main():
     # 커맨드라인 아규먼트로 설정 오버라이드
     if args.batch_size is not None:
         config['training']['batch_size'] = args.batch_size
-        print(f"🎯 배치 크기 오버라이드: {args.batch_size}")
+        print(f"[CFG] 배치 크기 오버라이드: {args.batch_size}")
     
     if args.lr is not None:
         config['training']['lr'] = args.lr
-        print(f"🎯 학습률 오버라이드: {args.lr}")
+        print(f"[CFG] 학습률 오버라이드: {args.lr}")
     
     if args.max_epoch is not None:
         config['training']['max_epoch'] = args.max_epoch
-        print(f"🎯 최대 에포크 오버라이드: {args.max_epoch}")
+        print(f"[CFG] 최대 에포크 오버라이드: {args.max_epoch}")
     
     print_config(config)
     
@@ -276,7 +283,7 @@ def main():
         # 멀티 GPU 사용 시 배치 크기 조정
         if use_multi_gpu:
             effective_batch_size = config['training']['batch_size'] // gpu_count
-            print(f"🎯 GPU {gpu_count}개 사용으로 배치 크기 조정: {config['training']['batch_size']} → {effective_batch_size} (GPU당)")
+            print(f"[GPU] {gpu_count}개 사용으로 배치 크기 조정: {config['training']['batch_size']} -> {effective_batch_size} (GPU당)")
         else:
             effective_batch_size = config['training']['batch_size']
         
@@ -315,18 +322,18 @@ def main():
         try:
             model_ckpt = torch.load(model_path, map_location=device)
             model.load_state_dict(model_ckpt, strict=False)
-            print(f"✅ 프리트레인드 모델 로드: {model_path}")
+            print(f"[OK] 프리트레인드 모델 로드: {model_path}")
         except Exception as e:
             print(f"❌ 프리트레인드 모델 로드 실패: {e}")
             print("새로운 모델로 시작합니다.")
     else:
-        print(f"🎯 From Scratch 학습 모드")
+        print(f"[INFO] From Scratch 학습 모드")
         print("새로운 모델로 시작합니다.")
     
     # 멀티 GPU 설정
     if use_multi_gpu:
         model = DataParallel(model, device_ids=gpu_ids)
-        print(f"✅ DataParallel 활성화 (GPU {gpu_ids} 병렬)")
+        print(f"[GPU] DataParallel 활성화 (GPU {gpu_ids} 병렬)")
     
     model = model.to(device)
     
@@ -389,7 +396,7 @@ def main():
         
     torch.save(model_state_dict, 
               f'{savepath}/{config["training"]["model_name"]}final.pkl')
-    print(f"\n✅ 훈련 완료! 모델이 {savepath}에 저장되었습니다.")
+    print(f"\n[OK] 훈련 완료! 모델이 {savepath}에 저장되었습니다.")
 
 if __name__ == "__main__":
     main()
