@@ -629,5 +629,5 @@ pr_auc : 0.752000:18, 26.08it/s]
 roc_auc : 0.7598
 Epoch 1: AUC=0.7598, PR_AUC=0.7520
 Epoch 2: 100it [00:08, 11.78it/s]                                                                                                                                                                | 2/100 [01:32<1:10:19, 43.06s/it]
-train_pr_auc : 0.6787 11.44it/s]
+train_pr_auc : 0.6787 11.44it/s]\
 train_roc_auc : 0.6591
