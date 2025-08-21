@@ -148,15 +148,14 @@ def train(loader, model, optimizer, scheduler, device, epoch, use_multi_gpu=Fals
         pred = []
         label = []
         for step, (ninput, nlabel, ainput, alabel, ncategory, acategory) in tqdm(enumerate(loader), desc=f"Epoch {epoch}"):
-            input = torch.cat((ninput, ainput), 0).to(device)
+            input = torch.cat((ninput, ainput), 0).to(device, non_blocking=True)
             
             scores, feats = model(input) 
             pred += scores.cpu().detach().tolist()
-            labels = torch.cat((nlabel, alabel), 0).to(device)
+            labels = torch.cat((nlabel, alabel), 0).to(device, non_blocking=True)
             label += labels.cpu().detach().tolist()
 
-            loss_criterion = Loss()
-            loss_ce, loss_con = loss_criterion(scores.squeeze(), feats, labels)
+            loss_ce, loss_con = Loss()(scores.squeeze(), feats, labels)
             loss = loss_ce + loss_con
 
             optimizer.zero_grad()
@@ -189,7 +188,7 @@ def test(dataloader, model, config, device, use_multi_gpu=False):
             # 라벨을 1D 리스트로 강제 변환
             labels_1d = label.view(-1).detach().cpu().numpy().tolist()
             labels += labels_1d
-            input = features.to(device)
+            input = features.to(device, non_blocking=True)
             
             scores, _ = model(input)
             # 예측을 1D 리스트로 강제 변환 (logits 그대로 사용)
@@ -272,6 +271,8 @@ def main():
     random.seed(2025)
     np.random.seed(2025)
     torch.cuda.manual_seed(2025)
+    if torch.cuda.is_available():
+        torch.backends.cudnn.benchmark = True
     
     # 데이터 로더 생성
     try:
@@ -291,10 +292,22 @@ def main():
         else:
             effective_batch_size = config['training']['batch_size']
         
-        train_loader = DataLoader(SegmentDataset(args_obj, test_mode=False),
-                                   batch_size=effective_batch_size // 2)
-        test_loader = DataLoader(SegmentDataset(args_obj, test_mode=True),
-                                 batch_size=effective_batch_size)
+        train_loader = DataLoader(
+            SegmentDataset(args_obj, test_mode=False),
+            batch_size=effective_batch_size // 2,
+            num_workers=min(8, os.cpu_count() or 4),
+            pin_memory=True,
+            persistent_workers=True,
+            prefetch_factor=2,
+        )
+        test_loader = DataLoader(
+            SegmentDataset(args_obj, test_mode=True),
+            batch_size=effective_batch_size,
+            num_workers=min(8, os.cpu_count() or 4),
+            pin_memory=True,
+            persistent_workers=True,
+            prefetch_factor=2,
+        )
         
         print(f"훈련 데이터: {len(train_loader.dataset)}개")
         print(f"테스트 데이터: {len(test_loader.dataset)}개")
@@ -366,6 +379,7 @@ def main():
     
     # 훈련 루프
     test_info = {"epoch": [], "test_AUC": [], "test_PR":[]}
+    loss_criterion = Loss().to(device)
     
     print("\n=== 훈련 시작 ===")
     for step in tqdm(range(0, config['training']['max_epoch']), 

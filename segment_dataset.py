@@ -76,6 +76,13 @@ class SegmentDataset(data.Dataset):
         if missing_count > 0:
             print(f"❌ 누락된 데이터: {missing_count}개")
     
+    def _load_feature_tensor(self, path: str) -> torch.Tensor:
+        # 메모리맵으로 로드 후 float32 텐서로 변환 (복사 최소화)
+        arr = np.load(path, mmap_mode='r', allow_pickle=True)
+        if arr.dtype != np.float32:
+            arr = np.asarray(arr, dtype=np.float32)
+        return torch.from_numpy(arr)
+    
     def __getitem__(self, index):
         if not self.test_mode:
             # 훈련 모드: 정상/비정상 쌍으로 반환
@@ -108,13 +115,13 @@ class SegmentDataset(data.Dataset):
             
             # 정상 데이터
             npath = self.data_list[nindex]
-            nfeatures = np.load(npath, allow_pickle=True).astype(np.float32)
+            nfeatures = self._load_feature_tensor(npath)
             nlabel = self.segment_info[npath]['label']
             ncategory = self.segment_info[npath]['category']
             
             # 비정상 데이터
             apath = self.data_list[aindex]
-            afeatures = np.load(apath, allow_pickle=True).astype(np.float32)
+            afeatures = self._load_feature_tensor(apath)
             alabel = self.segment_info[apath]['label']
             acategory = self.segment_info[apath]['category']
             
@@ -123,7 +130,7 @@ class SegmentDataset(data.Dataset):
         else:
             # 테스트 모드: 단일 데이터 반환
             path = self.data_list[index]
-            features = np.load(path, allow_pickle=True).astype(np.float32)
+            features = self._load_feature_tensor(path)
             label = self.segment_info[path]['label']
             category = self.segment_info[path]['category']
             description = self.segment_info[path]['description']
@@ -140,16 +147,13 @@ class SegmentDataset(data.Dataset):
 # 기존 데이터셋과의 호환성을 위한 래퍼
 class Dataset(data.Dataset):
     def __init__(self, args, test_mode=False):
-        self.segment_dataset = SegmentDataset(args, test_mode)
-        self.test_mode = test_mode
-    
-    def __getitem__(self, index):
-        if not self.test_mode:
-            nfeatures, nlabel, afeatures, alabel, ncategory, acategory = self.segment_dataset[index]
+        self.ds = SegmentDataset(args, test_mode)
+    def __len__(self):
+        return len(self.ds)
+    def __getitem__(self, idx):
+        if not self.ds.test_mode:
+            nfeatures, nlabel, afeatures, alabel, ncategory, acategory = self.ds[idx]
             return nfeatures, nlabel, afeatures, alabel
         else:
-            features, label, category, description = self.segment_dataset[index]
+            features, label, category, description = self.ds[idx]
             return features, label
-    
-    def __len__(self):
-        return len(self.segment_dataset)
