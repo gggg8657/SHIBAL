@@ -4,6 +4,7 @@
 세그먼트 정보를 활용한 이상 탐지 모델 훈련
 config.json 파일에서 설정을 읽어옵니다.
 멀티 GPU 지원 (GPU 0, 1번 병렬 처리)
+여러 설정 파일을 사용하여 동시 학습 가능
 """
 
 import torch
@@ -17,11 +18,22 @@ import datetime
 import random
 import numpy as np
 import json
+import argparse
 from torch.utils.data import DataLoader
 from segment_dataset import SegmentDataset
 from model import Model
 from utils import save_best_record
 from timm.scheduler.cosine_lr import CosineLRScheduler
+
+def parse_args():
+    """커맨드라인 아규먼트 파싱"""
+    parser = argparse.ArgumentParser(description='커스텀 STEAD 훈련')
+    parser.add_argument('--config', default='config.json', help='설정 파일 경로 (기본값: config.json)')
+    parser.add_argument('--gpu_ids', type=str, default=None, help='사용할 GPU ID (예: 0,1 또는 0)')
+    parser.add_argument('--batch_size', type=int, default=None, help='배치 크기 (config.json 오버라이드)')
+    parser.add_argument('--lr', type=float, default=None, help='학습률 (config.json 오버라이드)')
+    parser.add_argument('--max_epoch', type=int, default=None, help='최대 에포크 (config.json 오버라이드)')
+    return parser.parse_args()
 
 def load_config(config_path='config.json'):
     """config.json 파일을 로드합니다."""
@@ -51,7 +63,7 @@ def print_config(config):
     print(f"저장 디렉토리: {config['training']['save_dir']}")
     print("=" * 30)
 
-def setup_gpu(config):
+def setup_gpu(config, gpu_ids_arg=None):
     """GPU 설정을 확인하고 설정합니다."""
     if torch.cuda.is_available():
         gpu_count = torch.cuda.device_count()
@@ -62,17 +74,24 @@ def setup_gpu(config):
             gpu_memory = torch.cuda.get_device_properties(i).total_memory / 1024**3
             print(f"  GPU {i}: {gpu_name} ({gpu_memory:.1f}GB)")
         
-        # config.json에서 GPU 설정 읽기
-        gpu_config = config.get('gpu', {})
-        use_multi_gpu = gpu_config.get('use_multi_gpu', True)
-        gpu_ids = gpu_config.get('gpu_ids', [0, 1])
-        auto_detect = gpu_config.get('auto_detect', True)
+        # 커맨드라인 아규먼트 우선 적용
+        if gpu_ids_arg:
+            gpu_ids = [int(x.strip()) for x in gpu_ids_arg.split(',')]
+            use_multi_gpu = len(gpu_ids) > 1
+            print(f"🎯 커맨드라인 GPU 설정: {gpu_ids}")
+        else:
+            # config.json에서 GPU 설정 읽기
+            gpu_config = config.get('gpu', {})
+            use_multi_gpu = gpu_config.get('use_multi_gpu', True)
+            gpu_ids = gpu_config.get('gpu_ids', [0, 1])
+            auto_detect = gpu_config.get('auto_detect', True)
+            
+            if auto_detect and gpu_count >= 2 and use_multi_gpu:
+                gpu_ids = [0, 1]  # 최대 2개 GPU 사용
+            elif not use_multi_gpu:
+                gpu_ids = [0]
         
-        if auto_detect and gpu_count >= 2 and use_multi_gpu:
-            print("✅ 멀티 GPU 모드 활성화 (GPU 0, 1번 병렬)")
-            device = torch.device('cuda:0')
-            return device, True, gpu_count, gpu_ids[:2]  # 최대 2개 GPU 사용
-        elif use_multi_gpu and gpu_count >= 2:
+        if len(gpu_ids) > 1:
             print(f"✅ 멀티 GPU 모드 활성화 (GPU {gpu_ids} 병렬)")
             device = torch.device(f'cuda:{gpu_ids[0]}')
             return device, True, len(gpu_ids), gpu_ids
@@ -198,15 +217,31 @@ def save_config(save_path, args):
     f.close()
 
 def main():
+    # 커맨드라인 아규먼트 파싱
+    args = parse_args()
+    
     # 설정 파일 로드
-    config = load_config()
+    config = load_config(args.config)
     if config is None:
         return
+    
+    # 커맨드라인 아규먼트로 설정 오버라이드
+    if args.batch_size is not None:
+        config['training']['batch_size'] = args.batch_size
+        print(f"🎯 배치 크기 오버라이드: {args.batch_size}")
+    
+    if args.lr is not None:
+        config['training']['lr'] = args.lr
+        print(f"🎯 학습률 오버라이드: {args.lr}")
+    
+    if args.max_epoch is not None:
+        config['training']['max_epoch'] = args.max_epoch
+        print(f"🎯 최대 에포크 오버라이드: {args.max_epoch}")
     
     print_config(config)
     
     # GPU 설정
-    device, use_multi_gpu, gpu_count, gpu_ids = setup_gpu(config)
+    device, use_multi_gpu, gpu_count, gpu_ids = setup_gpu(config, args.gpu_ids)
     
     # 데이터 리스트 파일 존재 확인
     train_list = config['data']['train_list']
@@ -236,7 +271,7 @@ def main():
                 self.test_rgb_list = config['data']['test_list']
                 self.batch_size = config['training']['batch_size']
         
-        args = Args(config)
+        args_obj = Args(config)
         
         # 멀티 GPU 사용 시 배치 크기 조정
         if use_multi_gpu:
@@ -245,9 +280,9 @@ def main():
         else:
             effective_batch_size = config['training']['batch_size']
         
-        train_loader = DataLoader(SegmentDataset(args, test_mode=False),
+        train_loader = DataLoader(SegmentDataset(args_obj, test_mode=False),
                                    batch_size=effective_batch_size // 2)
-        test_loader = DataLoader(SegmentDataset(args, test_mode=True),
+        test_loader = DataLoader(SegmentDataset(args_obj, test_mode=True),
                                  batch_size=effective_batch_size)
         
         print(f"훈련 데이터: {len(train_loader.dataset)}개")
@@ -276,7 +311,7 @@ def main():
     
     # 프리트레인드 모델 로드
     model_path = config['data']['model_path']
-    if os.path.exists(model_path):
+    if model_path and model_path != "null" and os.path.exists(model_path):
         try:
             model_ckpt = torch.load(model_path, map_location=device)
             model.load_state_dict(model_ckpt, strict=False)
@@ -285,7 +320,7 @@ def main():
             print(f"❌ 프리트레인드 모델 로드 실패: {e}")
             print("새로운 모델로 시작합니다.")
     else:
-        print(f"⚠️ 프리트레인드 모델을 찾을 수 없습니다: {model_path}")
+        print(f"🎯 From Scratch 학습 모드")
         print("새로운 모델로 시작합니다.")
     
     # 멀티 GPU 설정
@@ -295,9 +330,10 @@ def main():
     
     model = model.to(device)
     
-    # 체크포인트 저장 디렉토리 생성
+    # 체크포인트 저장 디렉토리 생성 (설정 파일명 포함)
+    config_name = os.path.splitext(os.path.basename(args.config))[0]
     savepath = os.path.join(config['training']['save_dir'], 
-                           f"{config['training']['lr']}_{config['training']['batch_size']}_{config['training']['comment']}")
+                           f"{config_name}_{config['training']['lr']}_{config['training']['batch_size']}_{config['training']['comment']}")
     os.makedirs(savepath, exist_ok=True)
     
     # 옵티마이저 및 스케줄러 설정
