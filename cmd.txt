@@ -1,6 +1,20 @@
 python preprocess_images_and_extract.py --json_path image_segments.json --roi_pixels 0,0,480,270 --in_base D:/output_2025/ --windows_prefix D:/output_2025/ --verify_first_n 3
 
 
+cd for_custom
+python make_balanced_lists.py --json_path ../image_segments.json --features_dir features_cropped --output_prefix custom_balanced
+
+# 1. 이미지 크롭 + 특징 추출
+python preprocess_images_and_extract.py --json_path ../image_segments.json --roi_pixels 0,0,480,270 --in_base . --windows_prefix D:/output_2025/
+
+# 2. 균형잡힌 리스트 생성
+python make_balanced_lists.py --json_path ../image_segments.json --features_dir features_cropped --output_prefix custom_balanced
+
+
+cd for_custom
+python make_balanced_lists.py --json_path ../image_segments.json --features_dir features_cropped --output_prefix custom_balanced
+
+
 # 기본 설정으로 훈련
 python train_custom.py
 
