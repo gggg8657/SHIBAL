@@ -1,0 +1,24 @@
+{
+    "data": {
+        "train_list": "custom_balanced_train.txt",
+        "test_list": "custom_balanced_test.txt",
+        "model_path": "saved_models/888tiny.pkl"
+    },
+    "training": {
+        "comment": "custom_balanced",
+        "dropout_rate": 0.4,
+        "attn_dropout_rate": 0.1,
+        "lr": 2e-4,
+        "batch_size": 16,
+        "model_name": "custom_model",
+        "model_arch": "tiny",
+        "max_epoch": 100,
+        "warmup": 1,
+        "save_dir": "./ckpt"
+    },
+    "model": {
+        "ff_mult": 1,
+        "dims": [32, 32],
+        "depths": [1, 1]
+    }
+}
