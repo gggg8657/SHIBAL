@@ -434,11 +434,11 @@ class CustomTester:
 
 def main():
     parser = argparse.ArgumentParser(description='커스텀 데이터셋 STEAD 테스트')
-    parser.add_argument('--model_path', default='./saved_models/913base.pkl', help='훈련된 모델 경로 (saved_models 폴더 내)')
-    parser.add_argument('--test_list', default='custom_data/balanced_test.txt', help='테스트 데이터 리스트')
-    parser.add_argument('--output_dir', default='./test_results', help='결과 저장 디렉토리')
+    parser.add_argument('--model_path', default='./saved_models/custom_modelfinal.pkl', help='훈련된 모델 경로 (saved_models 폴더 내)')
+    parser.add_argument('--test_list', default='custom_data/balanced_train.txt', help='테스트 데이터 리스트')
+    parser.add_argument('--output_dir', default='./test_results_ontrainset', help='결과 저장 디렉토리')
     parser.add_argument('--batch_size', type=int, default=16, help='배치 크기')
-    parser.add_argument('--model_arch', default='tiny', help='모델 아키텍처 (base, fast, tiny)')
+    parser.add_argument('--model_arch', default='base', help='모델 아키텍처 (base, fast, tiny)')
     # ROI 픽셀 좌표: x1,y1,x2,y2 (기본: 0,0,480,270), 기준 해상도는 roi_base_size
     parser.add_argument('--roi_pixels', default='0,0,480,270', help='픽셀 ROI: x1,y1,x2,y2 (기본: 0,0,270,480)')
     parser.add_argument('--roi_base_size', default='320,320', help='ROI 기준 해상도 w,h (기본: 320,320)')
