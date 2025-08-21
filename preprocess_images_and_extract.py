@@ -79,7 +79,7 @@ def main():
     ap = argparse.ArgumentParser(description='이미지 ROI 크롭 및 특징 추출')
     ap.add_argument('--json_path', default='image_segments.json')
     ap.add_argument('--windows_prefix', default='D:/output_2025/', help='원본 윈도우 경로 접두사')
-    ap.add_argument('--in_base', default='.', help='원본 이미지 루트 (윈도우 경로를 매핑할 로컬 루트)')
+    ap.add_argument('--in_base', default='D:/output_2025/', help='원본 이미지 루트 (윈도우 경로를 매핑할 로컬 루트)')
     ap.add_argument('--out_images_dir', default='cropped_images')
     ap.add_argument('--out_features_dir', default='features_cropped')
     ap.add_argument('--roi_pixels', default='0,0,480,270', help='픽셀 ROI x1,y1,x2,y2')

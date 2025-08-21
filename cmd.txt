@@ -1,1 +1,1 @@
-python preprocess_images_and_extract.py --json_path ../image_segments.json --roi_pixels 0,0,480,270 --in_base . --windows_prefix D:/output_2025/ --verify_first_n 3
+python preprocess_images_and_extract.py --json_path image_segments.json --roi_pixels 0,0,480,270 --in_base D:/output_2025/ --windows_prefix D:/output_2025/ --verify_first_n 3
