@@ -186,11 +186,15 @@ def test(dataloader, model, config, device, use_multi_gpu=False):
             else:
                 features, label = inputs
             
-            labels += label.cpu().detach().tolist()
+            # 라벨을 1D 리스트로 강제 변환
+            labels_1d = label.view(-1).detach().cpu().numpy().tolist()
+            labels += labels_1d
             input = features.to(device)
             
             scores, _ = model(input)
-            pred += scores.cpu().detach().tolist()
+            # 예측을 1D 리스트로 강제 변환 (logits 그대로 사용)
+            scores_1d = scores.view(-1).detach().cpu().numpy().tolist()
+            pred += scores_1d
         
         fpr, tpr, _ = roc_curve(labels, pred)
         roc_auc = auc(fpr, tpr)
