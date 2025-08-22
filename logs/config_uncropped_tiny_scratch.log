@@ -1,10 +1,6 @@
 
 ==== STDERR ====
 Traceback (most recent call last):
-  File "C:\Users\User\Documents\repos\SHIBAL\train_custom.py", line 395, in <module>
-    main()
-  File "C:\Users\User\Documents\repos\SHIBAL\train_custom.py", line 224, in main
-    config = load_config(args.config)
-  File "C:\Users\User\Documents\repos\SHIBAL\train_custom.py", line 43, in load_config
-    print(f"\u2705 설정 파일 로드: {config_path}")
-UnicodeEncodeError: 'cp949' codec can't encode character '\u2705' in position 0: illegal multibyte sequence
+  File "train_custom.py", line 15, in <module>
+    from sklearn.metrics import auc, roc_curve, precision_recall_curve
+ModuleNotFoundError: No module named 'sklearn'
