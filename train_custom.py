@@ -292,21 +292,26 @@ def main():
         else:
             effective_batch_size = config['training']['batch_size']
         
+        # Windows 호환성을 위한 DataLoader 설정
+        is_windows = os.name == 'nt'
+        
         train_loader = DataLoader(
             SegmentDataset(args_obj, test_mode=False),
             batch_size=effective_batch_size // 2,
-            num_workers=min(4, os.cpu_count() or 2),
+            num_workers=0 if is_windows else min(2, os.cpu_count() or 2),  # Windows에서는 0
             pin_memory=False,
             persistent_workers=False,
-            prefetch_factor=2,
+            prefetch_factor=2 if not is_windows else None,  # Windows에서는 None
+            shuffle=True,
         )
         test_loader = DataLoader(
             SegmentDataset(args_obj, test_mode=True),
             batch_size=effective_batch_size,
-            num_workers=min(4, os.cpu_count() or 2),
+            num_workers=0 if is_windows else min(2, os.cpu_count() or 2),  # Windows에서는 0
             pin_memory=False,
             persistent_workers=False,
-            prefetch_factor=2,
+            prefetch_factor=2 if not is_windows else None,  # Windows에서는 None
+            shuffle=False,
         )
         
         print(f"훈련 데이터: {len(train_loader.dataset)}개")
