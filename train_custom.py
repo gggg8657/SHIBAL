@@ -295,17 +295,17 @@ def main():
         train_loader = DataLoader(
             SegmentDataset(args_obj, test_mode=False),
             batch_size=effective_batch_size // 2,
-            num_workers=min(8, os.cpu_count() or 4),
-            pin_memory=True,
-            persistent_workers=True,
+            num_workers=min(4, os.cpu_count() or 2),
+            pin_memory=False,
+            persistent_workers=False,
             prefetch_factor=2,
         )
         test_loader = DataLoader(
             SegmentDataset(args_obj, test_mode=True),
             batch_size=effective_batch_size,
-            num_workers=min(8, os.cpu_count() or 4),
-            pin_memory=True,
-            persistent_workers=True,
+            num_workers=min(4, os.cpu_count() or 2),
+            pin_memory=False,
+            persistent_workers=False,
             prefetch_factor=2,
         )
         

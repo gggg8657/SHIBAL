@@ -9,7 +9,7 @@
         "dropout_rate": 0.4,
         "attn_dropout_rate": 0.1,
         "lr": 2e-4,
-        "batch_size": 16,
+        "batch_size": 32,
         "model_name": "uncropped_tiny_finetune",
         "model_arch": "tiny",
         "max_epoch": 100,
