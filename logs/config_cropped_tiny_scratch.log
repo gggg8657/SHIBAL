@@ -1,6 +1,5954 @@
+[OK] 설정 파일 로드: config_cropped_tiny_scratch.json
+
+=== 훈련 설정 ===
+훈련 데이터: custom_data/balanced_train.txt
+테스트 데이터: custom_data/balanced_test.txt
+모델 경로: None
+모델 아키텍처: tiny
+배치 크기: 16
+학습률: 0.0005
+최대 에포크: 150
+저장 디렉토리: ./ckpt
+==============================
+[GPU] 사용 가능한 GPU: 1개
+  GPU 0: NVIDIA GeForce RTX 4090 (24.0GB)
+[GPU] 커맨드라인 GPU 설정: [0]
+[GPU] 단일 GPU 모드 (GPU 0번만 사용)
+✅ 유효한 데이터: 31166개
+📊 데이터 분포: 정상 15583개, 비정상 15583개
+✅ 유효한 데이터: 7790개
+📊 데이터 분포: 정상 3895개, 비정상 3895개
+훈련 데이터: 15583개
+테스트 데이터: 7790개
+[INFO] From Scratch 학습 모드
+새로운 모델로 시작합니다.
+
+=== 훈련 시작 ===
+train_pr_auc : 0.6012
+train_roc_auc : 0.6241
+pr_auc : 0.8437
+roc_auc : 0.8489
+Epoch 0: AUC=0.8489, PR_AUC=0.8437
+train_pr_auc : 0.8752
+train_roc_auc : 0.8765
+pr_auc : 0.9142
+roc_auc : 0.9127
+Epoch 1: AUC=0.9127, PR_AUC=0.9142
 
 ==== STDERR ====
+
+전체 진행률:   0%|          | 0/150 [00:00<?, ?it/s]C:\Users\User\Documents\repos\SHIBAL\segment_dataset.py:92: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:209.)
+  return torch.from_numpy(arr)
+C:\Users\User\Documents\repos\SHIBAL\segment_dataset.py:92: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:209.)
+  return torch.from_numpy(arr)
+C:\Users\User\Documents\repos\SHIBAL\segment_dataset.py:92: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:209.)
+  return torch.from_numpy(arr)
+C:\Users\User\Documents\repos\SHIBAL\segment_dataset.py:92: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:209.)
+  return torch.from_numpy(arr)
+C:\Users\User\Documents\repos\SHIBAL\segment_dataset.py:92: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:209.)
+  return torch.from_numpy(arr)
+C:\Users\User\Documents\repos\SHIBAL\segment_dataset.py:92: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:209.)
+  return torch.from_numpy(arr)
+C:\Users\User\Documents\repos\SHIBAL\segment_dataset.py:92: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:209.)
+  return torch.from_numpy(arr)
+
+
+Epoch 0: 0it [00:00, ?it/s][AC:\Users\User\Documents\repos\SHIBAL\segment_dataset.py:92: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:209.)
+  return torch.from_numpy(arr)
+
+
+Epoch 0: 1it [00:03,  3.50s/it][A
+
+Epoch 0: 2it [00:03,  1.54s/it][A
+
+Epoch 0: 3it [00:03,  1.09it/s][A
+
+Epoch 0: 5it [00:03,  2.28it/s][A
+
+Epoch 0: 7it [00:04,  3.73it/s][A
+
+Epoch 0: 13it [00:04,  9.53it/s][A
+
+Epoch 0: 16it [00:04,  9.19it/s][A
+
+Epoch 0: 18it [00:04,  8.86it/s][A
+
+Epoch 0: 20it [00:05,  9.28it/s][A
+
+Epoch 0: 22it [00:05,  9.93it/s][A
+
+Epoch 0: 25it [00:05, 12.07it/s][A
+
+Epoch 0: 27it [00:05, 13.10it/s][A
+
+Epoch 0: 29it [00:05, 14.04it/s][A
+
+Epoch 0: 31it [00:05, 11.19it/s][A
+
+Epoch 0: 33it [00:05, 12.20it/s][A
+
+Epoch 0: 35it [00:06, 11.02it/s][A
+
+Epoch 0: 37it [00:06, 12.06it/s][A
+
+Epoch 0: 39it [00:06, 12.02it/s][A
+
+Epoch 0: 41it [00:06, 11.99it/s][A
+
+Epoch 0: 43it [00:06, 11.46it/s][A
+
+Epoch 0: 45it [00:07, 10.39it/s][A
+
+Epoch 0: 47it [00:07,  9.84it/s][A
+
+Epoch 0: 49it [00:07, 11.02it/s][A
+
+Epoch 0: 53it [00:07, 16.28it/s][A
+
+Epoch 0: 57it [00:07, 21.10it/s][A
+
+Epoch 0: 63it [00:07, 29.36it/s][A
+
+Epoch 0: 67it [00:08, 16.26it/s][A
+
+Epoch 0: 70it [00:08, 15.75it/s][A
+
+Epoch 0: 73it [00:08, 16.57it/s][A
+
+Epoch 0: 76it [00:09,  9.25it/s][A
+
+Epoch 0: 78it [00:09,  9.66it/s][A
+
+Epoch 0: 80it [00:09,  9.62it/s][A
+
+Epoch 0: 82it [00:09, 10.00it/s][A
+
+Epoch 0: 84it [00:10,  9.74it/s][A
+
+Epoch 0: 86it [00:10, 10.14it/s][A
+
+Epoch 0: 88it [00:10,  9.92it/s][A
+
+Epoch 0: 90it [00:10, 10.36it/s][A
+
+Epoch 0: 92it [00:10, 10.15it/s][A
+
+Epoch 0: 94it [00:11, 10.68it/s][A
+
+Epoch 0: 96it [00:11, 10.39it/s][A
+
+Epoch 0: 98it [00:11,  9.67it/s][A
+
+Epoch 0: 100it [00:11,  9.95it/s][A
+
+Epoch 0: 102it [00:11,  9.53it/s][A
+
+Epoch 0: 103it [00:12,  9.03it/s][A
+
+Epoch 0: 104it [00:12,  8.76it/s][A
+
+Epoch 0: 105it [00:12,  8.82it/s][A
+
+Epoch 0: 107it [00:12,  9.23it/s][A
+
+Epoch 0: 109it [00:12, 10.08it/s][A
+
+Epoch 0: 111it [00:12, 10.24it/s][A
+
+Epoch 0: 113it [00:13,  9.67it/s][A
+
+Epoch 0: 114it [00:13,  9.42it/s][A
+
+Epoch 0: 115it [00:13,  8.82it/s][A
+
+Epoch 0: 117it [00:13,  9.28it/s][A
+
+Epoch 0: 118it [00:13,  8.69it/s][A
+
+Epoch 0: 120it [00:13,  9.25it/s][A
+
+Epoch 0: 122it [00:14,  9.55it/s][A
+
+Epoch 0: 123it [00:14,  9.45it/s][A
+
+Epoch 0: 124it [00:14,  9.47it/s][A
+
+Epoch 0: 125it [00:14,  9.21it/s][A
+
+Epoch 0: 126it [00:14,  9.21it/s][A
+
+Epoch 0: 127it [00:14,  8.95it/s][A
+
+Epoch 0: 128it [00:14,  9.16it/s][A
+
+Epoch 0: 130it [00:14,  9.42it/s][A
+
+Epoch 0: 131it [00:15,  9.16it/s][A
+
+Epoch 0: 132it [00:15,  9.14it/s][A
+
+Epoch 0: 133it [00:15,  8.54it/s][A
+
+Epoch 0: 134it [00:15,  8.72it/s][A
+
+Epoch 0: 135it [00:15,  8.86it/s][A
+
+Epoch 0: 137it [00:15,  9.35it/s][A
+
+Epoch 0: 139it [00:15,  9.72it/s][A
+
+Epoch 0: 141it [00:16,  9.54it/s][A
+
+Epoch 0: 142it [00:16,  9.44it/s][A
+
+Epoch 0: 144it [00:16,  9.48it/s][A
+
+Epoch 0: 146it [00:16,  9.30it/s][A
+
+Epoch 0: 147it [00:16,  9.22it/s][A
+
+Epoch 0: 148it [00:16,  9.34it/s][A
+
+Epoch 0: 150it [00:17,  9.59it/s][A
+
+Epoch 0: 152it [00:17,  9.21it/s][A
+
+Epoch 0: 153it [00:17,  8.92it/s][A
+
+Epoch 0: 154it [00:17,  8.42it/s][A
+
+Epoch 0: 156it [00:17,  9.14it/s][A
+
+Epoch 0: 157it [00:17,  8.95it/s][A
+
+Epoch 0: 159it [00:18,  9.58it/s][A
+
+Epoch 0: 161it [00:18, 10.19it/s][A
+
+Epoch 0: 163it [00:18,  9.72it/s][A
+
+Epoch 0: 164it [00:18,  9.41it/s][A
+
+Epoch 0: 165it [00:18,  9.04it/s][A
+
+Epoch 0: 166it [00:18,  9.08it/s][A
+
+Epoch 0: 168it [00:18, 10.34it/s][A
+
+Epoch 0: 170it [00:19, 11.05it/s][A
+
+Epoch 0: 172it [00:19,  9.64it/s][A
+
+Epoch 0: 173it [00:19,  9.11it/s][A
+
+Epoch 0: 174it [00:19,  9.25it/s][A
+
+Epoch 0: 176it [00:19,  9.61it/s][A
+
+Epoch 0: 177it [00:19,  9.37it/s][A
+
+Epoch 0: 179it [00:20,  9.94it/s][A
+
+Epoch 0: 180it [00:20,  9.28it/s][A
+
+Epoch 0: 182it [00:20,  9.52it/s][A
+
+Epoch 0: 183it [00:20,  8.63it/s][A
+
+Epoch 0: 185it [00:20,  8.82it/s][A
+
+Epoch 0: 186it [00:20,  8.90it/s][A
+
+Epoch 0: 187it [00:21,  8.52it/s][A
+
+Epoch 0: 188it [00:21,  8.26it/s][A
+
+Epoch 0: 189it [00:21,  8.65it/s][A
+
+Epoch 0: 190it [00:21,  8.36it/s][A
+
+Epoch 0: 191it [00:21,  8.23it/s][A
+
+Epoch 0: 192it [00:21,  8.33it/s][A
+
+Epoch 0: 193it [00:21,  8.45it/s][A
+
+Epoch 0: 194it [00:21,  8.29it/s][A
+
+Epoch 0: 196it [00:22,  9.12it/s][A
+
+Epoch 0: 198it [00:22,  9.22it/s][A
+
+Epoch 0: 199it [00:22,  9.38it/s][A
+
+Epoch 0: 200it [00:22,  8.65it/s][A
+
+Epoch 0: 201it [00:22,  8.71it/s][A
+
+Epoch 0: 202it [00:22,  8.84it/s][A
+
+Epoch 0: 204it [00:22,  9.59it/s][A
+
+Epoch 0: 205it [00:23,  9.63it/s][A
+
+Epoch 0: 207it [00:23, 10.15it/s][A
+
+Epoch 0: 208it [00:23,  8.84it/s][A
+
+Epoch 0: 209it [00:23,  8.60it/s][A
+
+Epoch 0: 210it [00:23,  8.49it/s][A
+
+Epoch 0: 211it [00:23,  8.79it/s][A
+
+Epoch 0: 212it [00:23,  9.04it/s][A
+
+Epoch 0: 213it [00:23,  8.74it/s][A
+
+Epoch 0: 214it [00:24,  8.57it/s][A
+
+Epoch 0: 216it [00:24,  8.96it/s][A
+
+Epoch 0: 217it [00:24,  8.65it/s][A
+
+Epoch 0: 218it [00:24,  8.34it/s][A
+
+Epoch 0: 219it [00:24,  8.68it/s][A
+
+Epoch 0: 220it [00:24,  8.95it/s][A
+
+Epoch 0: 221it [00:24,  8.47it/s][A
+
+Epoch 0: 223it [00:25,  8.82it/s][A
+
+Epoch 0: 224it [00:25,  8.38it/s][A
+
+Epoch 0: 225it [00:25,  8.59it/s][A
+
+Epoch 0: 227it [00:25,  8.81it/s][A
+
+Epoch 0: 228it [00:25,  8.87it/s][A
+
+Epoch 0: 229it [00:25,  9.03it/s][A
+
+Epoch 0: 231it [00:26,  9.73it/s][A
+
+Epoch 0: 232it [00:26,  9.10it/s][A
+
+Epoch 0: 233it [00:26,  9.16it/s][A
+
+Epoch 0: 234it [00:26,  9.23it/s][A
+
+Epoch 0: 235it [00:26,  9.18it/s][A
+
+Epoch 0: 236it [00:26,  8.97it/s][A
+
+Epoch 0: 238it [00:26,  8.44it/s][A
+
+Epoch 0: 239it [00:26,  8.61it/s][A
+
+Epoch 0: 240it [00:27,  7.89it/s][A
+
+Epoch 0: 242it [00:27,  8.31it/s][A
+
+Epoch 0: 243it [00:27,  7.70it/s][A
+
+Epoch 0: 245it [00:27,  8.01it/s][A
+
+Epoch 0: 246it [00:27,  7.46it/s][A
+
+Epoch 0: 247it [00:28,  6.54it/s][A
+
+Epoch 0: 248it [00:28,  6.80it/s][A
+
+Epoch 0: 249it [00:28,  6.91it/s][A
+
+Epoch 0: 250it [00:28,  6.72it/s][A
+
+Epoch 0: 251it [00:28,  6.86it/s][A
+
+Epoch 0: 252it [00:28,  7.17it/s][A
+
+Epoch 0: 253it [00:28,  6.74it/s][A
+
+Epoch 0: 254it [00:29,  6.82it/s][A
+
+Epoch 0: 255it [00:29,  6.57it/s][A
+
+Epoch 0: 256it [00:29,  6.63it/s][A
+
+Epoch 0: 257it [00:29,  6.05it/s][A
+
+Epoch 0: 258it [00:29,  6.18it/s][A
+
+Epoch 0: 259it [00:29,  6.66it/s][A
+
+Epoch 0: 260it [00:29,  7.33it/s][A
+
+Epoch 0: 261it [00:30,  7.24it/s][A
+
+Epoch 0: 262it [00:30,  6.70it/s][A
+
+Epoch 0: 263it [00:30,  6.91it/s][A
+
+Epoch 0: 264it [00:30,  6.98it/s][A
+
+Epoch 0: 266it [00:30,  7.12it/s][A
+
+Epoch 0: 267it [00:30,  7.23it/s][A
+
+Epoch 0: 268it [00:31,  7.29it/s][A
+
+Epoch 0: 269it [00:31,  7.08it/s][A
+
+Epoch 0: 270it [00:31,  7.20it/s][A
+
+Epoch 0: 271it [00:31,  6.91it/s][A
+
+Epoch 0: 272it [00:31,  7.32it/s][A
+
+Epoch 0: 273it [00:31,  7.86it/s][A
+
+Epoch 0: 274it [00:31,  7.44it/s][A
+
+Epoch 0: 275it [00:32,  6.96it/s][A
+
+Epoch 0: 276it [00:32,  6.73it/s][A
+
+Epoch 0: 277it [00:32,  7.20it/s][A
+
+Epoch 0: 278it [00:32,  7.36it/s][A
+
+Epoch 0: 279it [00:32,  7.91it/s][A
+
+Epoch 0: 280it [00:32,  8.10it/s][A
+
+Epoch 0: 281it [00:32,  8.45it/s][A
+
+Epoch 0: 282it [00:32,  7.61it/s][A
+
+Epoch 0: 283it [00:33,  7.30it/s][A
+
+Epoch 0: 284it [00:33,  7.41it/s][A
+
+Epoch 0: 285it [00:33,  6.44it/s][A
+
+Epoch 0: 286it [00:33,  6.90it/s][A
+
+Epoch 0: 287it [00:33,  6.77it/s][A
+
+Epoch 0: 288it [00:33,  6.91it/s][A
+
+Epoch 0: 290it [00:34,  7.90it/s][A
+
+Epoch 0: 292it [00:34,  8.60it/s][A
+
+Epoch 0: 293it [00:34,  8.38it/s][A
+
+Epoch 0: 294it [00:34,  8.01it/s][A
+
+Epoch 0: 295it [00:34,  7.96it/s][A
+
+Epoch 0: 296it [00:34,  7.69it/s][A
+
+Epoch 0: 298it [00:35,  7.71it/s][A
+
+Epoch 0: 299it [00:35,  7.96it/s][A
+
+Epoch 0: 301it [00:35,  8.54it/s][A
+
+Epoch 0: 303it [00:35,  8.89it/s][A
+
+Epoch 0: 304it [00:35,  9.02it/s][A
+
+Epoch 0: 305it [00:35,  8.42it/s][A
+
+Epoch 0: 306it [00:36,  8.03it/s][A
+
+Epoch 0: 307it [00:36,  7.33it/s][A
+
+Epoch 0: 308it [00:36,  6.63it/s][A
+
+Epoch 0: 309it [00:36,  6.79it/s][A
+
+Epoch 0: 310it [00:36,  5.87it/s][A
+
+Epoch 0: 311it [00:36,  6.51it/s][A
+
+Epoch 0: 312it [00:37,  6.31it/s][A
+
+Epoch 0: 313it [00:37,  5.85it/s][A
+
+Epoch 0: 314it [00:37,  6.51it/s][A
+
+Epoch 0: 315it [00:37,  6.96it/s][A
+
+Epoch 0: 316it [00:37,  7.10it/s][A
+
+Epoch 0: 317it [00:37,  6.74it/s][A
+
+Epoch 0: 318it [00:37,  6.69it/s][A
+
+Epoch 0: 320it [00:38,  7.69it/s][A
+
+Epoch 0: 321it [00:38,  8.08it/s][A
+
+Epoch 0: 322it [00:38,  8.01it/s][A
+
+Epoch 0: 323it [00:38,  7.12it/s][A
+
+Epoch 0: 324it [00:38,  7.25it/s][A
+
+Epoch 0: 325it [00:38,  7.39it/s][A
+
+Epoch 0: 326it [00:38,  7.35it/s][A
+
+Epoch 0: 327it [00:39,  6.59it/s][A
+
+Epoch 0: 328it [00:39,  6.77it/s][A
+
+Epoch 0: 329it [00:39,  6.84it/s][A
+
+Epoch 0: 330it [00:39,  6.39it/s][A
+
+Epoch 0: 331it [00:39,  5.95it/s][A
+
+Epoch 0: 332it [00:39,  6.55it/s][A
+
+Epoch 0: 333it [00:40,  6.41it/s][A
+
+Epoch 0: 334it [00:40,  6.44it/s][A
+
+Epoch 0: 335it [00:40,  6.46it/s][A
+
+Epoch 0: 336it [00:40,  6.72it/s][A
+
+Epoch 0: 338it [00:40,  7.50it/s][A
+
+Epoch 0: 339it [00:40,  7.52it/s][A
+
+Epoch 0: 340it [00:41,  6.91it/s][A
+
+Epoch 0: 341it [00:41,  5.87it/s][A
+
+Epoch 0: 342it [00:41,  6.02it/s][A
+
+Epoch 0: 343it [00:41,  6.09it/s][A
+
+Epoch 0: 344it [00:41,  6.27it/s][A
+
+Epoch 0: 345it [00:41,  6.34it/s][A
+
+Epoch 0: 346it [00:42,  6.51it/s][A
+
+Epoch 0: 347it [00:42,  6.27it/s][A
+
+Epoch 0: 349it [00:42,  7.57it/s][A
+
+Epoch 0: 350it [00:42,  7.20it/s][A
+
+Epoch 0: 351it [00:42,  6.38it/s][A
+
+Epoch 0: 352it [00:42,  6.69it/s][A
+
+Epoch 0: 353it [00:43,  6.63it/s][A
+
+Epoch 0: 354it [00:43,  7.01it/s][A
+
+Epoch 0: 355it [00:43,  5.97it/s][A
+
+Epoch 0: 356it [00:43,  6.22it/s][A
+
+Epoch 0: 357it [00:43,  6.14it/s][A
+
+Epoch 0: 358it [00:43,  5.61it/s][A
+
+Epoch 0: 359it [00:44,  5.73it/s][A
+
+Epoch 0: 360it [00:44,  6.31it/s][A
+
+Epoch 0: 361it [00:44,  6.09it/s][A
+
+Epoch 0: 362it [00:44,  5.55it/s][A
+
+Epoch 0: 363it [00:44,  5.43it/s][A
+
+Epoch 0: 364it [00:44,  6.02it/s][A
+
+Epoch 0: 365it [00:45,  6.09it/s][A
+
+Epoch 0: 366it [00:45,  6.34it/s][A
+
+Epoch 0: 367it [00:45,  6.59it/s][A
+
+Epoch 0: 368it [00:45,  7.03it/s][A
+
+Epoch 0: 369it [00:45,  7.34it/s][A
+
+Epoch 0: 370it [00:45,  7.50it/s][A
+
+Epoch 0: 371it [00:45,  6.27it/s][A
+
+Epoch 0: 372it [00:46,  6.24it/s][A
+
+Epoch 0: 373it [00:46,  6.85it/s][A
+
+Epoch 0: 374it [00:46,  6.43it/s][A
+
+Epoch 0: 375it [00:46,  6.19it/s][A
+
+Epoch 0: 376it [00:46,  6.26it/s][A
+
+Epoch 0: 377it [00:46,  6.33it/s][A
+
+Epoch 0: 378it [00:47,  6.21it/s][A
+
+Epoch 0: 379it [00:47,  6.03it/s][A
+
+Epoch 0: 380it [00:47,  6.64it/s][A
+
+Epoch 0: 381it [00:47,  5.88it/s][A
+
+Epoch 0: 382it [00:47,  5.17it/s][A
+
+Epoch 0: 383it [00:48,  5.59it/s][A
+
+Epoch 0: 384it [00:48,  6.05it/s][A
+
+Epoch 0: 385it [00:48,  5.94it/s][A
+
+Epoch 0: 386it [00:48,  5.90it/s][A
+
+Epoch 0: 387it [00:48,  6.23it/s][A
+
+Epoch 0: 388it [00:48,  6.40it/s][A
+
+Epoch 0: 389it [00:48,  6.93it/s][A
+
+Epoch 0: 390it [00:49,  6.34it/s][A
+
+Epoch 0: 391it [00:49,  6.48it/s][A
+
+Epoch 0: 392it [00:49,  6.60it/s][A
+
+Epoch 0: 393it [00:49,  5.50it/s][A
+
+Epoch 0: 394it [00:49,  5.49it/s][A
+
+Epoch 0: 395it [00:49,  5.62it/s][A
+
+Epoch 0: 396it [00:50,  5.78it/s][A
+
+Epoch 0: 397it [00:50,  6.24it/s][A
+
+Epoch 0: 398it [00:50,  6.07it/s][A
+
+Epoch 0: 399it [00:50,  6.26it/s][A
+
+Epoch 0: 400it [00:50,  5.91it/s][A
+
+Epoch 0: 401it [00:50,  5.50it/s][A
+
+Epoch 0: 402it [00:51,  5.61it/s][A
+
+Epoch 0: 403it [00:51,  5.68it/s][A
+
+Epoch 0: 404it [00:51,  5.68it/s][A
+
+Epoch 0: 405it [00:51,  5.96it/s][A
+
+Epoch 0: 406it [00:51,  5.86it/s][A
+
+Epoch 0: 407it [00:52,  5.75it/s][A
+
+Epoch 0: 408it [00:52,  5.70it/s][A
+
+Epoch 0: 409it [00:52,  5.49it/s][A
+
+Epoch 0: 410it [00:52,  5.76it/s][A
+
+Epoch 0: 411it [00:52,  5.98it/s][A
+
+Epoch 0: 412it [00:52,  6.26it/s][A
+
+Epoch 0: 413it [00:52,  6.61it/s][A
+
+Epoch 0: 414it [00:53,  6.62it/s][A
+
+Epoch 0: 415it [00:53,  6.56it/s][A
+
+Epoch 0: 416it [00:53,  5.76it/s][A
+
+Epoch 0: 417it [00:53,  5.72it/s][A
+
+Epoch 0: 418it [00:53,  6.10it/s][A
+
+Epoch 0: 419it [00:53,  5.89it/s][A
+
+Epoch 0: 420it [00:54,  5.98it/s][A
+
+Epoch 0: 421it [00:54,  5.71it/s][A
+
+Epoch 0: 422it [00:54,  5.80it/s][A
+
+Epoch 0: 423it [00:54,  5.77it/s][A
+
+Epoch 0: 424it [00:54,  6.40it/s][A
+
+Epoch 0: 425it [00:54,  6.51it/s][A
+
+Epoch 0: 426it [00:55,  6.13it/s][A
+
+Epoch 0: 427it [00:55,  6.61it/s][A
+
+Epoch 0: 428it [00:55,  6.28it/s][A
+
+Epoch 0: 429it [00:55,  6.23it/s][A
+
+Epoch 0: 430it [00:55,  6.31it/s][A
+
+Epoch 0: 432it [00:56,  6.92it/s][A
+
+Epoch 0: 433it [00:56,  6.67it/s][A
+
+Epoch 0: 434it [00:56,  6.60it/s][A
+
+Epoch 0: 435it [00:56,  6.82it/s][A
+
+Epoch 0: 436it [00:56,  6.28it/s][A
+
+Epoch 0: 437it [00:56,  6.25it/s][A
+
+Epoch 0: 438it [00:56,  6.51it/s][A
+
+Epoch 0: 440it [00:57,  7.19it/s][A
+
+Epoch 0: 441it [00:57,  7.18it/s][A
+
+Epoch 0: 442it [00:57,  7.35it/s][A
+
+Epoch 0: 443it [00:57,  6.65it/s][A
+
+Epoch 0: 444it [00:57,  6.42it/s][A
+
+Epoch 0: 445it [00:57,  6.79it/s][A
+
+Epoch 0: 446it [00:58,  6.43it/s][A
+
+Epoch 0: 447it [00:58,  6.24it/s][A
+
+Epoch 0: 448it [00:58,  5.92it/s][A
+
+Epoch 0: 449it [00:58,  6.26it/s][A
+
+Epoch 0: 450it [00:58,  6.31it/s][A
+
+Epoch 0: 451it [00:58,  6.72it/s][A
+
+Epoch 0: 452it [00:59,  7.25it/s][A
+
+Epoch 0: 453it [00:59,  7.31it/s][A
+
+Epoch 0: 455it [00:59,  7.55it/s][A
+
+Epoch 0: 456it [00:59,  7.70it/s][A
+
+Epoch 0: 457it [00:59,  7.33it/s][A
+
+Epoch 0: 458it [00:59,  6.90it/s][A
+
+Epoch 0: 459it [00:59,  7.33it/s][A
+
+Epoch 0: 460it [01:00,  7.07it/s][A
+
+Epoch 0: 461it [01:00,  7.01it/s][A
+
+Epoch 0: 462it [01:00,  7.47it/s][A
+
+Epoch 0: 463it [01:00,  7.24it/s][A
+
+Epoch 0: 464it [01:00,  7.15it/s][A
+
+Epoch 0: 465it [01:00,  6.78it/s][A
+
+Epoch 0: 466it [01:00,  6.88it/s][A
+
+Epoch 0: 468it [01:01,  7.52it/s][A
+
+Epoch 0: 469it [01:01,  7.14it/s][A
+
+Epoch 0: 470it [01:01,  7.71it/s][A
+
+Epoch 0: 471it [01:01,  6.98it/s][A
+
+Epoch 0: 472it [01:01,  6.84it/s][A
+
+Epoch 0: 473it [01:01,  6.47it/s][A
+
+Epoch 0: 474it [01:02,  6.29it/s][A
+
+Epoch 0: 475it [01:02,  6.57it/s][A
+
+Epoch 0: 476it [01:02,  5.43it/s][A
+
+Epoch 0: 477it [01:02,  5.42it/s][A
+
+Epoch 0: 478it [01:02,  5.62it/s][A
+
+Epoch 0: 479it [01:03,  5.80it/s][A
+
+Epoch 0: 480it [01:03,  6.08it/s][A
+
+Epoch 0: 481it [01:03,  6.09it/s][A
+
+Epoch 0: 482it [01:03,  5.43it/s][A
+
+Epoch 0: 483it [01:03,  5.67it/s][A
+
+Epoch 0: 484it [01:03,  6.17it/s][A
+
+Epoch 0: 485it [01:04,  6.46it/s][A
+
+Epoch 0: 486it [01:04,  5.67it/s][A
+
+Epoch 0: 487it [01:04,  5.83it/s][A
+
+Epoch 0: 488it [01:04,  5.69it/s][A
+
+Epoch 0: 489it [01:04,  5.82it/s][A
+
+Epoch 0: 490it [01:04,  5.57it/s][A
+
+Epoch 0: 491it [01:05,  5.88it/s][A
+
+Epoch 0: 492it [01:05,  6.05it/s][A
+
+Epoch 0: 493it [01:05,  5.74it/s][A
+
+Epoch 0: 494it [01:05,  6.28it/s][A
+
+Epoch 0: 495it [01:05,  6.41it/s][A
+
+Epoch 0: 496it [01:05,  6.82it/s][A
+
+Epoch 0: 497it [01:05,  7.31it/s][A
+
+Epoch 0: 498it [01:06,  6.60it/s][A
+
+Epoch 0: 499it [01:06,  5.78it/s][A
+
+Epoch 0: 500it [01:06,  5.72it/s][A
+
+Epoch 0: 501it [01:06,  5.63it/s][A
+
+Epoch 0: 502it [01:06,  6.06it/s][A
+
+Epoch 0: 503it [01:07,  5.99it/s][A
+
+Epoch 0: 504it [01:07,  6.20it/s][A
+
+Epoch 0: 505it [01:07,  6.36it/s][A
+
+Epoch 0: 506it [01:07,  6.35it/s][A
+
+Epoch 0: 507it [01:07,  6.39it/s][A
+
+Epoch 0: 508it [01:07,  6.35it/s][A
+
+Epoch 0: 509it [01:08,  5.88it/s][A
+
+Epoch 0: 510it [01:08,  5.54it/s][A
+
+Epoch 0: 511it [01:08,  5.70it/s][A
+
+Epoch 0: 512it [01:08,  5.81it/s][A
+
+Epoch 0: 513it [01:08,  6.32it/s][A
+
+Epoch 0: 514it [01:08,  6.30it/s][A
+
+Epoch 0: 515it [01:09,  5.58it/s][A
+
+Epoch 0: 516it [01:09,  5.20it/s][A
+
+Epoch 0: 517it [01:09,  5.46it/s][A
+
+Epoch 0: 518it [01:09,  5.75it/s][A
+
+Epoch 0: 519it [01:09,  6.07it/s][A
+
+Epoch 0: 520it [01:09,  6.23it/s][A
+
+Epoch 0: 521it [01:10,  6.51it/s][A
+
+Epoch 0: 522it [01:10,  6.93it/s][A
+
+Epoch 0: 523it [01:10,  7.08it/s][A
+
+Epoch 0: 524it [01:10,  7.34it/s][A
+
+Epoch 0: 525it [01:10,  6.47it/s][A
+
+Epoch 0: 526it [01:10,  6.33it/s][A
+
+Epoch 0: 527it [01:10,  6.36it/s][A
+
+Epoch 0: 528it [01:11,  6.28it/s][A
+
+Epoch 0: 529it [01:11,  6.75it/s][A
+
+Epoch 0: 531it [01:11,  7.22it/s][A
+
+Epoch 0: 532it [01:11,  6.89it/s][A
+
+Epoch 0: 533it [01:11,  6.93it/s][A
+
+Epoch 0: 534it [01:11,  6.66it/s][A
+
+Epoch 0: 535it [01:12,  7.08it/s][A
+
+Epoch 0: 536it [01:12,  7.30it/s][A
+
+Epoch 0: 537it [01:12,  6.00it/s][A
+
+Epoch 0: 538it [01:12,  5.53it/s][A
+
+Epoch 0: 539it [01:12,  5.49it/s][A
+
+Epoch 0: 540it [01:12,  5.97it/s][A
+
+Epoch 0: 541it [01:13,  6.04it/s][A
+
+Epoch 0: 542it [01:13,  6.31it/s][A
+
+Epoch 0: 543it [01:13,  6.74it/s][A
+
+Epoch 0: 544it [01:13,  6.56it/s][A
+
+Epoch 0: 545it [01:13,  6.62it/s][A
+
+Epoch 0: 546it [01:13,  6.38it/s][A
+
+Epoch 0: 547it [01:14,  6.34it/s][A
+
+Epoch 0: 548it [01:14,  6.39it/s][A
+
+Epoch 0: 549it [01:14,  6.07it/s][A
+
+Epoch 0: 550it [01:14,  6.63it/s][A
+
+Epoch 0: 551it [01:14,  7.12it/s][A
+
+Epoch 0: 552it [01:14,  7.13it/s][A
+
+Epoch 0: 553it [01:14,  7.35it/s][A
+
+Epoch 0: 554it [01:15,  6.43it/s][A
+
+Epoch 0: 555it [01:15,  6.03it/s][A
+
+Epoch 0: 556it [01:15,  5.97it/s][A
+
+Epoch 0: 557it [01:15,  6.30it/s][A
+
+Epoch 0: 558it [01:15,  6.40it/s][A
+
+Epoch 0: 559it [01:15,  6.85it/s][A
+
+Epoch 0: 560it [01:15,  6.79it/s][A
+
+Epoch 0: 561it [01:16,  6.65it/s][A
+
+Epoch 0: 562it [01:16,  6.68it/s][A
+
+Epoch 0: 563it [01:16,  6.92it/s][A
+
+Epoch 0: 564it [01:16,  7.10it/s][A
+
+Epoch 0: 565it [01:16,  6.41it/s][A
+
+Epoch 0: 566it [01:16,  5.80it/s][A
+
+Epoch 0: 567it [01:17,  6.19it/s][A
+
+Epoch 0: 568it [01:17,  5.95it/s][A
+
+Epoch 0: 569it [01:17,  5.93it/s][A
+
+Epoch 0: 570it [01:17,  6.09it/s][A
+
+Epoch 0: 571it [01:17,  6.30it/s][A
+
+Epoch 0: 572it [01:17,  6.08it/s][A
+
+Epoch 0: 573it [01:18,  6.09it/s][A
+
+Epoch 0: 574it [01:18,  5.82it/s][A
+
+Epoch 0: 575it [01:18,  6.23it/s][A
+
+Epoch 0: 576it [01:18,  6.00it/s][A
+
+Epoch 0: 577it [01:18,  6.07it/s][A
+
+Epoch 0: 578it [01:18,  5.73it/s][A
+
+Epoch 0: 579it [01:19,  5.66it/s][A
+
+Epoch 0: 580it [01:19,  5.83it/s][A
+
+Epoch 0: 581it [01:19,  5.65it/s][A
+
+Epoch 0: 582it [01:19,  5.86it/s][A
+
+Epoch 0: 584it [01:19,  6.62it/s][A
+
+Epoch 0: 585it [01:20,  6.83it/s][A
+
+Epoch 0: 586it [01:20,  6.78it/s][A
+
+Epoch 0: 587it [01:20,  7.06it/s][A
+
+Epoch 0: 588it [01:20,  6.36it/s][A
+
+Epoch 0: 589it [01:20,  6.24it/s][A
+
+Epoch 0: 590it [01:20,  6.07it/s][A
+
+Epoch 0: 591it [01:21,  6.06it/s][A
+
+Epoch 0: 592it [01:21,  6.36it/s][A
+
+Epoch 0: 593it [01:21,  7.07it/s][A
+
+Epoch 0: 594it [01:21,  7.27it/s][A
+
+Epoch 0: 595it [01:21,  5.74it/s][A
+
+Epoch 0: 596it [01:21,  5.80it/s][A
+
+Epoch 0: 597it [01:21,  6.04it/s][A
+
+Epoch 0: 598it [01:22,  6.35it/s][A
+
+Epoch 0: 599it [01:22,  6.78it/s][A
+
+Epoch 0: 600it [01:22,  7.18it/s][A
+
+Epoch 0: 601it [01:22,  7.76it/s][A
+
+Epoch 0: 603it [01:22,  7.94it/s][A
+
+Epoch 0: 604it [01:22,  8.10it/s][A
+
+Epoch 0: 605it [01:22,  8.43it/s][A
+
+Epoch 0: 606it [01:23,  7.83it/s][A
+
+Epoch 0: 607it [01:23,  7.76it/s][A
+
+Epoch 0: 608it [01:23,  7.94it/s][A
+
+Epoch 0: 609it [01:23,  7.76it/s][A
+
+Epoch 0: 610it [01:23,  7.34it/s][A
+
+Epoch 0: 611it [01:23,  7.44it/s][A
+
+Epoch 0: 612it [01:23,  8.04it/s][A
+
+Epoch 0: 613it [01:23,  8.36it/s][A
+
+Epoch 0: 615it [01:24,  8.94it/s][A
+
+Epoch 0: 617it [01:24,  9.59it/s][A
+
+Epoch 0: 618it [01:24,  8.98it/s][A
+
+Epoch 0: 620it [01:24,  9.68it/s][A
+
+Epoch 0: 621it [01:24,  9.53it/s][A
+
+Epoch 0: 622it [01:24,  9.21it/s][A
+
+Epoch 0: 624it [01:25, 10.98it/s][A
+
+Epoch 0: 626it [01:25,  5.09it/s][A
+
+Epoch 0: 628it [01:25,  6.55it/s][A
+
+Epoch 0: 630it [01:26,  8.18it/s][A
+
+Epoch 0: 632it [01:26,  9.99it/s][A
+
+Epoch 0: 634it [01:26, 11.37it/s][A
+
+Epoch 0: 636it [01:26, 11.88it/s][A
+
+Epoch 0: 638it [01:26, 13.12it/s][A
+
+Epoch 0: 640it [01:26, 14.14it/s][A
+
+Epoch 0: 642it [01:26, 15.43it/s][A
+
+Epoch 0: 644it [01:26, 16.15it/s][A
+
+Epoch 0: 646it [01:26, 16.53it/s][A
+
+Epoch 0: 648it [01:27, 16.01it/s][A
+
+Epoch 0: 651it [01:27, 17.61it/s][A
+
+Epoch 0: 653it [01:27, 17.83it/s][A
+
+Epoch 0: 655it [01:27, 15.73it/s][A
+
+Epoch 0: 657it [01:27, 16.73it/s][A
+
+Epoch 0: 659it [01:27, 16.16it/s][A
+
+Epoch 0: 661it [01:27, 15.49it/s][A
+
+Epoch 0: 663it [01:28, 14.42it/s][A
+
+Epoch 0: 665it [01:28, 15.35it/s][A
+
+Epoch 0: 667it [01:28, 16.30it/s][A
+
+Epoch 0: 669it [01:28, 16.72it/s][A
+
+Epoch 0: 671it [01:28, 15.62it/s][A
+
+Epoch 0: 673it [01:28, 14.41it/s][A
+
+Epoch 0: 675it [01:28, 14.31it/s][A
+
+Epoch 0: 677it [01:28, 14.67it/s][A
+
+Epoch 0: 679it [01:29, 14.68it/s][A
+
+Epoch 0: 681it [01:29, 13.78it/s][A
+
+Epoch 0: 683it [01:29, 14.41it/s][A
+
+Epoch 0: 685it [01:29,  9.60it/s][A
+
+Epoch 0: 687it [01:29, 10.62it/s][A
+
+Epoch 0: 689it [01:30, 11.66it/s][A
+
+Epoch 0: 691it [01:30, 11.70it/s][A
+
+Epoch 0: 693it [01:30, 12.89it/s][A
+
+Epoch 0: 695it [01:30, 12.98it/s][A
+
+Epoch 0: 697it [01:30, 12.31it/s][A
+
+Epoch 0: 699it [01:30, 13.62it/s][A
+
+Epoch 0: 701it [01:31,  8.70it/s][A
+
+Epoch 0: 703it [01:31,  9.44it/s][A
+
+Epoch 0: 705it [01:31, 10.38it/s][A
+
+Epoch 0: 707it [01:31, 11.09it/s][A
+
+Epoch 0: 709it [01:31, 11.21it/s][A
+
+Epoch 0: 711it [01:31, 11.94it/s][A
+
+Epoch 0: 713it [01:32, 12.80it/s][A
+
+Epoch 0: 715it [01:32, 13.58it/s][A
+
+Epoch 0: 717it [01:32, 12.94it/s][A
+
+Epoch 0: 719it [01:32, 12.58it/s][A
+
+Epoch 0: 721it [01:32, 14.07it/s][A
+
+Epoch 0: 723it [01:32, 13.52it/s][A
+
+Epoch 0: 725it [01:33, 13.15it/s][A
+
+Epoch 0: 727it [01:33, 12.80it/s][A
+
+Epoch 0: 729it [01:33, 13.58it/s][A
+
+Epoch 0: 731it [01:33, 12.28it/s][A
+
+Epoch 0: 733it [01:33, 12.00it/s][A
+
+Epoch 0: 735it [01:33, 12.43it/s][A
+
+Epoch 0: 737it [01:33, 13.94it/s][A
+
+Epoch 0: 739it [01:34, 14.40it/s][A
+
+Epoch 0: 741it [01:34, 15.56it/s][A
+
+Epoch 0: 743it [01:34, 15.86it/s][A
+
+Epoch 0: 745it [01:34, 16.81it/s][A
+
+Epoch 0: 747it [01:34, 16.12it/s][A
+
+Epoch 0: 749it [01:34, 15.59it/s][A
+
+Epoch 0: 751it [01:34, 15.66it/s][A
+
+Epoch 0: 753it [01:34, 16.10it/s][A
+
+Epoch 0: 755it [01:35, 15.09it/s][A
+
+Epoch 0: 757it [01:35, 14.84it/s][A
+
+Epoch 0: 759it [01:35, 14.18it/s][A
+
+Epoch 0: 761it [01:35, 14.33it/s][A
+
+Epoch 0: 763it [01:35, 14.63it/s][A
+
+Epoch 0: 765it [01:35, 15.24it/s][A
+
+Epoch 0: 767it [01:35, 14.82it/s][A
+
+Epoch 0: 769it [01:36, 14.71it/s][A
+
+Epoch 0: 771it [01:36, 15.46it/s][A
+
+Epoch 0: 773it [01:36, 13.91it/s][A
+
+Epoch 0: 775it [01:36, 13.78it/s][A
+
+Epoch 0: 777it [01:36, 14.72it/s][A
+
+Epoch 0: 779it [01:36, 14.41it/s][A
+
+Epoch 0: 782it [01:36, 15.72it/s][A
+
+Epoch 0: 784it [01:37, 13.68it/s][A
+
+Epoch 0: 786it [01:37, 14.45it/s][A
+
+Epoch 0: 788it [01:37, 14.82it/s][A
+
+Epoch 0: 790it [01:37, 14.60it/s][A
+
+Epoch 0: 792it [01:37, 14.63it/s][A
+
+Epoch 0: 794it [01:37, 15.87it/s][A
+
+Epoch 0: 796it [01:37, 13.87it/s][A
+
+Epoch 0: 798it [01:38, 13.66it/s][A
+
+Epoch 0: 800it [01:38, 14.30it/s][A
+
+Epoch 0: 802it [01:38, 15.26it/s][A
+
+Epoch 0: 804it [01:38, 14.39it/s][A
+
+Epoch 0: 806it [01:38, 14.86it/s][A
+
+Epoch 0: 808it [01:38, 15.08it/s][A
+
+Epoch 0: 810it [01:38, 14.64it/s][A
+
+Epoch 0: 812it [01:38, 14.29it/s][A
+
+Epoch 0: 814it [01:39, 15.40it/s][A
+
+Epoch 0: 816it [01:39, 16.43it/s][A
+
+Epoch 0: 818it [01:39, 14.21it/s][A
+
+Epoch 0: 820it [01:39, 15.40it/s][A
+
+Epoch 0: 822it [01:39, 15.90it/s][A
+
+Epoch 0: 824it [01:39, 14.09it/s][A
+
+Epoch 0: 826it [01:39, 13.43it/s][A
+
+Epoch 0: 828it [01:40, 14.56it/s][A
+
+Epoch 0: 830it [01:40,  6.70it/s][A
+
+Epoch 0: 832it [01:40,  8.27it/s][A
+
+Epoch 0: 835it [01:40, 11.13it/s][A
+
+Epoch 0: 837it [01:41, 11.99it/s][A
+
+Epoch 0: 839it [01:41, 12.73it/s][A
+
+Epoch 0: 841it [01:41, 11.06it/s][A
+
+Epoch 0: 843it [01:41, 12.38it/s][A
+
+Epoch 0: 845it [01:41, 13.17it/s][A
+
+Epoch 0: 848it [01:41, 15.17it/s][A
+
+Epoch 0: 851it [01:41, 17.13it/s][A
+
+Epoch 0: 853it [01:42, 17.67it/s][A
+
+Epoch 0: 856it [01:42, 18.52it/s][A
+
+Epoch 0: 859it [01:42, 18.45it/s][A
+
+Epoch 0: 861it [01:42, 17.68it/s][A
+
+Epoch 0: 863it [01:42, 17.40it/s][A
+
+Epoch 0: 865it [01:42, 17.42it/s][A
+
+Epoch 0: 867it [01:42, 17.20it/s][A
+
+Epoch 0: 869it [01:43, 16.64it/s][A
+
+Epoch 0: 871it [01:43, 16.17it/s][A
+
+Epoch 0: 873it [01:43, 16.54it/s][A
+
+Epoch 0: 875it [01:43, 15.59it/s][A
+
+Epoch 0: 877it [01:43, 14.24it/s][A
+
+Epoch 0: 879it [01:43, 14.94it/s][A
+
+Epoch 0: 881it [01:43, 15.91it/s][A
+
+Epoch 0: 883it [01:43, 16.43it/s][A
+
+Epoch 0: 885it [01:44, 15.58it/s][A
+
+Epoch 0: 887it [01:44, 15.81it/s][A
+
+Epoch 0: 889it [01:44, 15.82it/s][A
+
+Epoch 0: 891it [01:44, 14.60it/s][A
+
+Epoch 0: 893it [01:44, 14.57it/s][A
+
+Epoch 0: 895it [01:44, 15.14it/s][A
+
+Epoch 0: 897it [01:44, 15.41it/s][A
+
+Epoch 0: 899it [01:44, 15.61it/s][A
+
+Epoch 0: 901it [01:45, 15.91it/s][A
+
+Epoch 0: 903it [01:45, 16.92it/s][A
+
+Epoch 0: 906it [01:45, 17.53it/s][A
+
+Epoch 0: 908it [01:45, 17.04it/s][A
+
+Epoch 0: 910it [01:45, 15.68it/s][A
+
+Epoch 0: 912it [01:45, 14.94it/s][A
+
+Epoch 0: 914it [01:45, 15.26it/s][A
+
+Epoch 0: 916it [01:46, 15.50it/s][A
+
+Epoch 0: 918it [01:46, 15.53it/s][A
+
+Epoch 0: 920it [01:46, 15.20it/s][A
+
+Epoch 0: 922it [01:46, 16.36it/s][A
+
+Epoch 0: 924it [01:46, 15.54it/s][A
+
+Epoch 0: 926it [01:46, 16.23it/s][A
+
+Epoch 0: 928it [01:46, 14.91it/s][A
+
+Epoch 0: 930it [01:46, 15.11it/s][A
+
+Epoch 0: 932it [01:47, 15.40it/s][A
+
+Epoch 0: 934it [01:47, 15.83it/s][A
+
+Epoch 0: 936it [01:47, 15.61it/s][A
+
+Epoch 0: 938it [01:47, 15.83it/s][A
+
+Epoch 0: 940it [01:47, 16.29it/s][A
+
+Epoch 0: 942it [01:47, 16.32it/s][A
+
+Epoch 0: 944it [01:47, 15.87it/s][A
+
+Epoch 0: 946it [01:47, 15.09it/s][A
+
+Epoch 0: 948it [01:48, 15.03it/s][A
+
+Epoch 0: 950it [01:48, 15.62it/s][A
+
+Epoch 0: 952it [01:48, 15.55it/s][A
+
+Epoch 0: 955it [01:48, 15.92it/s][A
+
+Epoch 0: 957it [01:48, 15.83it/s][A
+
+Epoch 0: 959it [01:48, 15.98it/s][A
+
+Epoch 0: 961it [01:48, 16.46it/s][A
+
+Epoch 0: 963it [01:49, 15.35it/s][A
+
+Epoch 0: 965it [01:49, 15.22it/s][A
+
+Epoch 0: 967it [01:49, 15.20it/s][A
+
+Epoch 0: 969it [01:49, 16.19it/s][A
+
+Epoch 0: 971it [01:49, 14.27it/s][A
+
+Epoch 0: 973it [01:49, 14.71it/s][A
+
+Epoch 0: 976it [01:49, 15.81it/s][A
+
+Epoch 0: 979it [01:50, 16.82it/s][A
+
+Epoch 0: 981it [01:50, 16.04it/s][A
+
+Epoch 0: 983it [01:50, 16.92it/s][A
+
+Epoch 0: 985it [01:50, 16.99it/s][A
+
+Epoch 0: 987it [01:50, 15.98it/s][A
+
+Epoch 0: 989it [01:50, 15.07it/s][A
+
+Epoch 0: 991it [01:50, 10.83it/s][A
+
+Epoch 0: 993it [01:51, 11.69it/s][A
+
+Epoch 0: 995it [01:51, 12.36it/s][A
+
+Epoch 0: 997it [01:51, 12.73it/s][A
+
+Epoch 0: 999it [01:51, 12.81it/s][A
+
+Epoch 0: 1001it [01:51, 13.07it/s][A
+
+Epoch 0: 1003it [01:51, 13.47it/s][A
+
+Epoch 0: 1005it [01:51, 14.46it/s][A
+
+Epoch 0: 1007it [01:52, 13.99it/s][A
+
+Epoch 0: 1009it [01:52, 14.95it/s][A
+
+Epoch 0: 1011it [01:52, 15.78it/s][A
+
+Epoch 0: 1013it [01:52, 15.95it/s][A
+
+Epoch 0: 1015it [01:52, 16.07it/s][A
+
+Epoch 0: 1017it [01:52, 15.93it/s][A
+
+Epoch 0: 1019it [01:52, 15.47it/s][A
+
+Epoch 0: 1021it [01:52, 15.58it/s][A
+
+Epoch 0: 1023it [01:53, 15.66it/s][A
+
+Epoch 0: 1025it [01:53, 16.41it/s][A
+
+Epoch 0: 1027it [01:53, 16.08it/s][A
+
+Epoch 0: 1029it [01:53, 16.56it/s][A
+
+Epoch 0: 1031it [01:53, 16.91it/s][A
+
+Epoch 0: 1033it [01:53, 16.83it/s][A
+
+Epoch 0: 1035it [01:53, 16.53it/s][A
+
+Epoch 0: 1037it [01:53, 15.71it/s][A
+
+Epoch 0: 1039it [01:54, 15.39it/s][A
+
+Epoch 0: 1041it [01:54, 16.28it/s][A
+
+Epoch 0: 1043it [01:54, 15.48it/s][A
+
+Epoch 0: 1045it [01:54, 15.04it/s][A
+
+Epoch 0: 1047it [01:54, 16.15it/s][A
+
+Epoch 0: 1049it [01:54, 15.83it/s][A
+
+Epoch 0: 1051it [01:54, 16.38it/s][A
+
+Epoch 0: 1053it [01:54, 16.78it/s][A
+
+Epoch 0: 1055it [01:55, 16.82it/s][A
+
+Epoch 0: 1057it [01:55, 16.36it/s][A
+
+Epoch 0: 1059it [01:55, 15.90it/s][A
+
+Epoch 0: 1061it [01:55, 16.03it/s][A
+
+Epoch 0: 1063it [01:55, 15.06it/s][A
+
+Epoch 0: 1066it [01:55, 16.74it/s][A
+
+Epoch 0: 1068it [01:55, 17.10it/s][A
+
+Epoch 0: 1070it [01:55, 17.13it/s][A
+
+Epoch 0: 1072it [01:56, 16.75it/s][A
+
+Epoch 0: 1074it [01:56, 17.37it/s][A
+
+Epoch 0: 1076it [01:56, 17.24it/s][A
+
+Epoch 0: 1078it [01:56, 16.02it/s][A
+
+Epoch 0: 1080it [01:56, 16.43it/s][A
+
+Epoch 0: 1082it [01:56, 17.33it/s][A
+
+Epoch 0: 1084it [01:56, 15.27it/s][A
+
+Epoch 0: 1086it [01:56, 15.80it/s][A
+
+Epoch 0: 1088it [01:57, 15.32it/s][A
+
+Epoch 0: 1090it [01:57, 14.86it/s][A
+
+Epoch 0: 1092it [01:57, 15.92it/s][A
+
+Epoch 0: 1094it [01:57, 16.06it/s][A
+
+Epoch 0: 1096it [01:57, 14.81it/s][A
+
+Epoch 0: 1099it [01:57, 16.70it/s][A
+
+Epoch 0: 1101it [01:57, 15.64it/s][A
+
+Epoch 0: 1103it [01:58, 16.63it/s][A
+
+Epoch 0: 1105it [01:58, 16.79it/s][A
+
+Epoch 0: 1107it [01:58, 16.51it/s][A
+
+Epoch 0: 1109it [01:58, 15.43it/s][A
+
+Epoch 0: 1111it [01:58, 16.06it/s][A
+
+Epoch 0: 1113it [01:58, 16.62it/s][A
+
+Epoch 0: 1115it [01:58, 16.23it/s][A
+
+Epoch 0: 1117it [01:58, 16.68it/s][A
+
+Epoch 0: 1119it [01:59, 16.03it/s][A
+
+Epoch 0: 1121it [01:59, 15.32it/s][A
+
+Epoch 0: 1123it [01:59, 14.87it/s][A
+
+Epoch 0: 1125it [01:59, 14.89it/s][A
+
+Epoch 0: 1127it [01:59, 12.91it/s][A
+
+Epoch 0: 1129it [01:59, 13.78it/s][A
+
+Epoch 0: 1131it [01:59, 14.46it/s][A
+
+Epoch 0: 1133it [02:00, 15.32it/s][A
+
+Epoch 0: 1135it [02:00, 15.62it/s][A
+
+Epoch 0: 1137it [02:00, 15.06it/s][A
+
+Epoch 0: 1139it [02:00, 10.70it/s][A
+
+Epoch 0: 1141it [02:00, 11.81it/s][A
+
+Epoch 0: 1143it [02:00, 11.77it/s][A
+
+Epoch 0: 1145it [02:01, 11.99it/s][A
+
+Epoch 0: 1147it [02:01, 12.19it/s][A
+
+Epoch 0: 1149it [02:01, 13.63it/s][A
+
+Epoch 0: 1151it [02:01, 14.04it/s][A
+
+Epoch 0: 1153it [02:01, 15.00it/s][A
+
+Epoch 0: 1155it [02:01, 15.82it/s][A
+
+Epoch 0: 1157it [02:01, 15.26it/s][A
+
+Epoch 0: 1159it [02:01, 14.95it/s][A
+
+Epoch 0: 1161it [02:02, 15.78it/s][A
+
+Epoch 0: 1163it [02:02, 15.73it/s][A
+
+Epoch 0: 1165it [02:02, 14.42it/s][A
+
+Epoch 0: 1167it [02:02, 14.57it/s][A
+
+Epoch 0: 1169it [02:02, 15.20it/s][A
+
+Epoch 0: 1171it [02:02, 15.25it/s][A
+
+Epoch 0: 1173it [02:02, 15.42it/s][A
+
+Epoch 0: 1175it [02:02, 15.62it/s][A
+
+Epoch 0: 1177it [02:03, 16.07it/s][A
+
+Epoch 0: 1179it [02:03, 15.85it/s][A
+
+Epoch 0: 1181it [02:03, 15.14it/s][A
+
+Epoch 0: 1183it [02:03, 15.01it/s][A
+
+Epoch 0: 1185it [02:03, 13.65it/s][A
+
+Epoch 0: 1187it [02:03, 14.13it/s][A
+
+Epoch 0: 1189it [02:03, 14.17it/s][A
+
+Epoch 0: 1191it [02:04, 14.77it/s][A
+
+Epoch 0: 1193it [02:04, 15.08it/s][A
+
+Epoch 0: 1195it [02:04, 14.70it/s][A
+
+Epoch 0: 1197it [02:04, 14.76it/s][A
+
+Epoch 0: 1199it [02:04, 14.95it/s][A
+
+Epoch 0: 1201it [02:04, 15.63it/s][A
+
+Epoch 0: 1203it [02:04, 16.70it/s][A
+
+Epoch 0: 1205it [02:04, 16.85it/s][A
+
+Epoch 0: 1207it [02:05, 16.14it/s][A
+
+Epoch 0: 1209it [02:05, 16.94it/s][A
+
+Epoch 0: 1211it [02:05, 16.28it/s][A
+
+Epoch 0: 1213it [02:05, 15.42it/s][A
+
+Epoch 0: 1215it [02:05, 15.91it/s][A
+
+Epoch 0: 1217it [02:05, 16.20it/s][A
+
+Epoch 0: 1219it [02:05, 15.22it/s][A
+
+Epoch 0: 1221it [02:05, 15.07it/s][A
+
+Epoch 0: 1223it [02:06, 15.72it/s][A
+
+Epoch 0: 1226it [02:06, 17.79it/s][A
+
+Epoch 0: 1228it [02:06, 16.83it/s][A
+
+Epoch 0: 1230it [02:06, 17.51it/s][A
+
+Epoch 0: 1232it [02:06, 17.33it/s][A
+
+Epoch 0: 1234it [02:06, 17.73it/s][A
+
+Epoch 0: 1236it [02:06, 15.52it/s][A
+
+Epoch 0: 1238it [02:06, 15.99it/s][A
+
+Epoch 0: 1240it [02:07, 16.24it/s][A
+
+Epoch 0: 1243it [02:07, 16.02it/s][A
+
+Epoch 0: 1245it [02:07, 16.54it/s][A
+
+Epoch 0: 1247it [02:07, 16.80it/s][A
+
+Epoch 0: 1249it [02:07, 16.52it/s][A
+
+Epoch 0: 1251it [02:07, 16.63it/s][A
+
+Epoch 0: 1253it [02:07, 16.55it/s][A
+
+Epoch 0: 1255it [02:08, 15.46it/s][A
+
+Epoch 0: 1257it [02:08, 15.72it/s][A
+
+Epoch 0: 1259it [02:08, 15.76it/s][A
+
+Epoch 0: 1261it [02:08, 15.86it/s][A
+
+Epoch 0: 1263it [02:08, 16.31it/s][A
+
+Epoch 0: 1265it [02:08, 16.66it/s][A
+
+Epoch 0: 1267it [02:08, 16.25it/s][A
+
+Epoch 0: 1269it [02:08, 16.52it/s][A
+
+Epoch 0: 1271it [02:08, 17.14it/s][A
+
+Epoch 0: 1273it [02:09, 17.42it/s][A
+
+Epoch 0: 1275it [02:09, 16.75it/s][A
+
+Epoch 0: 1277it [02:09, 16.47it/s][A
+
+Epoch 0: 1279it [02:09, 14.79it/s][A
+
+Epoch 0: 1281it [02:09, 15.58it/s][A
+
+Epoch 0: 1283it [02:09, 15.88it/s][A
+
+Epoch 0: 1286it [02:09, 16.91it/s][A
+
+Epoch 0: 1288it [02:10, 17.06it/s][A
+
+Epoch 0: 1290it [02:10, 16.86it/s][A
+
+Epoch 0: 1292it [02:10, 16.41it/s][A
+
+Epoch 0: 1294it [02:10, 16.40it/s][A
+
+Epoch 0: 1296it [02:10, 16.08it/s][A
+
+Epoch 0: 1299it [02:10, 16.53it/s][A
+
+Epoch 0: 1301it [02:10, 16.13it/s][A
+
+Epoch 0: 1303it [02:10, 16.12it/s][A
+
+Epoch 0: 1305it [02:11, 16.72it/s][A
+
+Epoch 0: 1307it [02:11, 16.09it/s][A
+
+Epoch 0: 1309it [02:11, 16.55it/s][A
+
+Epoch 0: 1311it [02:11, 16.57it/s][A
+
+Epoch 0: 1313it [02:11, 16.84it/s][A
+
+Epoch 0: 1316it [02:11, 17.63it/s][A
+
+Epoch 0: 1318it [02:11, 16.72it/s][A
+
+Epoch 0: 1321it [02:11, 18.68it/s][A
+
+Epoch 0: 1323it [02:12, 17.38it/s][A
+
+Epoch 0: 1325it [02:12, 17.18it/s][A
+
+Epoch 0: 1327it [02:12, 16.56it/s][A
+
+Epoch 0: 1329it [02:12, 16.43it/s][A
+
+Epoch 0: 1331it [02:12, 16.49it/s][A
+
+Epoch 0: 1333it [02:12, 16.85it/s][A
+
+Epoch 0: 1335it [02:12, 16.54it/s][A
+
+Epoch 0: 1337it [02:12, 16.18it/s][A
+
+Epoch 0: 1339it [02:13, 14.82it/s][A
+
+Epoch 0: 1341it [02:13, 14.99it/s][A
+
+Epoch 0: 1343it [02:13, 13.22it/s][A
+
+Epoch 0: 1345it [02:13, 13.16it/s][A
+
+Epoch 0: 1347it [02:13, 12.58it/s][A
+
+Epoch 0: 1349it [02:13, 12.42it/s][A
+
+Epoch 0: 1351it [02:14, 11.84it/s][A
+
+Epoch 0: 1353it [02:14, 12.77it/s][A
+
+Epoch 0: 1355it [02:14, 13.08it/s][A
+
+Epoch 0: 1357it [02:14, 13.70it/s][A
+
+Epoch 0: 1359it [02:14, 14.52it/s][A
+
+Epoch 0: 1361it [02:14, 15.30it/s][A
+
+Epoch 0: 1363it [02:14, 14.73it/s][A
+
+Epoch 0: 1365it [02:15, 14.47it/s][A
+
+Epoch 0: 1367it [02:15, 15.40it/s][A
+
+Epoch 0: 1369it [02:15, 15.89it/s][A
+
+Epoch 0: 1371it [02:15, 16.42it/s][A
+
+Epoch 0: 1373it [02:15, 16.74it/s][A
+
+Epoch 0: 1375it [02:15, 15.40it/s][A
+
+Epoch 0: 1378it [02:15, 17.71it/s][A
+
+Epoch 0: 1380it [02:15, 16.93it/s][A
+
+Epoch 0: 1382it [02:16, 17.16it/s][A
+
+Epoch 0: 1384it [02:16, 17.43it/s][A
+
+Epoch 0: 1386it [02:16, 17.71it/s][A
+
+Epoch 0: 1388it [02:16, 15.87it/s][A
+
+Epoch 0: 1390it [02:16, 15.79it/s][A
+
+Epoch 0: 1392it [02:16, 16.11it/s][A
+
+Epoch 0: 1394it [02:16, 14.65it/s][A
+
+Epoch 0: 1396it [02:16, 15.27it/s][A
+
+Epoch 0: 1398it [02:17, 14.90it/s][A
+
+Epoch 0: 1400it [02:17, 14.77it/s][A
+
+Epoch 0: 1402it [02:17, 15.50it/s][A
+
+Epoch 0: 1404it [02:17, 15.11it/s][A
+
+Epoch 0: 1406it [02:17, 15.39it/s][A
+
+Epoch 0: 1408it [02:17, 15.98it/s][A
+
+Epoch 0: 1410it [02:17, 16.89it/s][A
+
+Epoch 0: 1412it [02:17, 16.32it/s][A
+
+Epoch 0: 1414it [02:18, 17.17it/s][A
+
+Epoch 0: 1416it [02:18, 16.67it/s][A
+
+Epoch 0: 1418it [02:18, 15.37it/s][A
+
+Epoch 0: 1420it [02:18, 15.44it/s][A
+
+Epoch 0: 1422it [02:18, 14.81it/s][A
+
+Epoch 0: 1424it [02:18, 15.53it/s][A
+
+Epoch 0: 1426it [02:18, 16.15it/s][A
+
+Epoch 0: 1428it [02:18, 16.06it/s][A
+
+Epoch 0: 1430it [02:19, 16.07it/s][A
+
+Epoch 0: 1432it [02:19, 15.78it/s][A
+
+Epoch 0: 1434it [02:19, 14.90it/s][A
+
+Epoch 0: 1436it [02:19, 14.10it/s][A
+
+Epoch 0: 1438it [02:19, 14.10it/s][A
+
+Epoch 0: 1440it [02:19, 14.83it/s][A
+
+Epoch 0: 1442it [02:19, 15.61it/s][A
+
+Epoch 0: 1444it [02:20, 15.40it/s][A
+
+Epoch 0: 1446it [02:20, 15.61it/s][A
+
+Epoch 0: 1448it [02:20, 14.85it/s][A
+
+Epoch 0: 1450it [02:20, 16.08it/s][A
+
+Epoch 0: 1452it [02:20, 16.01it/s][A
+
+Epoch 0: 1454it [02:20, 15.44it/s][A
+
+Epoch 0: 1456it [02:20, 14.82it/s][A
+
+Epoch 0: 1459it [02:21, 16.29it/s][A
+
+Epoch 0: 1461it [02:21, 15.96it/s][A
+
+Epoch 0: 1463it [02:21, 15.72it/s][A
+
+Epoch 0: 1465it [02:21, 16.73it/s][A
+
+Epoch 0: 1467it [02:21, 16.16it/s][A
+
+Epoch 0: 1469it [02:21, 16.14it/s][A
+
+Epoch 0: 1471it [02:21, 15.34it/s][A
+
+Epoch 0: 1473it [02:21, 16.07it/s][A
+
+Epoch 0: 1476it [02:22, 16.74it/s][A
+
+Epoch 0: 1478it [02:22, 17.09it/s][A
+
+Epoch 0: 1480it [02:22, 16.89it/s][A
+
+Epoch 0: 1482it [02:22, 16.81it/s][A
+
+Epoch 0: 1484it [02:22, 16.45it/s][A
+
+Epoch 0: 1487it [02:22, 18.73it/s][A
+
+Epoch 0: 1490it [02:22, 21.25it/s][A
+
+Epoch 0: 1495it [02:22, 28.34it/s][A
+
+Epoch 0: 1500it [02:22, 32.74it/s][A
+
+Epoch 0: 1504it [02:23, 13.93it/s][A
+
+Epoch 0: 1507it [02:23, 14.93it/s][A
+
+Epoch 0: 1510it [02:23, 15.04it/s][A
+
+Epoch 0: 1513it [02:24, 15.82it/s][A
+
+Epoch 0: 1516it [02:24, 15.25it/s][A
+
+Epoch 0: 1518it [02:24, 15.13it/s][A
+
+Epoch 0: 1520it [02:24, 15.30it/s][A
+
+Epoch 0: 1522it [02:24, 15.08it/s][A
+
+Epoch 0: 1524it [02:24, 14.06it/s][A
+
+Epoch 0: 1526it [02:25, 13.51it/s][A
+
+Epoch 0: 1528it [02:25, 14.31it/s][A
+
+Epoch 0: 1530it [02:25, 14.66it/s][A
+
+Epoch 0: 1532it [02:25, 15.19it/s][A
+
+Epoch 0: 1534it [02:25, 15.94it/s][A
+
+Epoch 0: 1536it [02:25, 16.13it/s][A
+
+Epoch 0: 1538it [02:25, 15.13it/s][A
+
+Epoch 0: 1540it [02:25, 15.84it/s][A
+
+Epoch 0: 1542it [02:26, 16.37it/s][A
+
+Epoch 0: 1544it [02:26,  9.50it/s][A
+
+Epoch 0: 1546it [02:26, 11.15it/s][A
+
+Epoch 0: 1548it [02:26, 12.28it/s][A
+
+Epoch 0: 1550it [02:26, 13.54it/s][A
+
+Epoch 0: 1552it [02:26, 14.16it/s][A
+
+Epoch 0: 1554it [02:27, 13.91it/s][A
+
+Epoch 0: 1556it [02:27, 13.63it/s][A
+
+Epoch 0: 1558it [02:27, 14.16it/s][A
+
+Epoch 0: 1560it [02:27, 14.26it/s][A
+
+Epoch 0: 1563it [02:27, 15.43it/s][A
+
+Epoch 0: 1566it [02:27, 16.30it/s][A
+
+Epoch 0: 1568it [02:27, 16.95it/s][A
+
+Epoch 0: 1570it [02:28, 16.57it/s][A
+
+Epoch 0: 1572it [02:28, 16.81it/s][A
+
+Epoch 0: 1574it [02:28, 15.66it/s][A
+
+Epoch 0: 1576it [02:28, 16.23it/s][A
+
+Epoch 0: 1578it [02:28, 15.40it/s][A
+
+Epoch 0: 1580it [02:28, 15.74it/s][A
+
+Epoch 0: 1582it [02:28, 14.57it/s][A
+
+Epoch 0: 1584it [02:29, 14.93it/s][A
+
+Epoch 0: 1586it [02:29, 14.61it/s][A
+
+Epoch 0: 1588it [02:29, 14.33it/s][A
+
+Epoch 0: 1590it [02:29, 14.25it/s][A
+
+Epoch 0: 1592it [02:29, 14.70it/s][A
+
+Epoch 0: 1595it [02:29, 17.35it/s][A
+
+Epoch 0: 1597it [02:29, 16.55it/s][A
+
+Epoch 0: 1599it [02:30, 15.31it/s][A
+
+Epoch 0: 1601it [02:30, 15.33it/s][A
+
+Epoch 0: 1603it [02:30, 15.68it/s][A
+
+Epoch 0: 1605it [02:30, 15.66it/s][A
+
+Epoch 0: 1607it [02:30, 16.01it/s][A
+
+Epoch 0: 1610it [02:30, 18.07it/s][A
+
+Epoch 0: 1612it [02:30, 15.17it/s][A
+
+Epoch 0: 1614it [02:30, 15.96it/s][A
+
+Epoch 0: 1616it [02:31, 15.73it/s][A
+
+Epoch 0: 1618it [02:31, 14.76it/s][A
+
+Epoch 0: 1620it [02:31, 14.88it/s][A
+
+Epoch 0: 1622it [02:31, 15.29it/s][A
+
+Epoch 0: 1624it [02:31, 15.59it/s][A
+
+Epoch 0: 1626it [02:31, 16.26it/s][A
+
+Epoch 0: 1628it [02:31, 15.55it/s][A
+
+Epoch 0: 1630it [02:31, 15.64it/s][A
+
+Epoch 0: 1632it [02:32, 15.49it/s][A
+
+Epoch 0: 1634it [02:32, 15.67it/s][A
+
+Epoch 0: 1636it [02:32, 14.51it/s][A
+
+Epoch 0: 1638it [02:32, 15.15it/s][A
+
+Epoch 0: 1640it [02:32, 16.01it/s][A
+
+Epoch 0: 1642it [02:32, 15.45it/s][A
+
+Epoch 0: 1644it [02:33, 11.20it/s][A
+
+Epoch 0: 1646it [02:33, 11.37it/s][A
+
+Epoch 0: 1648it [02:33, 11.82it/s][A
+
+Epoch 0: 1650it [02:33, 11.53it/s][A
+
+Epoch 0: 1652it [02:33, 12.02it/s][A
+
+Epoch 0: 1654it [02:33, 12.21it/s][A
+
+Epoch 0: 1656it [02:33, 13.43it/s][A
+
+Epoch 0: 1658it [02:34, 14.08it/s][A
+
+Epoch 0: 1660it [02:34, 12.80it/s][A
+
+Epoch 0: 1662it [02:34, 13.01it/s][A
+
+Epoch 0: 1664it [02:34, 13.58it/s][A
+
+Epoch 0: 1666it [02:34, 13.41it/s][A
+
+Epoch 0: 1668it [02:34, 12.50it/s][A
+
+Epoch 0: 1670it [02:35, 12.65it/s][A
+
+Epoch 0: 1672it [02:35, 13.52it/s][A
+
+Epoch 0: 1674it [02:35, 14.96it/s][A
+
+Epoch 0: 1676it [02:35, 15.64it/s][A
+
+Epoch 0: 1678it [02:35, 16.39it/s][A
+
+Epoch 0: 1680it [02:35, 16.30it/s][A
+
+Epoch 0: 1683it [02:35, 15.61it/s][A
+
+Epoch 0: 1685it [02:35, 15.74it/s][A
+
+Epoch 0: 1687it [02:36, 15.90it/s][A
+
+Epoch 0: 1689it [02:36, 16.34it/s][A
+
+Epoch 0: 1692it [02:36, 17.48it/s][A
+
+Epoch 0: 1695it [02:36, 20.37it/s][A
+
+Epoch 0: 1700it [02:36, 27.19it/s][A
+
+Epoch 0: 1705it [02:36, 22.08it/s][A
+
+Epoch 0: 1708it [02:37, 19.89it/s][A
+
+Epoch 0: 1711it [02:37, 19.45it/s][A
+
+Epoch 0: 1714it [02:37, 20.48it/s][A
+
+Epoch 0: 1717it [02:37, 19.54it/s][A
+
+Epoch 0: 1720it [02:37, 19.17it/s][A
+
+Epoch 0: 1723it [02:37, 20.24it/s][A
+
+Epoch 0: 1726it [02:37, 19.94it/s][A
+
+Epoch 0: 1729it [02:38, 19.90it/s][A
+
+Epoch 0: 1732it [02:38, 20.33it/s][A
+
+Epoch 0: 1735it [02:38, 20.31it/s][A
+
+Epoch 0: 1738it [02:38, 20.47it/s][A
+
+Epoch 0: 1741it [02:38, 19.94it/s][A
+
+Epoch 0: 1744it [02:38, 19.51it/s][A
+
+Epoch 0: 1746it [02:38, 19.27it/s][A
+
+Epoch 0: 1748it [02:39, 18.55it/s][A
+
+Epoch 0: 1750it [02:39, 18.19it/s][A
+
+Epoch 0: 1753it [02:39, 19.93it/s][A
+
+Epoch 0: 1756it [02:39, 20.99it/s][A
+
+Epoch 0: 1759it [02:39, 20.57it/s][A
+
+Epoch 0: 1762it [02:39, 21.78it/s][A
+
+Epoch 0: 1765it [02:39, 20.66it/s][A
+
+Epoch 0: 1768it [02:40, 18.75it/s][A
+
+Epoch 0: 1771it [02:40, 20.38it/s][A
+
+Epoch 0: 1774it [02:40, 20.18it/s][A
+
+Epoch 0: 1777it [02:40, 20.06it/s][A
+
+Epoch 0: 1780it [02:40, 18.92it/s][A
+
+Epoch 0: 1782it [02:40, 18.43it/s][A
+
+Epoch 0: 1784it [02:40, 18.76it/s][A
+
+Epoch 0: 1787it [02:41, 20.70it/s][A
+
+Epoch 0: 1790it [02:41, 19.85it/s][A
+
+Epoch 0: 1793it [02:41, 20.60it/s][A
+
+Epoch 0: 1796it [02:41, 18.20it/s][A
+
+Epoch 0: 1798it [02:41, 18.40it/s][A
+
+Epoch 0: 1800it [02:41, 17.56it/s][A
+
+Epoch 0: 1804it [02:41, 19.87it/s][A
+
+Epoch 0: 1806it [02:42, 19.62it/s][A
+
+Epoch 0: 1809it [02:42, 21.19it/s][A
+
+Epoch 0: 1813it [02:42, 21.69it/s][A
+
+Epoch 0: 1816it [02:42, 20.68it/s][A
+
+Epoch 0: 1819it [02:42, 21.86it/s][A
+
+Epoch 0: 1822it [02:42, 21.11it/s][A
+
+Epoch 0: 1825it [02:42, 21.03it/s][A
+
+Epoch 0: 1828it [02:43, 21.24it/s][A
+
+Epoch 0: 1831it [02:43, 21.30it/s][A
+
+Epoch 0: 1834it [02:43, 22.57it/s][A
+
+Epoch 0: 1837it [02:43, 21.38it/s][A
+
+Epoch 0: 1840it [02:43, 20.45it/s][A
+
+Epoch 0: 1843it [02:43, 21.81it/s][A
+
+Epoch 0: 1846it [02:43, 19.60it/s][A
+
+Epoch 0: 1849it [02:44, 20.27it/s][A
+
+Epoch 0: 1852it [02:44, 18.99it/s][A
+
+Epoch 0: 1854it [02:44, 19.18it/s][A
+
+Epoch 0: 1856it [02:44, 18.92it/s][A
+
+Epoch 0: 1859it [02:44, 21.20it/s][A
+
+Epoch 0: 1862it [02:44, 19.49it/s][A
+
+Epoch 0: 1865it [02:44, 20.16it/s][A
+
+Epoch 0: 1868it [02:45, 20.63it/s][A
+
+Epoch 0: 1871it [02:45, 18.59it/s][A
+
+Epoch 0: 1873it [02:45, 18.79it/s][A
+
+Epoch 0: 1875it [02:45, 17.81it/s][A
+
+Epoch 0: 1877it [02:45, 17.49it/s][A
+
+Epoch 0: 1879it [02:45, 17.82it/s][A
+
+Epoch 0: 1882it [02:45, 20.30it/s][A
+
+Epoch 0: 1885it [02:45, 20.30it/s][A
+
+Epoch 0: 1888it [02:46, 18.00it/s][A
+
+Epoch 0: 1891it [02:46, 18.10it/s][A
+
+Epoch 0: 1893it [02:46, 18.34it/s][A
+
+Epoch 0: 1895it [02:46, 18.45it/s][A
+
+Epoch 0: 1898it [02:46, 20.02it/s][A
+
+Epoch 0: 1901it [02:46, 18.63it/s][A
+
+Epoch 0: 1903it [02:46, 18.75it/s][A
+
+Epoch 0: 1906it [02:47, 20.49it/s][A
+
+Epoch 0: 1909it [02:47, 19.16it/s][A
+
+Epoch 0: 1911it [02:47, 18.82it/s][A
+
+Epoch 0: 1913it [02:47, 18.81it/s][A
+
+Epoch 0: 1915it [02:47, 18.26it/s][A
+
+Epoch 0: 1917it [02:47, 18.32it/s][A
+
+Epoch 0: 1920it [02:47, 20.73it/s][A
+
+Epoch 0: 1923it [02:48, 15.18it/s][A
+
+Epoch 0: 1925it [02:48, 15.63it/s][A
+
+Epoch 0: 1927it [02:48, 16.28it/s][A
+
+Epoch 0: 1930it [02:48, 17.90it/s][A
+
+Epoch 0: 1932it [02:48, 18.12it/s][A
+
+Epoch 0: 1935it [02:48, 19.00it/s][A
+
+Epoch 0: 1939it [02:48, 23.27it/s][A
+
+Epoch 0: 1942it [02:48, 24.21it/s][A
+
+Epoch 0: 1945it [02:49, 24.43it/s][A
+
+Epoch 0: 1948it [02:49, 15.35it/s][A
+Epoch 0: 1948it [02:49, 11.50it/s]
+C:\Users\User\Documents\repos\SHIBAL\segment_dataset.py:92: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:209.)
+  return torch.from_numpy(arr)
+C:\Users\User\Documents\repos\SHIBAL\segment_dataset.py:92: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:209.)
+  return torch.from_numpy(arr)
+C:\Users\User\Documents\repos\SHIBAL\segment_dataset.py:92: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:209.)
+  return torch.from_numpy(arr)
+C:\Users\User\Documents\repos\SHIBAL\segment_dataset.py:92: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:209.)
+  return torch.from_numpy(arr)
+C:\Users\User\Documents\repos\SHIBAL\segment_dataset.py:92: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:209.)
+  return torch.from_numpy(arr)
+C:\Users\User\Documents\repos\SHIBAL\segment_dataset.py:92: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:209.)
+  return torch.from_numpy(arr)
+C:\Users\User\Documents\repos\SHIBAL\segment_dataset.py:92: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:209.)
+  return torch.from_numpy(arr)
+
+
+테스트: 0it [00:00, ?it/s][AC:\Users\User\Documents\repos\SHIBAL\segment_dataset.py:92: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:209.)
+  return torch.from_numpy(arr)
+
+
+테스트: 1it [00:00,  4.54it/s][A
+
+테스트: 3it [00:00,  8.65it/s][A
+
+테스트: 9it [00:00, 22.90it/s][A
+
+테스트: 13it [00:00, 26.98it/s][A
+
+테스트: 19it [00:00, 35.03it/s][A
+
+테스트: 23it [00:01, 20.12it/s][A
+
+테스트: 26it [00:01, 16.23it/s][A
+
+테스트: 34it [00:01, 20.87it/s][A
+
+테스트: 37it [00:01, 20.34it/s][A
+
+테스트: 42it [00:02, 16.03it/s][A
+
+테스트: 50it [00:02, 17.59it/s][A
+
+테스트: 58it [00:02, 20.21it/s][A
+
+테스트: 66it [00:03, 25.99it/s][A
+
+테스트: 73it [00:03, 28.44it/s][A
+
+테스트: 81it [00:03, 23.76it/s][A
+
+테스트: 89it [00:04, 25.37it/s][A
+
+테스트: 97it [00:04, 23.42it/s][A
+
+테스트: 105it [00:04, 20.65it/s][A
+
+테스트: 113it [00:05, 21.30it/s][A
+
+테스트: 118it [00:05, 19.97it/s][A
+
+테스트: 121it [00:05, 16.28it/s][A
+
+테스트: 129it [00:06, 18.68it/s][A
+
+테스트: 137it [00:06, 19.30it/s][A
+
+테스트: 145it [00:06, 23.91it/s][A
+
+테스트: 152it [00:06, 29.40it/s][A
+
+테스트: 156it [00:07, 22.58it/s][A
+
+테스트: 161it [00:07, 20.66it/s][A
+
+테스트: 169it [00:07, 21.40it/s][A
+
+테스트: 177it [00:08, 21.00it/s][A
+
+테스트: 185it [00:08, 22.63it/s][A
+
+테스트: 191it [00:08, 26.87it/s][A
+
+테스트: 198it [00:08, 31.17it/s][A
+
+테스트: 202it [00:09, 24.54it/s][A
+
+테스트: 207it [00:09, 28.09it/s][A
+
+테스트: 211it [00:09, 28.94it/s][A
+
+테스트: 217it [00:09, 28.51it/s][A
+
+테스트: 221it [00:10, 13.36it/s][A
+
+테스트: 229it [00:10, 16.03it/s][A
+
+테스트: 237it [00:10, 21.12it/s][A
+
+테스트: 244it [00:11, 27.06it/s][A
+
+테스트: 249it [00:11, 21.16it/s][A
+
+테스트: 253it [00:12, 14.44it/s][A
+
+테스트: 259it [00:12, 18.99it/s][A
+
+테스트: 263it [00:12, 15.70it/s][A
+
+테스트: 269it [00:12, 15.43it/s][A
+
+테스트: 277it [00:13, 14.35it/s][A
+
+테스트: 285it [00:14, 12.58it/s][A
+
+테스트: 290it [00:14, 15.35it/s][A
+
+테스트: 293it [00:14, 13.89it/s][A
+
+테스트: 300it [00:14, 19.55it/s][A
+
+테스트: 304it [00:14, 21.96it/s][A
+
+테스트: 309it [00:15, 14.29it/s][A
+
+테스트: 317it [00:16, 16.15it/s][A
+
+테스트: 325it [00:16, 20.14it/s][A
+
+테스트: 333it [00:17, 10.35it/s][A
+
+테스트: 337it [00:17, 12.05it/s][A
+
+테스트: 341it [00:18, 10.44it/s][A
+
+테스트: 345it [00:18, 12.66it/s][A
+
+테스트: 348it [00:18, 13.22it/s][A
+
+테스트: 351it [00:20,  5.17it/s][A
+
+테스트: 357it [00:20,  6.84it/s][A
+
+테스트: 363it [00:21,  9.95it/s][A
+
+테스트: 366it [00:21,  9.05it/s][A
+
+테스트: 371it [00:21, 12.16it/s][A
+
+테스트: 374it [00:22, 10.63it/s][A
+
+테스트: 377it [00:22, 12.56it/s][A
+
+테스트: 380it [00:22, 13.87it/s][A
+
+테스트: 383it [00:22, 10.02it/s][A
+
+테스트: 388it [00:22, 14.40it/s][A
+
+테스트: 391it [00:24,  5.15it/s][A
+
+테스트: 397it [00:26,  3.92it/s][A
+
+테스트: 402it [00:26,  5.42it/s][A
+
+테스트: 406it [00:26,  7.10it/s][A
+
+테스트: 409it [00:27,  8.48it/s][A
+
+테스트: 413it [00:27,  7.82it/s][A
+
+테스트: 419it [00:27, 11.82it/s][A
+
+테스트: 423it [00:28, 11.74it/s][A
+
+테스트: 426it [00:28, 13.43it/s][A
+
+테스트: 429it [00:28, 14.27it/s][A
+
+테스트: 434it [00:28, 13.88it/s][A
+
+테스트: 439it [00:28, 16.93it/s][A
+
+테스트: 442it [00:29, 13.78it/s][A
+
+테스트: 445it [00:29, 14.58it/s][A
+
+테스트: 450it [00:30,  9.50it/s][A
+
+테스트: 454it [00:30, 11.40it/s][A
+
+테스트: 458it [00:30, 10.72it/s][A
+
+테스트: 464it [00:31, 14.39it/s][A
+
+테스트: 466it [00:31,  9.11it/s][A
+
+테스트: 469it [00:31, 10.45it/s][A
+
+테스트: 474it [00:32, 11.60it/s][A
+
+테스트: 482it [00:32, 16.03it/s][A
+테스트: 487it [00:32, 14.92it/s]
+
+전체 진행률:   1%|          | 1/150 [06:55<17:11:01, 415.18s/it]
+
+Epoch 1: 0it [00:00, ?it/s][A
+
+Epoch 1: 1it [00:00,  1.55it/s][A
+
+Epoch 1: 3it [00:00,  3.67it/s][A
+
+Epoch 1: 4it [00:01,  4.55it/s][A
+
+Epoch 1: 5it [00:01,  5.20it/s][A
+
+Epoch 1: 6it [00:01,  5.74it/s][A
+
+Epoch 1: 7it [00:01,  5.94it/s][A
+
+Epoch 1: 9it [00:01,  6.68it/s][A
+
+Epoch 1: 10it [00:01,  7.02it/s][A
+
+Epoch 1: 11it [00:01,  7.18it/s][A
+
+Epoch 1: 12it [00:02,  7.75it/s][A
+
+Epoch 1: 13it [00:02,  8.15it/s][A
+
+Epoch 1: 14it [00:02,  8.55it/s][A
+
+Epoch 1: 15it [00:02,  8.82it/s][A
+
+Epoch 1: 17it [00:02,  9.95it/s][A
+
+Epoch 1: 18it [00:02,  8.41it/s][A
+
+Epoch 1: 19it [00:02,  8.13it/s][A
+
+Epoch 1: 20it [00:03,  7.94it/s][A
+
+Epoch 1: 21it [00:03,  7.79it/s][A
+
+Epoch 1: 22it [00:03,  8.31it/s][A
+
+Epoch 1: 23it [00:03,  7.62it/s][A
+
+Epoch 1: 24it [00:03,  7.99it/s][A
+
+Epoch 1: 25it [00:03,  6.88it/s][A
+
+Epoch 1: 26it [00:03,  7.54it/s][A
+
+Epoch 1: 27it [00:03,  7.72it/s][A
+
+Epoch 1: 28it [00:04,  7.53it/s][A
+
+Epoch 1: 29it [00:04,  7.13it/s][A
+
+Epoch 1: 30it [00:04,  6.74it/s][A
+
+Epoch 1: 31it [00:04,  7.39it/s][A
+
+Epoch 1: 32it [00:04,  7.38it/s][A
+
+Epoch 1: 33it [00:04,  7.92it/s][A
+
+Epoch 1: 34it [00:04,  8.19it/s][A
+
+Epoch 1: 35it [00:05,  7.63it/s][A
+
+Epoch 1: 37it [00:05,  8.29it/s][A
+
+Epoch 1: 38it [00:05,  8.43it/s][A
+
+Epoch 1: 40it [00:05,  8.52it/s][A
+
+Epoch 1: 41it [00:05,  8.19it/s][A
+
+Epoch 1: 42it [00:05,  8.18it/s][A
+
+Epoch 1: 43it [00:05,  8.22it/s][A
+
+Epoch 1: 44it [00:06,  8.35it/s][A
+
+Epoch 1: 45it [00:06,  7.90it/s][A
+
+Epoch 1: 46it [00:06,  7.47it/s][A
+
+Epoch 1: 48it [00:06,  7.91it/s][A
+
+Epoch 1: 49it [00:06,  7.46it/s][A
+
+Epoch 1: 50it [00:06,  7.51it/s][A
+
+Epoch 1: 51it [00:06,  8.01it/s][A
+
+Epoch 1: 52it [00:07,  7.88it/s][A
+
+Epoch 1: 53it [00:07,  7.55it/s][A
+
+Epoch 1: 54it [00:07,  7.34it/s][A
+
+Epoch 1: 55it [00:07,  7.84it/s][A
+
+Epoch 1: 57it [00:07,  7.46it/s][A
+
+Epoch 1: 58it [00:07,  7.41it/s][A
+
+Epoch 1: 59it [00:08,  7.59it/s][A
+
+Epoch 1: 60it [00:08,  8.07it/s][A
+
+Epoch 1: 61it [00:08,  8.52it/s][A
+
+Epoch 1: 62it [00:08,  7.93it/s][A
+
+Epoch 1: 63it [00:08,  8.03it/s][A
+
+Epoch 1: 64it [00:08,  7.29it/s][A
+
+Epoch 1: 65it [00:08,  7.22it/s][A
+
+Epoch 1: 66it [00:09,  6.77it/s][A
+
+Epoch 1: 67it [00:09,  7.25it/s][A
+
+Epoch 1: 68it [00:09,  7.25it/s][A
+
+Epoch 1: 69it [00:09,  7.88it/s][A
+
+Epoch 1: 70it [00:09,  7.51it/s][A
+
+Epoch 1: 71it [00:09,  7.91it/s][A
+
+Epoch 1: 72it [00:09,  8.26it/s][A
+
+Epoch 1: 73it [00:09,  8.00it/s][A
+
+Epoch 1: 74it [00:09,  8.05it/s][A
+
+Epoch 1: 75it [00:10,  8.16it/s][A
+
+Epoch 1: 76it [00:10,  7.65it/s][A
+
+Epoch 1: 78it [00:10,  8.98it/s][A
+
+Epoch 1: 79it [00:10,  8.40it/s][A
+
+Epoch 1: 80it [00:10,  8.27it/s][A
+
+Epoch 1: 81it [00:10,  7.48it/s][A
+
+Epoch 1: 82it [00:10,  7.86it/s][A
+
+Epoch 1: 83it [00:11,  7.87it/s][A
+
+Epoch 1: 84it [00:11,  8.11it/s][A
+
+Epoch 1: 85it [00:11,  7.76it/s][A
+
+Epoch 1: 86it [00:11,  6.68it/s][A
+
+Epoch 1: 87it [00:11,  6.92it/s][A
+
+Epoch 1: 88it [00:11,  7.61it/s][A
+
+Epoch 1: 90it [00:12,  8.24it/s][A
+
+Epoch 1: 91it [00:12,  8.19it/s][A
+
+Epoch 1: 92it [00:12,  8.13it/s][A
+
+Epoch 1: 93it [00:12,  7.86it/s][A
+
+Epoch 1: 94it [00:12,  7.58it/s][A
+
+Epoch 1: 95it [00:12,  7.81it/s][A
+
+Epoch 1: 96it [00:12,  7.57it/s][A
+
+Epoch 1: 97it [00:12,  7.77it/s][A
+
+Epoch 1: 98it [00:13,  6.66it/s][A
+
+Epoch 1: 99it [00:13,  6.69it/s][A
+
+Epoch 1: 100it [00:13,  7.07it/s][A
+
+Epoch 1: 102it [00:13,  7.67it/s][A
+
+Epoch 1: 103it [00:13,  7.94it/s][A
+
+Epoch 1: 104it [00:13,  8.23it/s][A
+
+Epoch 1: 105it [00:13,  8.07it/s][A
+
+Epoch 1: 106it [00:14,  8.10it/s][A
+
+Epoch 1: 107it [00:14,  7.87it/s][A
+
+Epoch 1: 108it [00:14,  7.76it/s][A
+
+Epoch 1: 109it [00:14,  7.83it/s][A
+
+Epoch 1: 110it [00:14,  7.91it/s][A
+
+Epoch 1: 111it [00:14,  7.13it/s][A
+
+Epoch 1: 112it [00:14,  7.05it/s][A
+
+Epoch 1: 113it [00:15,  7.54it/s][A
+
+Epoch 1: 114it [00:15,  7.69it/s][A
+
+Epoch 1: 115it [00:15,  7.13it/s][A
+
+Epoch 1: 116it [00:15,  7.35it/s][A
+
+Epoch 1: 117it [00:15,  7.62it/s][A
+
+Epoch 1: 118it [00:15,  7.36it/s][A
+
+Epoch 1: 119it [00:15,  7.26it/s][A
+
+Epoch 1: 120it [00:16,  6.99it/s][A
+
+Epoch 1: 121it [00:16,  7.15it/s][A
+
+Epoch 1: 122it [00:16,  7.73it/s][A
+
+Epoch 1: 123it [00:16,  8.24it/s][A
+
+Epoch 1: 124it [00:16,  7.33it/s][A
+
+Epoch 1: 125it [00:16,  7.46it/s][A
+
+Epoch 1: 126it [00:16,  6.88it/s][A
+
+Epoch 1: 127it [00:16,  6.99it/s][A
+
+Epoch 1: 128it [00:17,  6.42it/s][A
+
+Epoch 1: 130it [00:17,  7.29it/s][A
+
+Epoch 1: 131it [00:17,  7.05it/s][A
+
+Epoch 1: 132it [00:17,  7.42it/s][A
+
+Epoch 1: 133it [00:17,  7.91it/s][A
+
+Epoch 1: 134it [00:17,  7.19it/s][A
+
+Epoch 1: 135it [00:18,  6.56it/s][A
+
+Epoch 1: 137it [00:18,  8.35it/s][A
+
+Epoch 1: 138it [00:18,  8.04it/s][A
+
+Epoch 1: 139it [00:18,  7.79it/s][A
+
+Epoch 1: 140it [00:18,  7.22it/s][A
+
+Epoch 1: 141it [00:18,  7.25it/s][A
+
+Epoch 1: 142it [00:19,  7.46it/s][A
+
+Epoch 1: 143it [00:19,  7.46it/s][A
+
+Epoch 1: 144it [00:19,  7.66it/s][A
+
+Epoch 1: 145it [00:19,  7.16it/s][A
+
+Epoch 1: 146it [00:19,  6.76it/s][A
+
+Epoch 1: 147it [00:19,  6.45it/s][A
+
+Epoch 1: 148it [00:19,  6.27it/s][A
+
+Epoch 1: 149it [00:20,  6.17it/s][A
+
+Epoch 1: 150it [00:20,  6.51it/s][A
+
+Epoch 1: 151it [00:20,  7.00it/s][A
+
+Epoch 1: 152it [00:20,  6.93it/s][A
+
+Epoch 1: 153it [00:20,  6.89it/s][A
+
+Epoch 1: 154it [00:20,  7.41it/s][A
+
+Epoch 1: 155it [00:20,  7.87it/s][A
+
+Epoch 1: 156it [00:20,  8.20it/s][A
+
+Epoch 1: 157it [00:21,  7.41it/s][A
+
+Epoch 1: 158it [00:21,  7.93it/s][A
+
+Epoch 1: 160it [00:21,  9.68it/s][A
+
+Epoch 1: 162it [00:21,  9.69it/s][A
+
+Epoch 1: 163it [00:21,  8.99it/s][A
+
+Epoch 1: 164it [00:21,  8.59it/s][A
+
+Epoch 1: 166it [00:22,  9.22it/s][A
+
+Epoch 1: 167it [00:22,  9.15it/s][A
+
+Epoch 1: 168it [00:22,  9.16it/s][A
+
+Epoch 1: 169it [00:22,  8.88it/s][A
+
+Epoch 1: 170it [00:22,  8.72it/s][A
+
+Epoch 1: 171it [00:22,  8.36it/s][A
+
+Epoch 1: 172it [00:22,  7.90it/s][A
+
+Epoch 1: 173it [00:22,  8.13it/s][A
+
+Epoch 1: 175it [00:23,  8.53it/s][A
+
+Epoch 1: 176it [00:23,  8.09it/s][A
+
+Epoch 1: 177it [00:23,  7.56it/s][A
+
+Epoch 1: 178it [00:23,  8.02it/s][A
+
+Epoch 1: 179it [00:23,  7.79it/s][A
+
+Epoch 1: 181it [00:23,  8.67it/s][A
+
+Epoch 1: 182it [00:24,  7.83it/s][A
+
+Epoch 1: 183it [00:24,  6.91it/s][A
+
+Epoch 1: 184it [00:24,  6.94it/s][A
+
+Epoch 1: 185it [00:24,  7.18it/s][A
+
+Epoch 1: 186it [00:24,  6.84it/s][A
+
+Epoch 1: 187it [00:24,  7.06it/s][A
+
+Epoch 1: 188it [00:24,  6.90it/s][A
+
+Epoch 1: 189it [00:25,  6.68it/s][A
+
+Epoch 1: 190it [00:25,  6.69it/s][A
+
+Epoch 1: 192it [00:25,  7.79it/s][A
+
+Epoch 1: 193it [00:25,  7.88it/s][A
+
+Epoch 1: 194it [00:25,  8.23it/s][A
+
+Epoch 1: 195it [00:25,  6.93it/s][A
+
+Epoch 1: 196it [00:26,  7.27it/s][A
+
+Epoch 1: 197it [00:26,  7.81it/s][A
+
+Epoch 1: 199it [00:26,  8.12it/s][A
+
+Epoch 1: 200it [00:26,  8.04it/s][A
+
+Epoch 1: 201it [00:26,  8.24it/s][A
+
+Epoch 1: 202it [00:26,  8.52it/s][A
+
+Epoch 1: 203it [00:26,  8.82it/s][A
+
+Epoch 1: 205it [00:27,  9.80it/s][A
+
+Epoch 1: 207it [00:27, 10.53it/s][A
+
+Epoch 1: 209it [00:27,  9.39it/s][A
+
+Epoch 1: 210it [00:27,  8.41it/s][A
+
+Epoch 1: 211it [00:27,  8.45it/s][A
+
+Epoch 1: 212it [00:27,  8.19it/s][A
+
+Epoch 1: 213it [00:27,  8.08it/s][A
+
+Epoch 1: 214it [00:28,  7.24it/s][A
+
+Epoch 1: 215it [00:28,  7.53it/s][A
+
+Epoch 1: 216it [00:28,  7.45it/s][A
+
+Epoch 1: 218it [00:28,  9.24it/s][A
+
+Epoch 1: 219it [00:28,  7.69it/s][A
+
+Epoch 1: 220it [00:28,  7.52it/s][A
+
+Epoch 1: 221it [00:29,  7.55it/s][A
+
+Epoch 1: 222it [00:29,  7.74it/s][A
+
+Epoch 1: 223it [00:29,  8.13it/s][A
+
+Epoch 1: 224it [00:29,  8.06it/s][A
+
+Epoch 1: 226it [00:29,  9.41it/s][A
+
+Epoch 1: 227it [00:29,  8.23it/s][A
+
+Epoch 1: 228it [00:29,  7.86it/s][A
+
+Epoch 1: 229it [00:29,  7.81it/s][A
+
+Epoch 1: 230it [00:30,  8.08it/s][A
+
+Epoch 1: 231it [00:30,  8.15it/s][A
+
+Epoch 1: 232it [00:30,  8.00it/s][A
+
+Epoch 1: 233it [00:30,  7.94it/s][A
+
+Epoch 1: 234it [00:30,  8.44it/s][A
+
+Epoch 1: 235it [00:30,  8.36it/s][A
+
+Epoch 1: 237it [00:30,  8.94it/s][A
+
+Epoch 1: 238it [00:31,  8.21it/s][A
+
+Epoch 1: 239it [00:31,  8.10it/s][A
+
+Epoch 1: 240it [00:31,  8.10it/s][A
+
+Epoch 1: 241it [00:31,  7.13it/s][A
+
+Epoch 1: 242it [00:31,  7.31it/s][A
+
+Epoch 1: 243it [00:31,  7.38it/s][A
+
+Epoch 1: 244it [00:31,  7.37it/s][A
+
+Epoch 1: 246it [00:32,  8.58it/s][A
+
+Epoch 1: 247it [00:32,  8.76it/s][A
+
+Epoch 1: 248it [00:32,  8.80it/s][A
+
+Epoch 1: 249it [00:32,  8.06it/s][A
+
+Epoch 1: 251it [00:32,  9.09it/s][A
+
+Epoch 1: 252it [00:32,  9.16it/s][A
+
+Epoch 1: 253it [00:32,  8.93it/s][A
+
+Epoch 1: 254it [00:32,  8.71it/s][A
+
+Epoch 1: 255it [00:33,  8.36it/s][A
+
+Epoch 1: 256it [00:33,  8.27it/s][A
+
+Epoch 1: 257it [00:33,  8.16it/s][A
+
+Epoch 1: 258it [00:33,  8.13it/s][A
+
+Epoch 1: 259it [00:33,  7.74it/s][A
+
+Epoch 1: 260it [00:33,  7.72it/s][A
+
+Epoch 1: 261it [00:33,  8.15it/s][A
+
+Epoch 1: 262it [00:34,  7.71it/s][A
+
+Epoch 1: 263it [00:34,  7.92it/s][A
+
+Epoch 1: 265it [00:34,  8.46it/s][A
+
+Epoch 1: 267it [00:34,  8.54it/s][A
+
+Epoch 1: 268it [00:34,  8.30it/s][A
+
+Epoch 1: 270it [00:34,  8.31it/s][A
+
+Epoch 1: 272it [00:35,  9.13it/s][A
+
+Epoch 1: 273it [00:35,  9.25it/s][A
+
+Epoch 1: 275it [00:35,  9.79it/s][A
+
+Epoch 1: 276it [00:35,  9.16it/s][A
+
+Epoch 1: 277it [00:35,  8.98it/s][A
+
+Epoch 1: 279it [00:35,  8.82it/s][A
+
+Epoch 1: 281it [00:36,  8.60it/s][A
+
+Epoch 1: 282it [00:36,  8.82it/s][A
+
+Epoch 1: 283it [00:36,  9.04it/s][A
+
+Epoch 1: 285it [00:36,  9.38it/s][A
+
+Epoch 1: 287it [00:36,  9.47it/s][A
+
+Epoch 1: 288it [00:36,  8.85it/s][A
+
+Epoch 1: 289it [00:37,  8.36it/s][A
+
+Epoch 1: 290it [00:37,  8.38it/s][A
+
+Epoch 1: 291it [00:37,  8.32it/s][A
+
+Epoch 1: 293it [00:37,  8.20it/s][A
+
+Epoch 1: 295it [00:37,  8.90it/s][A
+
+Epoch 1: 296it [00:37,  8.96it/s][A
+
+Epoch 1: 297it [00:37,  9.17it/s][A
+
+Epoch 1: 298it [00:38,  9.10it/s][A
+
+Epoch 1: 300it [00:38,  9.93it/s][A
+
+Epoch 1: 301it [00:38,  9.54it/s][A
+
+Epoch 1: 302it [00:38,  8.77it/s][A
+
+Epoch 1: 304it [00:38,  9.12it/s][A
+
+Epoch 1: 306it [00:38, 10.10it/s][A
+
+Epoch 1: 307it [00:39,  9.36it/s][A
+
+Epoch 1: 308it [00:39,  8.92it/s][A
+
+Epoch 1: 309it [00:39,  8.65it/s][A
+
+Epoch 1: 310it [00:39,  8.51it/s][A
+
+Epoch 1: 311it [00:39,  7.72it/s][A
+
+Epoch 1: 312it [00:39,  8.08it/s][A
+
+Epoch 1: 313it [00:39,  7.40it/s][A
+
+Epoch 1: 314it [00:39,  7.29it/s][A
+
+Epoch 1: 315it [00:40,  6.79it/s][A
+
+Epoch 1: 316it [00:40,  6.92it/s][A
+
+Epoch 1: 317it [00:40,  6.55it/s][A
+
+Epoch 1: 318it [00:40,  6.80it/s][A
+
+Epoch 1: 319it [00:40,  7.47it/s][A
+
+Epoch 1: 321it [00:40,  7.84it/s][A
+
+Epoch 1: 322it [00:41,  7.51it/s][A
+
+Epoch 1: 323it [00:41,  7.99it/s][A
+
+Epoch 1: 324it [00:41,  7.71it/s][A
+
+Epoch 1: 325it [00:41,  7.44it/s][A
+
+Epoch 1: 326it [00:41,  7.84it/s][A
+
+Epoch 1: 327it [00:41,  8.16it/s][A
+
+Epoch 1: 329it [00:41,  9.89it/s][A
+
+Epoch 1: 331it [00:42, 10.14it/s][A
+
+Epoch 1: 333it [00:42,  8.44it/s][A
+
+Epoch 1: 334it [00:42,  8.59it/s][A
+
+Epoch 1: 335it [00:42,  8.33it/s][A
+
+Epoch 1: 336it [00:42,  8.39it/s][A
+
+Epoch 1: 338it [00:42,  8.74it/s][A
+
+Epoch 1: 339it [00:43,  8.44it/s][A
+
+Epoch 1: 340it [00:43,  8.48it/s][A
+
+Epoch 1: 341it [00:43,  8.43it/s][A
+
+Epoch 1: 342it [00:43,  8.01it/s][A
+
+Epoch 1: 343it [00:43,  7.58it/s][A
+
+Epoch 1: 344it [00:43,  7.52it/s][A
+
+Epoch 1: 345it [00:43,  7.59it/s][A
+
+Epoch 1: 346it [00:43,  7.72it/s][A
+
+Epoch 1: 347it [00:44,  7.88it/s][A
+
+Epoch 1: 349it [00:44,  8.81it/s][A
+
+Epoch 1: 350it [00:44,  8.87it/s][A
+
+Epoch 1: 351it [00:44,  8.16it/s][A
+
+Epoch 1: 352it [00:44,  7.76it/s][A
+
+Epoch 1: 354it [00:44,  8.61it/s][A
+
+Epoch 1: 355it [00:45,  7.90it/s][A
+
+Epoch 1: 356it [00:45,  7.87it/s][A
+
+Epoch 1: 357it [00:45,  7.48it/s][A
+
+Epoch 1: 358it [00:45,  7.72it/s][A
+
+Epoch 1: 359it [00:45,  7.83it/s][A
+
+Epoch 1: 361it [00:45,  8.33it/s][A
+
+Epoch 1: 362it [00:45,  8.20it/s][A
+
+Epoch 1: 363it [00:46,  8.02it/s][A
+
+Epoch 1: 364it [00:46,  8.06it/s][A
+
+Epoch 1: 365it [00:46,  8.06it/s][A
+
+Epoch 1: 366it [00:46,  7.98it/s][A
+
+Epoch 1: 367it [00:46,  7.72it/s][A
+
+Epoch 1: 368it [00:46,  7.08it/s][A
+
+Epoch 1: 370it [00:46,  8.05it/s][A
+
+Epoch 1: 371it [00:47,  7.93it/s][A
+
+Epoch 1: 372it [00:47,  7.64it/s][A
+
+Epoch 1: 373it [00:47,  7.88it/s][A
+
+Epoch 1: 374it [00:47,  8.10it/s][A
+
+Epoch 1: 375it [00:47,  8.08it/s][A
+
+Epoch 1: 376it [00:47,  8.22it/s][A
+
+Epoch 1: 377it [00:47,  8.25it/s][A
+
+Epoch 1: 379it [00:48,  8.18it/s][A
+
+Epoch 1: 380it [00:48,  8.48it/s][A
+
+Epoch 1: 381it [00:48,  8.74it/s][A
+
+Epoch 1: 382it [00:48,  8.61it/s][A
+
+Epoch 1: 383it [00:48,  7.86it/s][A
+
+Epoch 1: 384it [00:48,  7.99it/s][A
+
+Epoch 1: 385it [00:48,  7.69it/s][A
+
+Epoch 1: 386it [00:48,  6.53it/s][A
+
+Epoch 1: 387it [00:49,  6.83it/s][A
+
+Epoch 1: 388it [00:49,  7.40it/s][A
+
+Epoch 1: 389it [00:49,  7.61it/s][A
+
+Epoch 1: 390it [00:49,  7.31it/s][A
+
+Epoch 1: 391it [00:49,  7.71it/s][A
+
+Epoch 1: 392it [00:49,  7.99it/s][A
+
+Epoch 1: 393it [00:49,  7.75it/s][A
+
+Epoch 1: 395it [00:50,  8.76it/s][A
+
+Epoch 1: 396it [00:50,  8.46it/s][A
+
+Epoch 1: 397it [00:50,  7.51it/s][A
+
+Epoch 1: 398it [00:50,  7.56it/s][A
+
+Epoch 1: 399it [00:50,  7.37it/s][A
+
+Epoch 1: 401it [00:50,  8.12it/s][A
+
+Epoch 1: 402it [00:51,  7.74it/s][A
+
+Epoch 1: 404it [00:51,  8.42it/s][A
+
+Epoch 1: 405it [00:51,  8.27it/s][A
+
+Epoch 1: 406it [00:51,  8.28it/s][A
+
+Epoch 1: 408it [00:51,  8.79it/s][A
+
+Epoch 1: 409it [00:51,  8.74it/s][A
+
+Epoch 1: 410it [00:51,  8.49it/s][A
+
+Epoch 1: 411it [00:52,  7.92it/s][A
+
+Epoch 1: 412it [00:52,  7.83it/s][A
+
+Epoch 1: 413it [00:52,  7.62it/s][A
+
+Epoch 1: 414it [00:52,  7.87it/s][A
+
+Epoch 1: 415it [00:52,  7.88it/s][A
+
+Epoch 1: 416it [00:52,  7.39it/s][A
+
+Epoch 1: 417it [00:52,  7.63it/s][A
+
+Epoch 1: 418it [00:52,  7.97it/s][A
+
+Epoch 1: 420it [00:53,  8.94it/s][A
+
+Epoch 1: 422it [00:53,  9.34it/s][A
+
+Epoch 1: 423it [00:53,  8.68it/s][A
+
+Epoch 1: 424it [00:53,  8.55it/s][A
+
+Epoch 1: 426it [00:53,  9.48it/s][A
+
+Epoch 1: 427it [00:53,  9.15it/s][A
+
+Epoch 1: 428it [00:54,  9.16it/s][A
+
+Epoch 1: 429it [00:54,  8.50it/s][A
+
+Epoch 1: 430it [00:54,  8.30it/s][A
+
+Epoch 1: 431it [00:54,  8.08it/s][A
+
+Epoch 1: 432it [00:54,  8.18it/s][A
+
+Epoch 1: 433it [00:54,  8.06it/s][A
+
+Epoch 1: 434it [00:54,  7.44it/s][A
+
+Epoch 1: 436it [00:55,  7.89it/s][A
+
+Epoch 1: 437it [00:55,  8.02it/s][A
+
+Epoch 1: 438it [00:55,  8.16it/s][A
+
+Epoch 1: 439it [00:55,  7.69it/s][A
+
+Epoch 1: 441it [00:55,  7.68it/s][A
+
+Epoch 1: 443it [00:55,  8.56it/s][A
+
+Epoch 1: 444it [00:56,  7.96it/s][A
+
+Epoch 1: 445it [00:56,  8.31it/s][A
+
+Epoch 1: 447it [00:56,  8.69it/s][A
+
+Epoch 1: 448it [00:56,  8.67it/s][A
+
+Epoch 1: 449it [00:56,  8.37it/s][A
+
+Epoch 1: 450it [00:56,  8.12it/s][A
+
+Epoch 1: 451it [00:58,  1.78it/s][A
+
+Epoch 1: 452it [00:58,  2.27it/s][A
+
+Epoch 1: 453it [00:58,  2.89it/s][A
+
+Epoch 1: 454it [00:58,  3.57it/s][A
+
+Epoch 1: 456it [00:59,  4.90it/s][A
+
+Epoch 1: 458it [00:59,  5.25it/s][A
+
+Epoch 1: 459it [00:59,  5.37it/s][A
+
+Epoch 1: 460it [00:59,  5.78it/s][A
+
+Epoch 1: 462it [01:00,  6.07it/s][A
+
+Epoch 1: 463it [01:00,  5.82it/s][A
+
+Epoch 1: 464it [01:00,  5.22it/s][A
+
+Epoch 1: 465it [01:00,  5.67it/s][A
+
+Epoch 1: 466it [01:00,  5.15it/s][A
+
+Epoch 1: 468it [01:01,  6.73it/s][A
+
+Epoch 1: 469it [01:01,  6.62it/s][A
+
+Epoch 1: 470it [01:01,  7.20it/s][A
+
+Epoch 1: 471it [01:01,  7.29it/s][A
+
+Epoch 1: 472it [01:01,  7.16it/s][A
+
+Epoch 1: 474it [01:01,  6.86it/s][A
+
+Epoch 1: 475it [01:02,  7.02it/s][A
+
+Epoch 1: 477it [01:02,  7.94it/s][A
+
+Epoch 1: 478it [01:02,  7.92it/s][A
+
+Epoch 1: 479it [01:02,  7.67it/s][A
+
+Epoch 1: 480it [01:02,  6.61it/s][A
+
+Epoch 1: 482it [01:02,  7.80it/s][A
+
+Epoch 1: 484it [01:03,  7.10it/s][A
+
+Epoch 1: 485it [01:03,  7.13it/s][A
+
+Epoch 1: 486it [01:03,  5.75it/s][A
+
+Epoch 1: 487it [01:03,  5.07it/s][A
+
+Epoch 1: 489it [01:04,  3.66it/s][A
+
+Epoch 1: 491it [01:05,  4.26it/s][A
+
+Epoch 1: 492it [01:05,  4.28it/s][A
+
+Epoch 1: 494it [01:05,  4.90it/s][A
+
+Epoch 1: 495it [01:05,  4.96it/s][A
+
+Epoch 1: 496it [01:05,  4.92it/s][A
+
+Epoch 1: 497it [01:06,  4.15it/s][A
+
+Epoch 1: 499it [01:06,  4.62it/s][A
+
+Epoch 1: 500it [01:06,  4.92it/s][A
+
+Epoch 1: 501it [01:07,  5.11it/s][A
+
+Epoch 1: 502it [01:07,  4.81it/s][A
+
+Epoch 1: 504it [01:07,  6.05it/s][A
+
+Epoch 1: 506it [01:07,  5.77it/s][A
+
+Epoch 1: 508it [01:08,  7.03it/s][A
+
+Epoch 1: 509it [01:08,  7.31it/s][A
+
+Epoch 1: 510it [01:08,  7.75it/s][A
+
+Epoch 1: 511it [01:08,  6.37it/s][A
+
+Epoch 1: 512it [01:08,  6.75it/s][A
+
+Epoch 1: 514it [01:08,  6.66it/s][A
+
+Epoch 1: 516it [01:09,  7.67it/s][A
+
+Epoch 1: 518it [01:09,  9.54it/s][A
+
+Epoch 1: 521it [01:09, 11.02it/s][A
+
+Epoch 1: 523it [01:09,  9.20it/s][A
+
+Epoch 1: 525it [01:10,  8.17it/s][A
+
+Epoch 1: 526it [01:10,  7.75it/s][A
+
+Epoch 1: 527it [01:10,  8.05it/s][A
+
+Epoch 1: 529it [01:10,  8.95it/s][A
+
+Epoch 1: 530it [01:10,  8.56it/s][A
+
+Epoch 1: 531it [01:10,  6.61it/s][A
+
+Epoch 1: 532it [01:11,  7.18it/s][A
+
+Epoch 1: 533it [01:11,  6.04it/s][A
+
+Epoch 1: 534it [01:11,  5.67it/s][A
+
+Epoch 1: 536it [01:11,  5.61it/s][A
+
+Epoch 1: 537it [01:12,  5.03it/s][A
+
+Epoch 1: 539it [01:12,  5.32it/s][A
+
+Epoch 1: 541it [01:12,  6.45it/s][A
+
+Epoch 1: 543it [01:12,  6.20it/s][A
+
+Epoch 1: 544it [01:13,  6.63it/s][A
+
+Epoch 1: 546it [01:13,  6.82it/s][A
+
+Epoch 1: 547it [01:13,  6.68it/s][A
+
+Epoch 1: 549it [01:13,  7.09it/s][A
+
+Epoch 1: 551it [01:13,  7.80it/s][A
+
+Epoch 1: 552it [01:14,  8.07it/s][A
+
+Epoch 1: 553it [01:14,  6.80it/s][A
+
+Epoch 1: 554it [01:14,  6.66it/s][A
+
+Epoch 1: 555it [01:14,  5.74it/s][A
+
+Epoch 1: 557it [01:14,  7.53it/s][A
+
+Epoch 1: 559it [01:15,  6.59it/s][A
+
+Epoch 1: 560it [01:15,  7.03it/s][A
+
+Epoch 1: 561it [01:15,  5.52it/s][A
+
+Epoch 1: 562it [01:15,  5.02it/s][A
+
+Epoch 1: 563it [01:16,  4.66it/s][A
+
+Epoch 1: 564it [01:16,  5.26it/s][A
+
+Epoch 1: 565it [01:16,  5.92it/s][A
+
+Epoch 1: 566it [01:16,  5.33it/s][A
+
+Epoch 1: 568it [01:16,  7.21it/s][A
+
+Epoch 1: 569it [01:16,  7.55it/s][A
+
+Epoch 1: 570it [01:17,  6.18it/s][A
+
+Epoch 1: 572it [01:17,  7.74it/s][A
+
+Epoch 1: 573it [01:17,  8.10it/s][A
+
+Epoch 1: 574it [01:17,  5.90it/s][A
+
+Epoch 1: 575it [01:17,  5.87it/s][A
+
+Epoch 1: 576it [01:18,  4.60it/s][A
+
+Epoch 1: 577it [01:18,  3.89it/s][A
+
+Epoch 1: 578it [01:18,  4.52it/s][A
+
+Epoch 1: 579it [01:18,  5.33it/s][A
+
+Epoch 1: 580it [01:18,  5.94it/s][A
+
+Epoch 1: 582it [01:19,  8.15it/s][A
+
+Epoch 1: 584it [01:19,  9.63it/s][A
+
+Epoch 1: 586it [01:19,  7.34it/s][A
+
+Epoch 1: 588it [01:19,  8.19it/s][A
+
+Epoch 1: 589it [01:20,  6.78it/s][A
+
+Epoch 1: 590it [01:20,  6.07it/s][A
+
+Epoch 1: 591it [01:20,  6.54it/s][A
+
+Epoch 1: 592it [01:20,  6.75it/s][A
+
+Epoch 1: 593it [01:20,  5.00it/s][A
+
+Epoch 1: 594it [01:21,  5.26it/s][A
+
+Epoch 1: 595it [01:21,  5.61it/s][A
+
+Epoch 1: 596it [01:21,  6.39it/s][A
+
+Epoch 1: 598it [01:21,  7.37it/s][A
+
+Epoch 1: 599it [01:21,  6.63it/s][A
+
+Epoch 1: 601it [01:21,  8.65it/s][A
+
+Epoch 1: 602it [01:22,  6.48it/s][A
+
+Epoch 1: 604it [01:22,  7.82it/s][A
+
+Epoch 1: 606it [01:22,  7.00it/s][A
+
+Epoch 1: 607it [01:22,  7.36it/s][A
+
+Epoch 1: 609it [01:22,  8.93it/s][A
+
+Epoch 1: 611it [01:23,  7.07it/s][A
+
+Epoch 1: 613it [01:23,  8.19it/s][A
+
+Epoch 1: 614it [01:23,  6.30it/s][A
+
+Epoch 1: 615it [01:23,  6.69it/s][A
+
+Epoch 1: 616it [01:24,  5.92it/s][A
+
+Epoch 1: 617it [01:24,  5.13it/s][A
+
+Epoch 1: 618it [01:24,  5.21it/s][A
+
+Epoch 1: 619it [01:24,  4.52it/s][A
+
+Epoch 1: 621it [01:25,  6.10it/s][A
+
+Epoch 1: 622it [01:25,  5.43it/s][A
+
+Epoch 1: 623it [01:25,  4.72it/s][A
+
+Epoch 1: 625it [01:25,  5.39it/s][A
+
+Epoch 1: 626it [01:26,  5.52it/s][A
+
+Epoch 1: 627it [01:26,  5.07it/s][A
+
+Epoch 1: 628it [01:26,  4.64it/s][A
+
+Epoch 1: 629it [01:26,  4.40it/s][A
+
+Epoch 1: 630it [01:27,  4.61it/s][A
+
+Epoch 1: 631it [01:27,  4.64it/s][A
+
+Epoch 1: 633it [01:27,  5.19it/s][A
+
+Epoch 1: 634it [01:27,  4.11it/s][A
+
+Epoch 1: 635it [01:28,  3.33it/s][A
+
+Epoch 1: 636it [01:28,  3.19it/s][A
+
+Epoch 1: 637it [01:29,  2.64it/s][A
+
+Epoch 1: 638it [01:29,  2.21it/s][A
+
+Epoch 1: 639it [01:30,  2.47it/s][A
+
+Epoch 1: 640it [01:30,  2.48it/s][A
+
+Epoch 1: 641it [01:31,  2.41it/s][A
+
+Epoch 1: 642it [01:31,  2.68it/s][A
+
+Epoch 1: 643it [01:31,  2.98it/s][A
+
+Epoch 1: 645it [01:31,  4.52it/s][A
+
+Epoch 1: 646it [01:31,  5.14it/s][A
+
+Epoch 1: 648it [01:32,  5.53it/s][A
+
+Epoch 1: 649it [01:32,  4.99it/s][A
+
+Epoch 1: 650it [01:32,  5.27it/s][A
+
+Epoch 1: 651it [01:32,  5.49it/s][A
+
+Epoch 1: 652it [01:32,  6.12it/s][A
+
+Epoch 1: 653it [01:33,  6.50it/s][A
+
+Epoch 1: 655it [01:33,  8.29it/s][A
+
+Epoch 1: 656it [01:33,  7.77it/s][A
+
+Epoch 1: 657it [01:33,  8.03it/s][A
+
+Epoch 1: 658it [01:33,  7.77it/s][A
+
+Epoch 1: 659it [01:33,  7.34it/s][A
+
+Epoch 1: 660it [01:33,  7.86it/s][A
+
+Epoch 1: 661it [01:34,  8.12it/s][A
+
+Epoch 1: 662it [01:34,  7.68it/s][A
+
+Epoch 1: 663it [01:34,  7.89it/s][A
+
+Epoch 1: 664it [01:34,  7.86it/s][A
+
+Epoch 1: 665it [01:34,  8.10it/s][A
+
+Epoch 1: 666it [01:34,  8.24it/s][A
+
+Epoch 1: 667it [01:34,  8.18it/s][A
+
+Epoch 1: 668it [01:34,  7.73it/s][A
+
+Epoch 1: 669it [01:35,  7.01it/s][A
+
+Epoch 1: 671it [01:35,  7.99it/s][A
+
+Epoch 1: 672it [01:35,  8.01it/s][A
+
+Epoch 1: 673it [01:35,  8.22it/s][A
+
+Epoch 1: 674it [01:35,  7.93it/s][A
+
+Epoch 1: 675it [01:35,  8.21it/s][A
+
+Epoch 1: 676it [01:35,  8.09it/s][A
+
+Epoch 1: 677it [01:36,  7.58it/s][A
+
+Epoch 1: 678it [01:36,  8.15it/s][A
+
+Epoch 1: 679it [01:36,  7.83it/s][A
+
+Epoch 1: 680it [01:36,  7.51it/s][A
+
+Epoch 1: 682it [01:36,  8.93it/s][A
+
+Epoch 1: 684it [01:36,  9.20it/s][A
+
+Epoch 1: 685it [01:36,  8.33it/s][A
+
+Epoch 1: 686it [01:37,  8.14it/s][A
+
+Epoch 1: 687it [01:37,  8.25it/s][A
+
+Epoch 1: 688it [01:37,  7.75it/s][A
+
+Epoch 1: 689it [01:37,  8.18it/s][A
+
+Epoch 1: 690it [01:37,  7.25it/s][A
+
+Epoch 1: 692it [01:37,  7.79it/s][A
+
+Epoch 1: 693it [01:38,  7.85it/s][A
+
+Epoch 1: 694it [01:38,  8.06it/s][A
+
+Epoch 1: 695it [01:38,  8.27it/s][A
+
+Epoch 1: 696it [01:38,  7.65it/s][A
+
+Epoch 1: 698it [01:38,  8.85it/s][A
+
+Epoch 1: 699it [01:38,  8.53it/s][A
+
+Epoch 1: 700it [01:38,  8.03it/s][A
+
+Epoch 1: 701it [01:38,  8.24it/s][A
+
+Epoch 1: 702it [01:39,  8.01it/s][A
+
+Epoch 1: 703it [01:39,  7.78it/s][A
+
+Epoch 1: 704it [01:39,  7.68it/s][A
+
+Epoch 1: 705it [01:39,  7.96it/s][A
+
+Epoch 1: 707it [01:39,  8.55it/s][A
+
+Epoch 1: 709it [01:39,  8.26it/s][A
+
+Epoch 1: 710it [01:40,  8.49it/s][A
+
+Epoch 1: 711it [01:40,  7.68it/s][A
+
+Epoch 1: 712it [01:40,  7.89it/s][A
+
+Epoch 1: 713it [01:40,  8.21it/s][A
+
+Epoch 1: 714it [01:40,  7.71it/s][A
+
+Epoch 1: 715it [01:40,  7.51it/s][A
+
+Epoch 1: 716it [01:40,  7.34it/s][A
+
+Epoch 1: 717it [01:41,  7.91it/s][A
+
+Epoch 1: 718it [01:41,  7.56it/s][A
+
+Epoch 1: 719it [01:41,  7.56it/s][A
+
+Epoch 1: 720it [01:41,  7.12it/s][A
+
+Epoch 1: 721it [01:41,  7.15it/s][A
+
+Epoch 1: 722it [01:41,  7.67it/s][A
+
+Epoch 1: 723it [01:41,  7.60it/s][A
+
+Epoch 1: 724it [01:41,  7.80it/s][A
+
+Epoch 1: 726it [01:42,  7.66it/s][A
+
+Epoch 1: 727it [01:42,  7.97it/s][A
+
+Epoch 1: 728it [01:42,  8.15it/s][A
+
+Epoch 1: 729it [01:42,  7.85it/s][A
+
+Epoch 1: 730it [01:42,  8.11it/s][A
+
+Epoch 1: 731it [01:42,  7.42it/s][A
+
+Epoch 1: 732it [01:43,  7.22it/s][A
+
+Epoch 1: 733it [01:43,  7.84it/s][A
+
+Epoch 1: 734it [01:43,  7.73it/s][A
+
+Epoch 1: 735it [01:43,  7.82it/s][A
+
+Epoch 1: 737it [01:43,  8.47it/s][A
+
+Epoch 1: 739it [01:43,  8.99it/s][A
+
+Epoch 1: 740it [01:43,  8.32it/s][A
+
+Epoch 1: 742it [01:44,  8.70it/s][A
+
+Epoch 1: 743it [01:44,  8.77it/s][A
+
+Epoch 1: 744it [01:44,  8.91it/s][A
+
+Epoch 1: 745it [01:44,  8.11it/s][A
+
+Epoch 1: 746it [01:44,  8.31it/s][A
+
+Epoch 1: 747it [01:44,  8.34it/s][A
+
+Epoch 1: 748it [01:44,  8.66it/s][A
+
+Epoch 1: 749it [01:44,  8.47it/s][A
+
+Epoch 1: 750it [01:45,  8.22it/s][A
+
+Epoch 1: 751it [01:45,  7.87it/s][A
+
+Epoch 1: 753it [01:45,  9.12it/s][A
+
+Epoch 1: 754it [01:45,  9.10it/s][A
+
+Epoch 1: 755it [01:45,  8.89it/s][A
+
+Epoch 1: 756it [01:45,  9.05it/s][A
+
+Epoch 1: 757it [01:45,  9.14it/s][A
+
+Epoch 1: 758it [01:45,  8.89it/s][A
+
+Epoch 1: 759it [01:46,  8.50it/s][A
+
+Epoch 1: 760it [01:46,  7.97it/s][A
+
+Epoch 1: 761it [01:46,  7.38it/s][A
+
+Epoch 1: 762it [01:46,  7.34it/s][A
+
+Epoch 1: 763it [01:46,  7.37it/s][A
+
+Epoch 1: 764it [01:46,  7.84it/s][A
+
+Epoch 1: 765it [01:46,  7.94it/s][A
+
+Epoch 1: 766it [01:47,  7.68it/s][A
+
+Epoch 1: 767it [01:47,  7.82it/s][A
+
+Epoch 1: 768it [01:47,  7.21it/s][A
+
+Epoch 1: 769it [01:47,  7.16it/s][A
+
+Epoch 1: 770it [01:47,  7.50it/s][A
+
+Epoch 1: 771it [01:47,  7.76it/s][A
+
+Epoch 1: 772it [01:47,  8.19it/s][A
+
+Epoch 1: 773it [01:47,  8.38it/s][A
+
+Epoch 1: 775it [01:48,  8.13it/s][A
+
+Epoch 1: 776it [01:48,  8.31it/s][A
+
+Epoch 1: 777it [01:48,  8.53it/s][A
+
+Epoch 1: 778it [01:48,  8.48it/s][A
+
+Epoch 1: 779it [01:48,  7.24it/s][A
+
+Epoch 1: 780it [01:48,  7.37it/s][A
+
+Epoch 1: 781it [01:48,  7.52it/s][A
+
+Epoch 1: 782it [01:49,  8.06it/s][A
+
+Epoch 1: 783it [01:49,  7.80it/s][A
+
+Epoch 1: 784it [01:49,  7.80it/s][A
+
+Epoch 1: 785it [01:49,  8.09it/s][A
+
+Epoch 1: 786it [01:49,  7.07it/s][A
+
+Epoch 1: 787it [01:49,  6.78it/s][A
+
+Epoch 1: 788it [01:49,  7.14it/s][A
+
+Epoch 1: 789it [01:50,  7.55it/s][A
+
+Epoch 1: 790it [01:50,  8.06it/s][A
+
+Epoch 1: 791it [01:50,  8.17it/s][A
+
+Epoch 1: 792it [01:50,  7.79it/s][A
+
+Epoch 1: 793it [01:50,  7.29it/s][A
+
+Epoch 1: 794it [01:50,  7.50it/s][A
+
+Epoch 1: 795it [01:50,  7.69it/s][A
+
+Epoch 1: 796it [01:50,  7.90it/s][A
+
+Epoch 1: 797it [01:51,  7.90it/s][A
+
+Epoch 1: 798it [01:51,  7.29it/s][A
+
+Epoch 1: 799it [01:51,  7.74it/s][A
+
+Epoch 1: 800it [01:51,  7.39it/s][A
+
+Epoch 1: 801it [01:51,  7.64it/s][A
+
+Epoch 1: 802it [01:51,  7.13it/s][A
+
+Epoch 1: 803it [01:51,  7.79it/s][A
+
+Epoch 1: 804it [01:51,  8.29it/s][A
+
+Epoch 1: 805it [01:52,  8.50it/s][A
+
+Epoch 1: 806it [01:52,  8.57it/s][A
+
+Epoch 1: 808it [01:52,  9.27it/s][A
+
+Epoch 1: 810it [01:52,  8.20it/s][A
+
+Epoch 1: 811it [01:52,  8.29it/s][A
+
+Epoch 1: 812it [01:52,  8.01it/s][A
+
+Epoch 1: 813it [01:53,  8.22it/s][A
+
+Epoch 1: 814it [01:53,  7.80it/s][A
+
+Epoch 1: 815it [01:53,  7.67it/s][A
+
+Epoch 1: 816it [01:53,  8.08it/s][A
+
+Epoch 1: 818it [01:53,  9.07it/s][A
+
+Epoch 1: 819it [01:53,  8.87it/s][A
+
+Epoch 1: 820it [01:53,  8.28it/s][A
+
+Epoch 1: 821it [01:53,  8.66it/s][A
+
+Epoch 1: 822it [01:54,  8.00it/s][A
+
+Epoch 1: 823it [01:54,  8.35it/s][A
+
+Epoch 1: 824it [01:54,  8.33it/s][A
+
+Epoch 1: 825it [01:54,  7.83it/s][A
+
+Epoch 1: 826it [01:54,  8.15it/s][A
+
+Epoch 1: 827it [01:54,  7.55it/s][A
+
+Epoch 1: 828it [01:54,  7.98it/s][A
+
+Epoch 1: 829it [01:55,  7.60it/s][A
+
+Epoch 1: 831it [01:55,  8.45it/s][A
+
+Epoch 1: 832it [01:55,  7.93it/s][A
+
+Epoch 1: 834it [01:55,  7.90it/s][A
+
+Epoch 1: 835it [01:55,  7.76it/s][A
+
+Epoch 1: 836it [01:55,  7.63it/s][A
+
+Epoch 1: 837it [01:56,  7.92it/s][A
+
+Epoch 1: 838it [01:56,  7.92it/s][A
+
+Epoch 1: 839it [01:56,  7.50it/s][A
+
+Epoch 1: 840it [01:56,  7.48it/s][A
+
+Epoch 1: 841it [01:56,  7.91it/s][A
+
+Epoch 1: 843it [01:56,  8.61it/s][A
+
+Epoch 1: 845it [01:56,  9.52it/s][A
+
+Epoch 1: 846it [01:57,  9.09it/s][A
+
+Epoch 1: 847it [01:57,  7.78it/s][A
+
+Epoch 1: 848it [01:57,  7.58it/s][A
+
+Epoch 1: 849it [01:57,  7.64it/s][A
+
+Epoch 1: 851it [01:57,  8.43it/s][A
+
+Epoch 1: 852it [01:57,  8.02it/s][A
+
+Epoch 1: 853it [01:58,  7.87it/s][A
+
+Epoch 1: 854it [01:58,  8.18it/s][A
+
+Epoch 1: 855it [01:58,  8.26it/s][A
+
+Epoch 1: 856it [01:58,  8.27it/s][A
+
+Epoch 1: 858it [01:58,  8.41it/s][A
+
+Epoch 1: 859it [01:58,  8.52it/s][A
+
+Epoch 1: 860it [01:58,  8.81it/s][A
+
+Epoch 1: 861it [01:58,  8.36it/s][A
+
+Epoch 1: 862it [01:59,  8.23it/s][A
+
+Epoch 1: 863it [01:59,  8.03it/s][A
+
+Epoch 1: 864it [01:59,  7.61it/s][A
+
+Epoch 1: 865it [01:59,  7.83it/s][A
+
+Epoch 1: 866it [01:59,  7.82it/s][A
+
+Epoch 1: 867it [01:59,  7.41it/s][A
+
+Epoch 1: 868it [01:59,  7.69it/s][A
+
+Epoch 1: 869it [02:00,  7.17it/s][A
+
+Epoch 1: 870it [02:00,  7.51it/s][A
+
+Epoch 1: 871it [02:00,  7.56it/s][A
+
+Epoch 1: 872it [02:00,  7.95it/s][A
+
+Epoch 1: 874it [02:00,  9.08it/s][A
+
+Epoch 1: 875it [02:00,  8.73it/s][A
+
+Epoch 1: 876it [02:00,  8.89it/s][A
+
+Epoch 1: 877it [02:00,  9.11it/s][A
+
+Epoch 1: 878it [02:01,  9.23it/s][A
+
+Epoch 1: 879it [02:01,  9.37it/s][A
+
+Epoch 1: 880it [02:01,  9.47it/s][A
+
+Epoch 1: 881it [02:01,  8.69it/s][A
+
+Epoch 1: 882it [02:01,  8.13it/s][A
+
+Epoch 1: 884it [02:01,  9.55it/s][A
+
+Epoch 1: 885it [02:01,  9.60it/s][A
+
+Epoch 1: 887it [02:01,  9.89it/s][A
+
+Epoch 1: 888it [02:02,  8.91it/s][A
+
+Epoch 1: 890it [02:02,  9.67it/s][A
+
+Epoch 1: 891it [02:02,  9.41it/s][A
+
+Epoch 1: 892it [02:02,  8.71it/s][A
+
+Epoch 1: 894it [02:02, 10.10it/s][A
+
+Epoch 1: 896it [02:02,  9.26it/s][A
+
+Epoch 1: 897it [02:03,  9.15it/s][A
+
+Epoch 1: 899it [02:03,  9.16it/s][A
+
+Epoch 1: 901it [02:03,  9.70it/s][A
+
+Epoch 1: 902it [02:03,  9.66it/s][A
+
+Epoch 1: 904it [02:03,  9.63it/s][A
+
+Epoch 1: 905it [02:03,  9.36it/s][A
+
+Epoch 1: 907it [02:04,  8.76it/s][A
+
+Epoch 1: 908it [02:04,  8.98it/s][A
+
+Epoch 1: 909it [02:04,  9.18it/s][A
+
+Epoch 1: 910it [02:04,  9.11it/s][A
+
+Epoch 1: 911it [02:04,  8.93it/s][A
+
+Epoch 1: 912it [02:04,  9.00it/s][A
+
+Epoch 1: 914it [02:04,  9.13it/s][A
+
+Epoch 1: 915it [02:05,  9.11it/s][A
+
+Epoch 1: 916it [02:05,  8.70it/s][A
+
+Epoch 1: 917it [02:05,  8.55it/s][A
+
+Epoch 1: 919it [02:05, 10.03it/s][A
+
+Epoch 1: 920it [02:05,  9.60it/s][A
+
+Epoch 1: 922it [02:05, 10.05it/s][A
+
+Epoch 1: 923it [02:05,  9.94it/s][A
+
+Epoch 1: 924it [02:05,  9.71it/s][A
+
+Epoch 1: 926it [02:06,  9.57it/s][A
+
+Epoch 1: 927it [02:06,  9.25it/s][A
+
+Epoch 1: 928it [02:06,  8.96it/s][A
+
+Epoch 1: 929it [02:06,  8.48it/s][A
+
+Epoch 1: 930it [02:06,  8.32it/s][A
+
+Epoch 1: 931it [02:06,  8.72it/s][A
+
+Epoch 1: 933it [02:06,  8.96it/s][A
+
+Epoch 1: 934it [02:07,  8.94it/s][A
+
+Epoch 1: 935it [02:07,  8.97it/s][A
+
+Epoch 1: 936it [02:07,  8.95it/s][A
+
+Epoch 1: 938it [02:07, 10.67it/s][A
+
+Epoch 1: 940it [02:07,  9.81it/s][A
+
+Epoch 1: 941it [02:07,  9.48it/s][A
+
+Epoch 1: 942it [02:07,  8.88it/s][A
+
+Epoch 1: 943it [02:08,  8.69it/s][A
+
+Epoch 1: 945it [02:08,  9.38it/s][A
+
+Epoch 1: 946it [02:08,  8.82it/s][A
+
+Epoch 1: 947it [02:08,  8.58it/s][A
+
+Epoch 1: 948it [02:08,  8.55it/s][A
+
+Epoch 1: 949it [02:08,  8.40it/s][A
+
+Epoch 1: 951it [02:08,  9.57it/s][A
+
+Epoch 1: 952it [02:09,  8.74it/s][A
+
+Epoch 1: 954it [02:09, 10.20it/s][A
+
+Epoch 1: 956it [02:09,  9.45it/s][A
+
+Epoch 1: 958it [02:09, 10.06it/s][A
+
+Epoch 1: 960it [02:09,  9.32it/s][A
+
+Epoch 1: 962it [02:10,  9.34it/s][A
+
+Epoch 1: 964it [02:10,  9.66it/s][A
+
+Epoch 1: 965it [02:10,  9.38it/s][A
+
+Epoch 1: 967it [02:10,  9.72it/s][A
+
+Epoch 1: 968it [02:10,  9.21it/s][A
+
+Epoch 1: 970it [02:10,  9.99it/s][A
+
+Epoch 1: 971it [02:10,  9.90it/s][A
+
+Epoch 1: 972it [02:11,  9.03it/s][A
+
+Epoch 1: 973it [02:11,  8.92it/s][A
+
+Epoch 1: 974it [02:11,  8.99it/s][A
+
+Epoch 1: 975it [02:11,  9.14it/s][A
+
+Epoch 1: 976it [02:11,  9.35it/s][A
+
+Epoch 1: 978it [02:11, 10.24it/s][A
+
+Epoch 1: 980it [02:12,  8.65it/s][A
+
+Epoch 1: 982it [02:12,  9.27it/s][A
+
+Epoch 1: 984it [02:12,  9.86it/s][A
+
+Epoch 1: 986it [02:12, 10.04it/s][A
+
+Epoch 1: 988it [02:12,  9.50it/s][A
+
+Epoch 1: 989it [02:12,  9.38it/s][A
+
+Epoch 1: 990it [02:13,  9.20it/s][A
+
+Epoch 1: 991it [02:13,  8.98it/s][A
+
+Epoch 1: 992it [02:13,  9.00it/s][A
+
+Epoch 1: 994it [02:13,  9.43it/s][A
+
+Epoch 1: 995it [02:13,  8.75it/s][A
+
+Epoch 1: 996it [02:13,  8.78it/s][A
+
+Epoch 1: 998it [02:13,  8.46it/s][A
+
+Epoch 1: 999it [02:14,  8.69it/s][A
+
+Epoch 1: 1000it [02:14,  8.70it/s][A
+
+Epoch 1: 1002it [02:14,  9.99it/s][A
+
+Epoch 1: 1003it [02:14,  8.66it/s][A
+
+Epoch 1: 1004it [02:14,  8.72it/s][A
+
+Epoch 1: 1005it [02:14,  8.68it/s][A
+
+Epoch 1: 1006it [02:14,  8.54it/s][A
+
+Epoch 1: 1008it [02:15,  8.53it/s][A
+
+Epoch 1: 1009it [02:15,  8.47it/s][A
+
+Epoch 1: 1010it [02:15,  8.43it/s][A
+
+Epoch 1: 1011it [02:15,  8.51it/s][A
+
+Epoch 1: 1012it [02:15,  8.61it/s][A
+
+Epoch 1: 1013it [02:15,  8.77it/s][A
+
+Epoch 1: 1014it [02:15,  8.80it/s][A
+
+Epoch 1: 1015it [02:15,  8.92it/s][A
+
+Epoch 1: 1017it [02:16,  9.43it/s][A
+
+Epoch 1: 1019it [02:16,  9.52it/s][A
+
+Epoch 1: 1020it [02:16,  8.80it/s][A
+
+Epoch 1: 1021it [02:16,  8.27it/s][A
+
+Epoch 1: 1022it [02:16,  8.18it/s][A
+
+Epoch 1: 1023it [02:16,  8.01it/s][A
+
+Epoch 1: 1025it [02:17,  9.72it/s][A
+
+Epoch 1: 1026it [02:17,  8.92it/s][A
+
+Epoch 1: 1027it [02:17,  8.72it/s][A
+
+Epoch 1: 1028it [02:17,  9.01it/s][A
+
+Epoch 1: 1029it [02:17,  8.64it/s][A
+
+Epoch 1: 1030it [02:17,  8.75it/s][A
+
+Epoch 1: 1031it [02:17,  8.46it/s][A
+
+Epoch 1: 1032it [02:17,  8.37it/s][A
+
+Epoch 1: 1033it [02:17,  8.60it/s][A
+
+Epoch 1: 1035it [02:18,  8.91it/s][A
+
+Epoch 1: 1036it [02:18,  8.75it/s][A
+
+Epoch 1: 1037it [02:18,  8.83it/s][A
+
+Epoch 1: 1038it [02:18,  8.93it/s][A
+
+Epoch 1: 1039it [02:18,  8.87it/s][A
+
+Epoch 1: 1040it [02:18,  8.97it/s][A
+
+Epoch 1: 1042it [02:18,  9.96it/s][A
+
+Epoch 1: 1043it [02:19,  9.41it/s][A
+
+Epoch 1: 1044it [02:19,  9.02it/s][A
+
+Epoch 1: 1045it [02:19,  8.57it/s][A
+
+Epoch 1: 1046it [02:19,  8.70it/s][A
+
+Epoch 1: 1047it [02:19,  8.15it/s][A
+
+Epoch 1: 1048it [02:19,  8.52it/s][A
+
+Epoch 1: 1049it [02:19,  8.62it/s][A
+
+Epoch 1: 1050it [02:19,  8.05it/s][A
+
+Epoch 1: 1052it [02:20,  8.05it/s][A
+
+Epoch 1: 1053it [02:20,  8.40it/s][A
+
+Epoch 1: 1055it [02:20,  7.98it/s][A
+
+Epoch 1: 1057it [02:20,  8.86it/s][A
+
+Epoch 1: 1059it [02:20,  9.93it/s][A
+
+Epoch 1: 1061it [02:21,  8.50it/s][A
+
+Epoch 1: 1062it [02:21,  8.46it/s][A
+
+Epoch 1: 1063it [02:21,  8.64it/s][A
+
+Epoch 1: 1064it [02:21,  8.21it/s][A
+
+Epoch 1: 1065it [02:21,  8.58it/s][A
+
+Epoch 1: 1066it [02:21,  8.43it/s][A
+
+Epoch 1: 1067it [02:21,  7.93it/s][A
+
+Epoch 1: 1068it [02:22,  8.29it/s][A
+
+Epoch 1: 1069it [02:22,  7.96it/s][A
+
+Epoch 1: 1070it [02:22,  8.41it/s][A
+
+Epoch 1: 1071it [02:22,  7.54it/s][A
+
+Epoch 1: 1073it [02:22,  8.54it/s][A
+
+Epoch 1: 1075it [02:22,  9.01it/s][A
+
+Epoch 1: 1077it [02:23,  9.51it/s][A
+
+Epoch 1: 1078it [02:23,  9.10it/s][A
+
+Epoch 1: 1079it [02:23,  9.01it/s][A
+
+Epoch 1: 1080it [02:23,  9.23it/s][A
+
+Epoch 1: 1081it [02:23,  9.09it/s][A
+
+Epoch 1: 1082it [02:23,  9.08it/s][A
+
+Epoch 1: 1083it [02:23,  8.81it/s][A
+
+Epoch 1: 1084it [02:23,  8.30it/s][A
+
+Epoch 1: 1085it [02:23,  8.57it/s][A
+
+Epoch 1: 1087it [02:24,  9.10it/s][A
+
+Epoch 1: 1089it [02:24,  9.55it/s][A
+
+Epoch 1: 1090it [02:24,  9.52it/s][A
+
+Epoch 1: 1091it [02:24,  9.32it/s][A
+
+Epoch 1: 1093it [02:24,  9.42it/s][A
+
+Epoch 1: 1094it [02:24,  9.29it/s][A
+
+Epoch 1: 1095it [02:25,  9.29it/s][A
+
+Epoch 1: 1096it [02:25,  8.98it/s][A
+
+Epoch 1: 1098it [02:25,  9.63it/s][A
+
+Epoch 1: 1099it [02:25,  8.26it/s][A
+
+Epoch 1: 1101it [02:25,  8.92it/s][A
+
+Epoch 1: 1102it [02:25,  8.30it/s][A
+
+Epoch 1: 1103it [02:25,  8.14it/s][A
+
+Epoch 1: 1104it [02:26,  8.46it/s][A
+
+Epoch 1: 1106it [02:26,  8.93it/s][A
+
+Epoch 1: 1107it [02:26,  8.50it/s][A
+
+Epoch 1: 1108it [02:26,  8.52it/s][A
+
+Epoch 1: 1110it [02:26,  8.83it/s][A
+
+Epoch 1: 1111it [02:26,  8.99it/s][A
+
+Epoch 1: 1112it [02:26,  9.16it/s][A
+
+Epoch 1: 1113it [02:27,  9.27it/s][A
+
+Epoch 1: 1114it [02:27,  8.89it/s][A
+
+Epoch 1: 1115it [02:27,  8.60it/s][A
+
+Epoch 1: 1117it [02:27,  9.37it/s][A
+
+Epoch 1: 1118it [02:27,  9.25it/s][A
+
+Epoch 1: 1119it [02:27,  8.45it/s][A
+
+Epoch 1: 1120it [02:27,  8.57it/s][A
+
+Epoch 1: 1122it [02:28,  9.29it/s][A
+
+Epoch 1: 1123it [02:28,  8.18it/s][A
+
+Epoch 1: 1124it [02:28,  8.42it/s][A
+
+Epoch 1: 1125it [02:28,  7.90it/s][A
+
+Epoch 1: 1126it [02:28,  7.91it/s][A
+
+Epoch 1: 1127it [02:28,  7.39it/s][A
+
+Epoch 1: 1128it [02:28,  7.20it/s][A
+
+Epoch 1: 1130it [02:29,  8.52it/s][A
+
+Epoch 1: 1131it [02:29,  7.63it/s][A
+
+Epoch 1: 1132it [02:29,  7.99it/s][A
+
+Epoch 1: 1133it [02:29,  8.28it/s][A
+
+Epoch 1: 1134it [02:29,  8.68it/s][A
+
+Epoch 1: 1135it [02:29,  8.49it/s][A
+
+Epoch 1: 1136it [02:29,  8.40it/s][A
+
+Epoch 1: 1137it [02:29,  8.21it/s][A
+
+Epoch 1: 1138it [02:30,  8.05it/s][A
+
+Epoch 1: 1139it [02:30,  8.32it/s][A
+
+Epoch 1: 1140it [02:30,  8.66it/s][A
+
+Epoch 1: 1142it [02:30,  8.66it/s][A
+
+Epoch 1: 1143it [02:30,  8.83it/s][A
+
+Epoch 1: 1144it [02:30,  8.84it/s][A
+
+Epoch 1: 1145it [02:30,  8.50it/s][A
+
+Epoch 1: 1146it [02:31,  8.69it/s][A
+
+Epoch 1: 1147it [02:31,  8.53it/s][A
+
+Epoch 1: 1148it [02:31,  8.11it/s][A
+
+Epoch 1: 1149it [02:31,  7.98it/s][A
+
+Epoch 1: 1150it [02:31,  8.23it/s][A
+
+Epoch 1: 1151it [02:31,  8.54it/s][A
+
+Epoch 1: 1152it [02:31,  8.78it/s][A
+
+Epoch 1: 1154it [02:31,  9.56it/s][A
+
+Epoch 1: 1156it [02:32,  9.70it/s][A
+
+Epoch 1: 1157it [02:32,  9.47it/s][A
+
+Epoch 1: 1158it [02:32,  9.12it/s][A
+
+Epoch 1: 1160it [02:32,  8.93it/s][A
+
+Epoch 1: 1161it [02:32,  9.10it/s][A
+
+Epoch 1: 1163it [02:32, 10.31it/s][A
+
+Epoch 1: 1165it [02:33, 10.36it/s][A
+
+Epoch 1: 1167it [02:33,  9.50it/s][A
+
+Epoch 1: 1169it [02:33, 10.10it/s][A
+
+Epoch 1: 1171it [02:33,  9.80it/s][A
+
+Epoch 1: 1172it [02:33,  9.55it/s][A
+
+Epoch 1: 1174it [02:34,  9.25it/s][A
+
+Epoch 1: 1175it [02:34,  8.86it/s][A
+
+Epoch 1: 1177it [02:34,  9.41it/s][A
+
+Epoch 1: 1179it [02:34,  9.87it/s][A
+
+Epoch 1: 1180it [02:34,  9.34it/s][A
+
+Epoch 1: 1181it [02:34,  8.79it/s][A
+
+Epoch 1: 1182it [02:34,  8.92it/s][A
+
+Epoch 1: 1183it [02:35,  8.88it/s][A
+
+Epoch 1: 1185it [02:35,  9.59it/s][A
+
+Epoch 1: 1186it [02:35,  8.96it/s][A
+
+Epoch 1: 1187it [02:35,  8.79it/s][A
+
+Epoch 1: 1188it [02:35,  8.55it/s][A
+
+Epoch 1: 1189it [02:35,  8.64it/s][A
+
+Epoch 1: 1190it [02:35,  8.62it/s][A
+
+Epoch 1: 1192it [02:35,  9.47it/s][A
+
+Epoch 1: 1194it [02:36, 10.30it/s][A
+
+Epoch 1: 1196it [02:36,  9.46it/s][A
+
+Epoch 1: 1197it [02:36,  9.51it/s][A
+
+Epoch 1: 1198it [02:36,  9.06it/s][A
+
+Epoch 1: 1199it [02:36,  8.69it/s][A
+
+Epoch 1: 1200it [02:36,  8.66it/s][A
+
+Epoch 1: 1201it [02:37,  8.26it/s][A
+
+Epoch 1: 1203it [02:37,  8.34it/s][A
+
+Epoch 1: 1204it [02:37,  8.63it/s][A
+
+Epoch 1: 1205it [02:37,  8.89it/s][A
+
+Epoch 1: 1206it [02:37,  8.85it/s][A
+
+Epoch 1: 1207it [02:37,  8.78it/s][A
+
+Epoch 1: 1208it [02:37,  8.73it/s][A
+
+Epoch 1: 1209it [02:37,  8.68it/s][A
+
+Epoch 1: 1210it [02:38,  7.82it/s][A
+
+Epoch 1: 1211it [02:38,  7.54it/s][A
+
+Epoch 1: 1212it [02:38,  7.45it/s][A
+
+Epoch 1: 1213it [02:38,  8.05it/s][A
+
+Epoch 1: 1215it [02:38,  8.20it/s][A
+
+Epoch 1: 1216it [02:38,  8.33it/s][A
+
+Epoch 1: 1217it [02:38,  8.65it/s][A
+
+Epoch 1: 1219it [02:39,  8.81it/s][A
+
+Epoch 1: 1220it [02:39,  8.87it/s][A
+
+Epoch 1: 1222it [02:39,  9.37it/s][A
+
+Epoch 1: 1223it [02:39,  9.33it/s][A
+
+Epoch 1: 1224it [02:39,  9.19it/s][A
+
+Epoch 1: 1225it [02:39,  9.03it/s][A
+
+Epoch 1: 1226it [02:39,  9.08it/s][A
+
+Epoch 1: 1227it [02:40,  8.93it/s][A
+
+Epoch 1: 1228it [02:40,  8.70it/s][A
+
+Epoch 1: 1229it [02:40,  8.46it/s][A
+
+Epoch 1: 1230it [02:40,  8.34it/s][A
+
+Epoch 1: 1232it [02:40,  8.58it/s][A
+
+Epoch 1: 1233it [02:40,  8.84it/s][A
+
+Epoch 1: 1234it [02:40,  8.47it/s][A
+
+Epoch 1: 1236it [02:41,  9.07it/s][A
+
+Epoch 1: 1237it [02:41,  8.95it/s][A
+
+Epoch 1: 1238it [02:41,  8.63it/s][A
+
+Epoch 1: 1239it [02:41,  8.58it/s][A
+
+Epoch 1: 1240it [02:41,  8.50it/s][A
+
+Epoch 1: 1242it [02:41,  9.15it/s][A
+
+Epoch 1: 1244it [02:41,  9.30it/s][A
+
+Epoch 1: 1246it [02:42,  9.24it/s][A
+
+Epoch 1: 1247it [02:42,  9.20it/s][A
+
+Epoch 1: 1249it [02:42,  9.42it/s][A
+
+Epoch 1: 1251it [02:42,  9.29it/s][A
+
+Epoch 1: 1252it [02:42,  9.14it/s][A
+
+Epoch 1: 1253it [02:42,  9.16it/s][A
+
+Epoch 1: 1254it [02:43,  9.13it/s][A
+
+Epoch 1: 1255it [02:43,  9.15it/s][A
+
+Epoch 1: 1256it [02:43,  8.71it/s][A
+
+Epoch 1: 1257it [02:43,  8.03it/s][A
+
+Epoch 1: 1258it [02:43,  7.86it/s][A
+
+Epoch 1: 1259it [02:43,  8.17it/s][A
+
+Epoch 1: 1260it [02:43,  7.87it/s][A
+
+Epoch 1: 1261it [02:43,  8.15it/s][A
+
+Epoch 1: 1262it [02:44,  7.96it/s][A
+
+Epoch 1: 1264it [02:44,  8.37it/s][A
+
+Epoch 1: 1266it [02:44,  8.48it/s][A
+
+Epoch 1: 1267it [02:44,  8.48it/s][A
+
+Epoch 1: 1268it [02:44,  8.57it/s][A
+
+Epoch 1: 1270it [02:44,  9.18it/s][A
+
+Epoch 1: 1271it [02:45,  9.04it/s][A
+
+Epoch 1: 1273it [02:45, 10.12it/s][A
+
+Epoch 1: 1275it [02:45, 10.12it/s][A
+
+Epoch 1: 1277it [02:45,  9.08it/s][A
+
+Epoch 1: 1278it [02:45,  9.18it/s][A
+
+Epoch 1: 1280it [02:45,  9.01it/s][A
+
+Epoch 1: 1282it [02:46, 10.19it/s][A
+
+Epoch 1: 1284it [02:46,  9.43it/s][A
+
+Epoch 1: 1285it [02:46,  9.23it/s][A
+
+Epoch 1: 1287it [02:46,  9.08it/s][A
+
+Epoch 1: 1289it [02:46,  9.23it/s][A
+
+Epoch 1: 1290it [02:47,  9.23it/s][A
+
+Epoch 1: 1291it [02:47,  9.02it/s][A
+
+Epoch 1: 1292it [02:47,  8.42it/s][A
+
+Epoch 1: 1294it [02:47,  9.51it/s][A
+
+Epoch 1: 1295it [02:47,  9.61it/s][A
+
+Epoch 1: 1296it [02:47,  9.68it/s][A
+
+Epoch 1: 1298it [02:47, 10.62it/s][A
+
+Epoch 1: 1300it [02:48,  8.74it/s][A
+
+Epoch 1: 1301it [02:48,  8.50it/s][A
+
+Epoch 1: 1303it [02:48,  9.10it/s][A
+
+Epoch 1: 1305it [02:48,  8.86it/s][A
+
+Epoch 1: 1307it [02:48,  9.22it/s][A
+
+Epoch 1: 1308it [02:49,  9.03it/s][A
+
+Epoch 1: 1309it [02:49,  9.18it/s][A
+
+Epoch 1: 1311it [02:49,  8.76it/s][A
+
+Epoch 1: 1312it [02:49,  8.56it/s][A
+
+Epoch 1: 1314it [02:49,  9.59it/s][A
+
+Epoch 1: 1316it [02:49,  9.94it/s][A
+
+Epoch 1: 1317it [02:49,  9.18it/s][A
+
+Epoch 1: 1318it [02:50,  9.01it/s][A
+
+Epoch 1: 1320it [02:50, 10.10it/s][A
+
+Epoch 1: 1321it [02:50,  9.89it/s][A
+
+Epoch 1: 1323it [02:50,  9.42it/s][A
+
+Epoch 1: 1325it [02:50,  9.37it/s][A
+
+Epoch 1: 1326it [02:50,  9.41it/s][A
+
+Epoch 1: 1327it [02:51,  9.10it/s][A
+
+Epoch 1: 1328it [02:51,  9.25it/s][A
+
+Epoch 1: 1329it [02:51,  8.41it/s][A
+
+Epoch 1: 1331it [02:51,  8.76it/s][A
+
+Epoch 1: 1332it [02:51,  8.97it/s][A
+
+Epoch 1: 1333it [02:51,  9.07it/s][A
+
+Epoch 1: 1335it [02:51,  8.93it/s][A
+
+Epoch 1: 1336it [02:52,  8.68it/s][A
+
+Epoch 1: 1337it [02:52,  8.62it/s][A
+
+Epoch 1: 1338it [02:52,  8.53it/s][A
+
+Epoch 1: 1340it [02:52,  9.12it/s][A
+
+Epoch 1: 1341it [02:52,  8.59it/s][A
+
+Epoch 1: 1342it [02:52,  8.82it/s][A
+
+Epoch 1: 1343it [02:52,  8.49it/s][A
+
+Epoch 1: 1344it [02:53,  8.25it/s][A
+
+Epoch 1: 1346it [02:53,  8.33it/s][A
+
+Epoch 1: 1347it [02:53,  8.63it/s][A
+
+Epoch 1: 1348it [02:53,  8.81it/s][A
+
+Epoch 1: 1349it [02:53,  8.74it/s][A
+
+Epoch 1: 1350it [02:53,  8.54it/s][A
+
+Epoch 1: 1352it [02:53,  9.00it/s][A
+
+Epoch 1: 1354it [02:54,  9.98it/s][A
+
+Epoch 1: 1356it [02:54,  9.69it/s][A
+
+Epoch 1: 1358it [02:54, 10.20it/s][A
+
+Epoch 1: 1360it [02:54, 10.21it/s][A
+
+Epoch 1: 1362it [02:54,  9.84it/s][A
+
+Epoch 1: 1363it [02:55,  9.14it/s][A
+
+Epoch 1: 1364it [02:55,  9.12it/s][A
+
+Epoch 1: 1365it [02:55,  9.13it/s][A
+
+Epoch 1: 1367it [02:55,  9.99it/s][A
+
+Epoch 1: 1369it [02:55, 10.50it/s][A
+
+Epoch 1: 1371it [02:55, 10.63it/s][A
+
+Epoch 1: 1373it [02:56,  9.56it/s][A
+
+Epoch 1: 1374it [02:56,  9.39it/s][A
+
+Epoch 1: 1375it [02:56,  9.20it/s][A
+
+Epoch 1: 1377it [02:56,  8.73it/s][A
+
+Epoch 1: 1378it [02:56,  8.70it/s][A
+
+Epoch 1: 1380it [02:56,  8.69it/s][A
+
+Epoch 1: 1381it [02:56,  8.70it/s][A
+
+Epoch 1: 1382it [02:57,  8.54it/s][A
+
+Epoch 1: 1383it [02:57,  8.47it/s][A
+
+Epoch 1: 1384it [02:57,  8.62it/s][A
+
+Epoch 1: 1385it [02:57,  8.70it/s][A
+
+Epoch 1: 1386it [02:57,  8.58it/s][A
+
+Epoch 1: 1388it [02:57,  9.48it/s][A
+
+Epoch 1: 1389it [02:57,  9.09it/s][A
+
+Epoch 1: 1390it [02:57,  9.16it/s][A
+
+Epoch 1: 1392it [02:58,  9.26it/s][A
+
+Epoch 1: 1394it [02:58,  9.17it/s][A
+
+Epoch 1: 1395it [02:58,  9.26it/s][A
+
+Epoch 1: 1396it [02:58,  9.32it/s][A
+
+Epoch 1: 1397it [02:58,  8.59it/s][A
+
+Epoch 1: 1398it [02:58,  8.74it/s][A
+
+Epoch 1: 1400it [02:59,  8.78it/s][A
+
+Epoch 1: 1401it [02:59,  8.99it/s][A
+
+Epoch 1: 1402it [02:59,  9.17it/s][A
+
+Epoch 1: 1403it [02:59,  9.05it/s][A
+
+Epoch 1: 1404it [02:59,  8.92it/s][A
+
+Epoch 1: 1405it [02:59,  8.70it/s][A
+
+Epoch 1: 1406it [02:59,  8.84it/s][A
+
+Epoch 1: 1407it [02:59,  8.99it/s][A
+
+Epoch 1: 1408it [02:59,  8.73it/s][A
+
+Epoch 1: 1410it [03:00,  9.21it/s][A
+
+Epoch 1: 1411it [03:00,  8.71it/s][A
+
+Epoch 1: 1412it [03:00,  8.64it/s][A
+
+Epoch 1: 1413it [03:00,  8.66it/s][A
+
+Epoch 1: 1414it [03:00,  8.90it/s][A
+
+Epoch 1: 1416it [03:00,  9.93it/s][A
+
+Epoch 1: 1417it [03:00,  9.12it/s][A
+
+Epoch 1: 1418it [03:01,  8.66it/s][A
+
+Epoch 1: 1419it [03:01,  8.61it/s][A
+
+Epoch 1: 1421it [03:01,  9.86it/s][A
+
+Epoch 1: 1422it [03:01,  9.83it/s][A
+
+Epoch 1: 1423it [03:01,  9.62it/s][A
+
+Epoch 1: 1424it [03:01,  9.42it/s][A
+
+Epoch 1: 1425it [03:01,  9.27it/s][A
+
+Epoch 1: 1426it [03:01,  9.25it/s][A
+
+Epoch 1: 1428it [03:02,  9.01it/s][A
+
+Epoch 1: 1429it [03:02,  8.98it/s][A
+
+Epoch 1: 1430it [03:02,  9.04it/s][A
+
+Epoch 1: 1431it [03:02,  9.18it/s][A
+
+Epoch 1: 1432it [03:02,  8.87it/s][A
+
+Epoch 1: 1434it [03:02,  9.79it/s][A
+
+Epoch 1: 1435it [03:02,  9.82it/s][A
+
+Epoch 1: 1436it [03:03,  9.21it/s][A
+
+Epoch 1: 1437it [03:03,  8.67it/s][A
+
+Epoch 1: 1438it [03:03,  8.45it/s][A
+
+Epoch 1: 1439it [03:03,  8.29it/s][A
+
+Epoch 1: 1440it [03:03,  7.99it/s][A
+
+Epoch 1: 1441it [03:03,  8.48it/s][A
+
+Epoch 1: 1442it [03:03,  8.42it/s][A
+
+Epoch 1: 1443it [03:03,  7.96it/s][A
+
+Epoch 1: 1444it [03:04,  7.84it/s][A
+
+Epoch 1: 1445it [03:04,  8.09it/s][A
+
+Epoch 1: 1446it [03:04,  8.31it/s][A
+
+Epoch 1: 1447it [03:04,  7.84it/s][A
+
+Epoch 1: 1448it [03:04,  8.13it/s][A
+
+Epoch 1: 1450it [03:04,  9.33it/s][A
+
+Epoch 1: 1451it [03:04,  8.52it/s][A
+
+Epoch 1: 1452it [03:04,  8.08it/s][A
+
+Epoch 1: 1453it [03:05,  8.14it/s][A
+
+Epoch 1: 1454it [03:05,  8.30it/s][A
+
+Epoch 1: 1456it [03:05,  9.31it/s][A
+
+Epoch 1: 1457it [03:05,  8.97it/s][A
+
+Epoch 1: 1458it [03:05,  8.38it/s][A
+
+Epoch 1: 1459it [03:05,  8.51it/s][A
+
+Epoch 1: 1460it [03:05,  8.78it/s][A
+
+Epoch 1: 1461it [03:06,  8.86it/s][A
+
+Epoch 1: 1463it [03:06,  9.55it/s][A
+
+Epoch 1: 1464it [03:06,  8.30it/s][A
+
+Epoch 1: 1465it [03:06,  8.67it/s][A
+
+Epoch 1: 1466it [03:06,  8.85it/s][A
+
+Epoch 1: 1467it [03:06,  8.65it/s][A
+
+Epoch 1: 1469it [03:06,  8.72it/s][A
+
+Epoch 1: 1470it [03:07,  8.94it/s][A
+
+Epoch 1: 1471it [03:07,  9.18it/s][A
+
+Epoch 1: 1473it [03:07, 10.30it/s][A
+
+Epoch 1: 1475it [03:07,  9.61it/s][A
+
+Epoch 1: 1476it [03:07,  8.92it/s][A
+
+Epoch 1: 1478it [03:07,  9.75it/s][A
+
+Epoch 1: 1480it [03:08, 10.09it/s][A
+
+Epoch 1: 1482it [03:08, 10.71it/s][A
+
+Epoch 1: 1484it [03:08,  8.99it/s][A
+
+Epoch 1: 1485it [03:08,  8.91it/s][A
+
+Epoch 1: 1486it [03:08,  9.04it/s][A
+
+Epoch 1: 1488it [03:08,  9.32it/s][A
+
+Epoch 1: 1489it [03:09,  9.05it/s][A
+
+Epoch 1: 1491it [03:09,  8.87it/s][A
+
+Epoch 1: 1492it [03:09,  8.88it/s][A
+
+Epoch 1: 1494it [03:09,  9.37it/s][A
+
+Epoch 1: 1495it [03:09,  9.02it/s][A
+
+Epoch 1: 1496it [03:09,  9.07it/s][A
+
+Epoch 1: 1497it [03:09,  8.87it/s][A
+
+Epoch 1: 1498it [03:10,  8.96it/s][A
+
+Epoch 1: 1499it [03:10,  8.94it/s][A
+
+Epoch 1: 1501it [03:10,  9.54it/s][A
+
+Epoch 1: 1502it [03:10,  8.97it/s][A
+
+Epoch 1: 1503it [03:10,  9.20it/s][A
+
+Epoch 1: 1504it [03:10,  9.21it/s][A
+
+Epoch 1: 1506it [03:10, 10.44it/s][A
+
+Epoch 1: 1508it [03:11,  9.90it/s][A
+
+Epoch 1: 1509it [03:11,  9.62it/s][A
+
+Epoch 1: 1510it [03:11,  9.48it/s][A
+
+Epoch 1: 1511it [03:11,  9.19it/s][A
+
+Epoch 1: 1513it [03:11, 10.21it/s][A
+
+Epoch 1: 1514it [03:11,  9.74it/s][A
+
+Epoch 1: 1515it [03:11,  9.26it/s][A
+
+Epoch 1: 1516it [03:11,  8.37it/s][A
+
+Epoch 1: 1517it [03:12,  8.47it/s][A
+
+Epoch 1: 1518it [03:12,  8.79it/s][A
+
+Epoch 1: 1519it [03:12,  8.56it/s][A
+
+Epoch 1: 1520it [03:12,  8.33it/s][A
+
+Epoch 1: 1521it [03:12,  8.13it/s][A
+
+Epoch 1: 1522it [03:12,  7.47it/s][A
+
+Epoch 1: 1523it [03:12,  7.40it/s][A
+
+Epoch 1: 1524it [03:12,  7.72it/s][A
+
+Epoch 1: 1525it [03:13,  7.67it/s][A
+
+Epoch 1: 1526it [03:13,  8.24it/s][A
+
+Epoch 1: 1527it [03:13,  8.63it/s][A
+
+Epoch 1: 1528it [03:13,  8.85it/s][A
+
+Epoch 1: 1530it [03:13,  9.91it/s][A
+
+Epoch 1: 1531it [03:13,  9.50it/s][A
+
+Epoch 1: 1532it [03:13,  9.29it/s][A
+
+Epoch 1: 1534it [03:14,  8.88it/s][A
+
+Epoch 1: 1536it [03:14,  9.86it/s][A
+
+Epoch 1: 1538it [03:14,  8.94it/s][A
+
+Epoch 1: 1539it [03:14,  8.87it/s][A
+
+Epoch 1: 1540it [03:14,  8.77it/s][A
+
+Epoch 1: 1542it [03:14,  9.39it/s][A
+
+Epoch 1: 1544it [03:15,  9.58it/s][A
+
+Epoch 1: 1545it [03:15,  8.96it/s][A
+
+Epoch 1: 1546it [03:15,  8.57it/s][A
+
+Epoch 1: 1547it [03:15,  8.72it/s][A
+
+Epoch 1: 1548it [03:15,  8.84it/s][A
+
+Epoch 1: 1550it [03:15,  8.60it/s][A
+
+Epoch 1: 1551it [03:15,  8.43it/s][A
+
+Epoch 1: 1552it [03:16,  8.37it/s][A
+
+Epoch 1: 1553it [03:16,  8.50it/s][A
+
+Epoch 1: 1555it [03:16,  9.81it/s][A
+
+Epoch 1: 1557it [03:16, 10.01it/s][A
+
+Epoch 1: 1558it [03:16,  9.67it/s][A
+
+Epoch 1: 1559it [03:16,  9.52it/s][A
+
+Epoch 1: 1561it [03:16, 10.39it/s][A
+
+Epoch 1: 1563it [03:17,  9.72it/s][A
+
+Epoch 1: 1564it [03:17,  9.36it/s][A
+
+Epoch 1: 1565it [03:17,  9.40it/s][A
+
+Epoch 1: 1566it [03:17,  9.31it/s][A
+
+Epoch 1: 1567it [03:17,  8.63it/s][A
+
+Epoch 1: 1568it [03:17,  8.95it/s][A
+
+Epoch 1: 1569it [03:17,  9.16it/s][A
+
+Epoch 1: 1570it [03:17,  9.37it/s][A
+
+Epoch 1: 1571it [03:18,  8.94it/s][A
+
+Epoch 1: 1572it [03:18,  8.75it/s][A
+
+Epoch 1: 1573it [03:18,  8.53it/s][A
+
+Epoch 1: 1575it [03:18,  8.66it/s][A
+
+Epoch 1: 1576it [03:18,  8.87it/s][A
+
+Epoch 1: 1577it [03:18,  8.79it/s][A
+
+Epoch 1: 1578it [03:18,  8.99it/s][A
+
+Epoch 1: 1580it [03:19,  9.38it/s][A
+
+Epoch 1: 1582it [03:19,  9.45it/s][A
+
+Epoch 1: 1583it [03:19,  9.32it/s][A
+
+Epoch 1: 1584it [03:19,  8.91it/s][A
+
+Epoch 1: 1586it [03:19,  9.84it/s][A
+
+Epoch 1: 1587it [03:19,  9.26it/s][A
+
+Epoch 1: 1588it [03:19,  8.92it/s][A
+
+Epoch 1: 1590it [03:20,  8.75it/s][A
+
+Epoch 1: 1591it [03:20,  8.58it/s][A
+
+Epoch 1: 1592it [03:20,  8.62it/s][A
+
+Epoch 1: 1594it [03:20,  8.70it/s][A
+
+Epoch 1: 1596it [03:20,  9.60it/s][A
+
+Epoch 1: 1598it [03:21, 10.22it/s][A
+
+Epoch 1: 1600it [03:21, 10.16it/s][A
+
+Epoch 1: 1602it [03:21, 10.12it/s][A
+
+Epoch 1: 1604it [03:21,  9.85it/s][A
+
+Epoch 1: 1605it [03:21,  9.59it/s][A
+
+Epoch 1: 1606it [03:21,  9.19it/s][A
+
+Epoch 1: 1607it [03:21,  8.90it/s][A
+
+Epoch 1: 1608it [03:22,  8.83it/s][A
+
+Epoch 1: 1609it [03:22,  8.64it/s][A
+
+Epoch 1: 1611it [03:22,  9.05it/s][A
+
+Epoch 1: 1612it [03:22,  8.79it/s][A
+
+Epoch 1: 1613it [03:22,  8.93it/s][A
+
+Epoch 1: 1615it [03:22,  9.94it/s][A
+
+Epoch 1: 1616it [03:22,  9.93it/s][A
+
+Epoch 1: 1617it [03:23,  9.89it/s][A
+
+Epoch 1: 1619it [03:23,  9.41it/s][A
+
+Epoch 1: 1620it [03:23,  9.32it/s][A
+
+Epoch 1: 1621it [03:23,  9.47it/s][A
+
+Epoch 1: 1622it [03:23,  9.32it/s][A
+
+Epoch 1: 1623it [03:23,  9.47it/s][A
+
+Epoch 1: 1624it [03:23,  8.60it/s][A
+
+Epoch 1: 1625it [03:23,  8.05it/s][A
+
+Epoch 1: 1626it [03:24,  8.24it/s][A
+
+Epoch 1: 1627it [03:24,  8.54it/s][A
+
+Epoch 1: 1629it [03:24,  9.24it/s][A
+
+Epoch 1: 1630it [03:24,  8.40it/s][A
+
+Epoch 1: 1631it [03:24,  8.72it/s][A
+
+Epoch 1: 1633it [03:24,  9.57it/s][A
+
+Epoch 1: 1635it [03:25,  9.56it/s][A
+
+Epoch 1: 1637it [03:25, 10.24it/s][A
+
+Epoch 1: 1639it [03:25,  9.25it/s][A
+
+Epoch 1: 1640it [03:25,  9.34it/s][A
+
+Epoch 1: 1642it [03:25, 10.26it/s][A
+
+Epoch 1: 1644it [03:25,  9.14it/s][A
+
+Epoch 1: 1646it [03:26,  9.05it/s][A
+
+Epoch 1: 1647it [03:26,  9.11it/s][A
+
+Epoch 1: 1648it [03:26,  9.10it/s][A
+
+Epoch 1: 1649it [03:26,  8.98it/s][A
+
+Epoch 1: 1651it [03:26,  9.10it/s][A
+
+Epoch 1: 1652it [03:26,  8.91it/s][A
+
+Epoch 1: 1653it [03:26,  9.14it/s][A
+
+Epoch 1: 1654it [03:27,  9.20it/s][A
+
+Epoch 1: 1655it [03:27,  8.65it/s][A
+
+Epoch 1: 1657it [03:27,  9.54it/s][A
+
+Epoch 1: 1659it [03:27,  9.62it/s][A
+
+Epoch 1: 1660it [03:27,  9.45it/s][A
+
+Epoch 1: 1661it [03:27,  9.56it/s][A
+
+Epoch 1: 1662it [03:27,  9.66it/s][A
+
+Epoch 1: 1663it [03:28,  9.08it/s][A
+
+Epoch 1: 1665it [03:28, 10.08it/s][A
+
+Epoch 1: 1667it [03:28, 10.37it/s][A
+
+Epoch 1: 1669it [03:28, 10.04it/s][A
+
+Epoch 1: 1670it [03:28,  9.53it/s][A
+
+Epoch 1: 1672it [03:28, 10.06it/s][A
+
+Epoch 1: 1674it [03:29,  9.21it/s][A
+
+Epoch 1: 1676it [03:29,  9.89it/s][A
+
+Epoch 1: 1678it [03:29,  8.76it/s][A
+
+Epoch 1: 1680it [03:29,  9.12it/s][A
+
+Epoch 1: 1682it [03:30,  9.47it/s][A
+
+Epoch 1: 1683it [03:30,  9.11it/s][A
+
+Epoch 1: 1685it [03:30,  9.41it/s][A
+
+Epoch 1: 1686it [03:30,  9.20it/s][A
+
+Epoch 1: 1688it [03:30,  9.39it/s][A
+
+Epoch 1: 1689it [03:30,  9.18it/s][A
+
+Epoch 1: 1691it [03:30,  9.44it/s][A
+
+Epoch 1: 1693it [03:31,  9.77it/s][A
+
+Epoch 1: 1694it [03:31,  9.41it/s][A
+
+Epoch 1: 1695it [03:31,  9.40it/s][A
+
+Epoch 1: 1696it [03:31,  9.36it/s][A
+
+Epoch 1: 1697it [03:31,  9.24it/s][A
+
+Epoch 1: 1699it [03:31, 10.24it/s][A
+
+Epoch 1: 1701it [03:32,  9.39it/s][A
+
+Epoch 1: 1702it [03:32,  9.07it/s][A
+
+Epoch 1: 1703it [03:32,  9.10it/s][A
+
+Epoch 1: 1705it [03:32,  9.56it/s][A
+
+Epoch 1: 1706it [03:32,  9.14it/s][A
+
+Epoch 1: 1707it [03:32,  9.00it/s][A
+
+Epoch 1: 1708it [03:32,  8.90it/s][A
+
+Epoch 1: 1710it [03:33,  9.20it/s][A
+
+Epoch 1: 1712it [03:33, 10.03it/s][A
+
+Epoch 1: 1713it [03:33,  9.84it/s][A
+
+Epoch 1: 1714it [03:33,  9.69it/s][A
+
+Epoch 1: 1715it [03:33,  8.94it/s][A
+
+Epoch 1: 1716it [03:33,  9.05it/s][A
+
+Epoch 1: 1718it [03:33,  9.60it/s][A
+
+Epoch 1: 1719it [03:33,  9.43it/s][A
+
+Epoch 1: 1720it [03:34,  9.50it/s][A
+
+Epoch 1: 1722it [03:34,  9.00it/s][A
+
+Epoch 1: 1724it [03:34,  9.98it/s][A
+
+Epoch 1: 1726it [03:34, 10.21it/s][A
+
+Epoch 1: 1728it [03:34, 10.15it/s][A
+
+Epoch 1: 1730it [03:35, 10.15it/s][A
+
+Epoch 1: 1732it [03:35, 10.14it/s][A
+
+Epoch 1: 1734it [03:35,  9.14it/s][A
+
+Epoch 1: 1735it [03:35,  9.04it/s][A
+
+Epoch 1: 1736it [03:35,  8.94it/s][A
+
+Epoch 1: 1737it [03:35,  8.86it/s][A
+
+Epoch 1: 1738it [03:35,  8.87it/s][A
+
+Epoch 1: 1740it [03:36,  8.75it/s][A
+
+Epoch 1: 1741it [03:36,  8.72it/s][A
+
+Epoch 1: 1743it [03:36,  9.78it/s][A
+
+Epoch 1: 1744it [03:36,  9.38it/s][A
+
+Epoch 1: 1746it [03:36, 10.25it/s][A
+
+Epoch 1: 1748it [03:37,  8.80it/s][A
+
+Epoch 1: 1749it [03:37,  8.94it/s][A
+
+Epoch 1: 1750it [03:37,  8.62it/s][A
+
+Epoch 1: 1752it [03:37,  9.03it/s][A
+
+Epoch 1: 1754it [03:37,  9.89it/s][A
+
+Epoch 1: 1755it [03:37,  9.56it/s][A
+
+Epoch 1: 1757it [03:38,  9.66it/s][A
+
+Epoch 1: 1758it [03:38,  9.56it/s][A
+
+Epoch 1: 1759it [03:38,  9.48it/s][A
+
+Epoch 1: 1761it [03:38, 10.80it/s][A
+
+Epoch 1: 1763it [03:38, 11.27it/s][A
+
+Epoch 1: 1765it [03:38, 10.05it/s][A
+
+Epoch 1: 1767it [03:39,  9.26it/s][A
+
+Epoch 1: 1768it [03:39,  9.38it/s][A
+
+Epoch 1: 1770it [03:39,  9.87it/s][A
+
+Epoch 1: 1772it [03:39,  8.87it/s][A
+
+Epoch 1: 1773it [03:39,  8.85it/s][A
+
+Epoch 1: 1774it [03:39,  9.03it/s][A
+
+Epoch 1: 1776it [03:39,  9.56it/s][A
+
+Epoch 1: 1778it [03:40, 11.22it/s][A
+
+Epoch 1: 1780it [03:40,  9.45it/s][A
+
+Epoch 1: 1782it [03:40,  9.02it/s][A
+
+Epoch 1: 1783it [03:40,  8.88it/s][A
+
+Epoch 1: 1784it [03:40,  8.72it/s][A
+
+Epoch 1: 1786it [03:41,  9.33it/s][A
+
+Epoch 1: 1788it [03:41, 10.24it/s][A
+
+Epoch 1: 1790it [03:41, 10.00it/s][A
+
+Epoch 1: 1792it [03:41,  9.80it/s][A
+
+Epoch 1: 1793it [03:41,  9.41it/s][A
+
+Epoch 1: 1795it [03:42,  9.03it/s][A
+
+Epoch 1: 1797it [03:42,  9.28it/s][A
+
+Epoch 1: 1798it [03:42,  9.11it/s][A
+
+Epoch 1: 1799it [03:42,  9.24it/s][A
+
+Epoch 1: 1800it [03:42,  8.81it/s][A
+
+Epoch 1: 1801it [03:42,  8.87it/s][A
+
+Epoch 1: 1803it [03:42,  9.86it/s][A
+
+Epoch 1: 1804it [03:42,  9.25it/s][A
+
+Epoch 1: 1805it [03:43,  9.36it/s][A
+
+Epoch 1: 1806it [03:43,  9.15it/s][A
+
+Epoch 1: 1807it [03:43,  8.78it/s][A
+
+Epoch 1: 1809it [03:43, 10.23it/s][A
+
+Epoch 1: 1811it [03:43, 10.23it/s][A
+
+Epoch 1: 1813it [03:43, 10.57it/s][A
+
+Epoch 1: 1815it [03:44, 10.57it/s][A
+
+Epoch 1: 1817it [03:44, 10.72it/s][A
+
+Epoch 1: 1819it [03:44, 10.73it/s][A
+
+Epoch 1: 1821it [03:44, 10.28it/s][A
+
+Epoch 1: 1823it [03:44,  9.15it/s][A
+
+Epoch 1: 1824it [03:45,  9.10it/s][A
+
+Epoch 1: 1826it [03:45,  9.55it/s][A
+
+Epoch 1: 1828it [03:45,  9.50it/s][A
+
+Epoch 1: 1829it [03:45,  9.28it/s][A
+
+Epoch 1: 1831it [03:45,  9.53it/s][A
+
+Epoch 1: 1832it [03:45,  9.57it/s][A
+
+Epoch 1: 1833it [03:45,  9.49it/s][A
+
+Epoch 1: 1834it [03:46,  8.68it/s][A
+
+Epoch 1: 1835it [03:46,  8.54it/s][A
+
+Epoch 1: 1836it [03:46,  8.80it/s][A
+
+Epoch 1: 1837it [03:46,  8.62it/s][A
+
+Epoch 1: 1838it [03:46,  8.61it/s][A
+
+Epoch 1: 1839it [03:46,  8.73it/s][A
+
+Epoch 1: 1840it [03:46,  8.78it/s][A
+
+Epoch 1: 1841it [03:46,  8.99it/s][A
+
+Epoch 1: 1843it [03:47,  9.73it/s][A
+
+Epoch 1: 1844it [03:47,  9.33it/s][A
+
+Epoch 1: 1846it [03:47,  9.50it/s][A
+
+Epoch 1: 1847it [03:47,  9.01it/s][A
+
+Epoch 1: 1848it [03:47,  9.23it/s][A
+
+Epoch 1: 1850it [03:47, 10.21it/s][A
+
+Epoch 1: 1852it [03:47,  9.82it/s][A
+
+Epoch 1: 1853it [03:48,  9.77it/s][A
+
+Epoch 1: 1855it [03:48,  9.76it/s][A
+
+Epoch 1: 1857it [03:48, 10.45it/s][A
+
+Epoch 1: 1859it [03:48,  9.72it/s][A
+
+Epoch 1: 1860it [03:48,  9.76it/s][A
+
+Epoch 1: 1861it [03:48,  9.72it/s][A
+
+Epoch 1: 1862it [03:49,  9.51it/s][A
+
+Epoch 1: 1863it [03:49,  9.14it/s][A
+
+Epoch 1: 1864it [03:49,  8.86it/s][A
+
+Epoch 1: 1865it [03:49,  9.13it/s][A
+
+Epoch 1: 1867it [03:49,  9.21it/s][A
+
+Epoch 1: 1869it [03:49,  9.87it/s][A
+
+Epoch 1: 1871it [03:49, 10.67it/s][A
+
+Epoch 1: 1873it [03:50, 10.07it/s][A
+
+Epoch 1: 1875it [03:50, 10.50it/s][A
+
+Epoch 1: 1877it [03:50, 10.02it/s][A
+
+Epoch 1: 1879it [03:50,  9.82it/s][A
+
+Epoch 1: 1880it [03:50,  9.67it/s][A
+
+Epoch 1: 1882it [03:51, 10.06it/s][A
+
+Epoch 1: 1884it [03:51,  9.80it/s][A
+
+Epoch 1: 1886it [03:51, 11.12it/s][A
+
+Epoch 1: 1888it [03:51, 10.90it/s][A
+
+Epoch 1: 1890it [03:51, 10.19it/s][A
+
+Epoch 1: 1892it [03:51, 10.30it/s][A
+
+Epoch 1: 1894it [03:52, 10.09it/s][A
+
+Epoch 1: 1896it [03:52, 10.39it/s][A
+
+Epoch 1: 1898it [03:52, 11.28it/s][A
+
+Epoch 1: 1900it [03:52, 10.70it/s][A
+
+Epoch 1: 1902it [03:52, 10.66it/s][A
+
+Epoch 1: 1904it [03:53, 10.52it/s][A
+
+Epoch 1: 1906it [03:53, 12.26it/s][A
+
+Epoch 1: 1908it [03:53, 11.69it/s][A
+
+Epoch 1: 1910it [03:53,  8.20it/s][A
+
+Epoch 1: 1912it [03:54,  7.02it/s][A
+
+Epoch 1: 1913it [03:54,  6.10it/s][A
+
+Epoch 1: 1914it [03:54,  5.78it/s][A
+
+Epoch 1: 1916it [03:54,  6.35it/s][A
+
+Epoch 1: 1917it [03:55,  6.69it/s][A
+
+Epoch 1: 1918it [03:55,  7.05it/s][A
+
+Epoch 1: 1919it [03:55,  6.88it/s][A
+
+Epoch 1: 1920it [03:55,  7.10it/s][A
+
+Epoch 1: 1921it [03:55,  7.45it/s][A
+
+Epoch 1: 1923it [03:55,  7.72it/s][A
+
+Epoch 1: 1924it [03:56,  6.00it/s][A
+
+Epoch 1: 1925it [03:56,  6.29it/s][A
+
+Epoch 1: 1926it [03:56,  6.85it/s][A
+
+Epoch 1: 1927it [03:56,  7.49it/s][A
+
+Epoch 1: 1929it [03:56,  8.34it/s][A
+
+Epoch 1: 1930it [03:56,  8.30it/s][A
+
+Epoch 1: 1931it [03:56,  7.52it/s][A
+
+Epoch 1: 1932it [03:57,  6.64it/s][A
+
+Epoch 1: 1934it [03:57,  9.11it/s][A
+
+Epoch 1: 1936it [03:57,  9.65it/s][A
+
+Epoch 1: 1938it [03:57, 11.19it/s][A
+
+Epoch 1: 1940it [03:57, 10.06it/s][A
+
+Epoch 1: 1942it [03:58, 10.17it/s][A
+
+Epoch 1: 1944it [03:58, 10.10it/s][A
+
+Epoch 1: 1946it [03:58, 11.79it/s][A
+
+Epoch 1: 1948it [03:58, 12.01it/s][A
+Epoch 1: 1948it [03:58,  8.17it/s]
+
+
+테스트: 0it [00:00, ?it/s][A
+
+테스트: 1it [00:00,  1.25it/s][A
+
+테스트: 2it [00:01,  2.19it/s][A
+
+테스트: 9it [00:01,  8.32it/s][A
+
+테스트: 11it [00:01,  9.38it/s][A
+
+테스트: 17it [00:01, 16.54it/s][A
+
+테스트: 20it [00:02, 11.59it/s][A
+
+테스트: 23it [00:02, 13.60it/s][A
+
+테스트: 26it [00:02, 13.91it/s][A
+
+테스트: 28it [00:02,  9.65it/s][A
+
+테스트: 35it [00:03, 16.67it/s][A
+
+테스트: 38it [00:03, 13.74it/s][A
+
+테스트: 41it [00:03, 15.58it/s][A
+
+테스트: 44it [00:04, 10.69it/s][A
+
+테스트: 46it [00:04, 11.55it/s][A
+
+테스트: 51it [00:04, 14.83it/s][A
+
+테스트: 55it [00:04, 14.31it/s][A
+
+테스트: 59it [00:04, 14.69it/s][A
+
+테스트: 61it [00:05, 14.04it/s][A
+
+테스트: 63it [00:05, 11.40it/s][A
+
+테스트: 68it [00:05, 13.17it/s][A
+
+테스트: 72it [00:05, 14.45it/s][A
+
+테스트: 75it [00:06, 15.13it/s][A
+
+테스트: 77it [00:06, 14.48it/s][A
+
+테스트: 79it [00:06, 13.58it/s][A
+
+테스트: 81it [00:06, 13.20it/s][A
+
+테스트: 84it [00:06, 14.71it/s][A
+
+테스트: 86it [00:06, 14.56it/s][A
+
+테스트: 88it [00:07, 12.55it/s][A
+
+테스트: 91it [00:07, 15.14it/s][A
+
+테스트: 93it [00:07, 14.05it/s][A
+
+테스트: 95it [00:07, 14.08it/s][A
+
+테스트: 97it [00:07, 12.94it/s][A
+
+테스트: 99it [00:07, 14.07it/s][A
+
+테스트: 101it [00:08, 13.08it/s][A
+
+테스트: 104it [00:08, 16.23it/s][A
+
+테스트: 106it [00:08, 15.15it/s][A
+
+테스트: 108it [00:08, 14.35it/s][A
+
+테스트: 110it [00:08, 14.52it/s][A
+
+테스트: 112it [00:08, 10.95it/s][A
+
+테스트: 116it [00:09, 13.38it/s][A
+
+테스트: 120it [00:09, 17.21it/s][A
+
+테스트: 122it [00:09, 15.11it/s][A
+
+테스트: 124it [00:09, 15.26it/s][A
+
+테스트: 126it [00:09, 15.59it/s][A
+
+테스트: 128it [00:09, 15.28it/s][A
+
+테스트: 130it [00:09, 14.61it/s][A
+
+테스트: 132it [00:10, 11.88it/s][A
+
+테스트: 137it [00:10, 17.16it/s][A
+
+테스트: 139it [00:10, 15.94it/s][A
+
+테스트: 141it [00:10, 14.55it/s][A
+
+테스트: 143it [00:10, 14.45it/s][A
+
+테스트: 145it [00:11, 13.71it/s][A
+
+테스트: 148it [00:11, 15.47it/s][A
+
+테스트: 150it [00:11, 14.51it/s][A
+
+테스트: 152it [00:11, 15.58it/s][A
+
+테스트: 155it [00:11, 16.14it/s][A
+
+테스트: 157it [00:11, 14.84it/s][A
+
+테스트: 159it [00:11, 14.10it/s][A
+
+테스트: 161it [00:12, 14.37it/s][A
+
+테스트: 163it [00:12, 13.26it/s][A
+
+테스트: 165it [00:12, 12.95it/s][A
+
+테스트: 167it [00:12, 13.73it/s][A
+
+테스트: 170it [00:12, 16.53it/s][A
+
+테스트: 172it [00:12, 16.69it/s][A
+
+테스트: 174it [00:12, 16.62it/s][A
+
+테스트: 176it [00:13, 15.69it/s][A
+
+테스트: 178it [00:13, 14.72it/s][A
+
+테스트: 180it [00:13, 13.19it/s][A
+
+테스트: 183it [00:13, 16.34it/s][A
+
+테스트: 186it [00:13, 18.09it/s][A
+
+테스트: 188it [00:13, 16.52it/s][A
+
+테스트: 190it [00:13, 15.51it/s][A
+
+테스트: 192it [00:14, 14.39it/s][A
+
+테스트: 194it [00:14, 14.84it/s][A
+
+테스트: 196it [00:14, 13.42it/s][A
+
+테스트: 199it [00:14, 15.37it/s][A
+
+테스트: 201it [00:14, 14.60it/s][A
+
+테스트: 203it [00:14, 13.03it/s][A
+
+테스트: 206it [00:15, 15.24it/s][A
+
+테스트: 208it [00:15, 14.65it/s][A
+
+테스트: 210it [00:15, 14.37it/s][A
+
+테스트: 212it [00:15, 14.38it/s][A
+
+테스트: 214it [00:15, 12.67it/s][A
+
+테스트: 216it [00:15, 13.43it/s][A
+
+테스트: 218it [00:16, 11.47it/s][A
+
+테스트: 220it [00:16, 10.68it/s][A
+
+테스트: 222it [00:16, 10.70it/s][A
+
+테스트: 224it [00:16, 10.58it/s][A
+
+테스트: 226it [00:16, 11.00it/s][A
+
+테스트: 228it [00:16, 11.48it/s][A
+
+테스트: 230it [00:17, 12.78it/s][A
+
+테스트: 233it [00:17, 14.83it/s][A
+
+테스트: 235it [00:17, 13.22it/s][A
+
+테스트: 237it [00:17, 12.14it/s][A
+
+테스트: 239it [00:17, 12.26it/s][A
+
+테스트: 241it [00:17, 11.87it/s][A
+
+테스트: 243it [00:18, 13.22it/s][A
+
+테스트: 245it [00:18, 14.12it/s][A
+
+테스트: 247it [00:18, 14.09it/s][A
+
+테스트: 249it [00:18, 14.30it/s][A
+
+테스트: 251it [00:18, 14.99it/s][A
+
+테스트: 253it [00:18, 14.15it/s][A
+
+테스트: 255it [00:18, 14.50it/s][A
+
+테스트: 257it [00:19, 15.59it/s][A
+
+테스트: 259it [00:19, 15.22it/s][A
+
+테스트: 261it [00:19, 14.72it/s][A
+
+테스트: 263it [00:19, 14.49it/s][A
+
+테스트: 265it [00:19, 14.85it/s][A
+
+테스트: 267it [00:19, 14.40it/s][A
+
+테스트: 269it [00:19, 12.39it/s][A
+
+테스트: 272it [00:20, 15.22it/s][A
+
+테스트: 275it [00:20, 12.20it/s][A
+
+테스트: 279it [00:20, 15.46it/s][A
+
+테스트: 281it [00:20, 15.54it/s][A
+
+테스트: 284it [00:20, 18.01it/s][A
+
+테스트: 286it [00:20, 17.20it/s][A
+
+테스트: 288it [00:21, 15.93it/s][A
+
+테스트: 290it [00:21, 12.89it/s][A
+
+테스트: 293it [00:21, 14.39it/s][A
+
+테스트: 295it [00:21, 12.68it/s][A
+
+테스트: 298it [00:21, 14.00it/s][A
+
+테스트: 302it [00:21, 18.60it/s][A
+
+테스트: 305it [00:22, 19.27it/s][A
+
+테스트: 308it [00:22, 15.78it/s][A
+
+테스트: 310it [00:22,  9.33it/s][A
+
+테스트: 315it [00:22, 14.49it/s][A
+
+테스트: 318it [00:23, 13.13it/s][A
+
+테스트: 323it [00:23, 13.71it/s][A
+
+테스트: 326it [00:23, 15.03it/s][A
+
+테스트: 329it [00:23, 17.27it/s][A
+
+테스트: 332it [00:24, 15.50it/s][A
+
+테스트: 336it [00:24, 17.55it/s][A
+
+테스트: 339it [00:24, 13.81it/s][A
+
+테스트: 341it [00:24, 14.37it/s][A
+
+테스트: 343it [00:24, 14.31it/s][A
+
+테스트: 345it [00:25, 14.05it/s][A
+
+테스트: 347it [00:25, 15.03it/s][A
+
+테스트: 349it [00:25, 14.88it/s][A
+
+테스트: 352it [00:25, 17.80it/s][A
+
+테스트: 354it [00:25, 16.54it/s][A
+
+테스트: 357it [00:25, 16.30it/s][A
+
+테스트: 359it [00:26,  6.74it/s][A
+
+테스트: 366it [00:26, 12.77it/s][A
+
+테스트: 374it [00:26, 20.33it/s][A
+
+테스트: 378it [00:27, 15.96it/s][A
+
+테스트: 382it [00:27, 15.30it/s][A
+
+테스트: 385it [00:27, 12.46it/s][A
+
+테스트: 391it [00:28, 17.85it/s][A
+
+테스트: 394it [00:28, 12.84it/s][A
+
+테스트: 398it [00:28, 15.68it/s][A
+
+테스트: 401it [00:28, 13.78it/s][A
+
+테스트: 404it [00:29, 14.82it/s][A
+
+테스트: 407it [00:29, 16.60it/s][A
+
+테스트: 410it [00:29, 14.48it/s][A
+
+테스트: 414it [00:29, 17.75it/s][A
+
+테스트: 417it [00:29, 15.75it/s][A
+
+테스트: 419it [00:29, 16.30it/s][A
+
+테스트: 421it [00:30, 15.15it/s][A
+
+테스트: 423it [00:30, 15.29it/s][A
+
+테스트: 425it [00:30, 15.92it/s][A
+
+테스트: 427it [00:30, 15.87it/s][A
+
+테스트: 429it [00:30, 15.30it/s][A
+
+테스트: 432it [00:30, 18.28it/s][A
+
+테스트: 435it [00:30, 19.81it/s][A
+
+테스트: 438it [00:31, 18.85it/s][A
+
+테스트: 440it [00:31, 15.37it/s][A
+
+테스트: 442it [00:31, 15.01it/s][A
+
+테스트: 445it [00:31, 17.23it/s][A
+
+테스트: 447it [00:31, 13.00it/s][A
+
+테스트: 452it [00:31, 19.06it/s][A
+
+테스트: 455it [00:32, 16.47it/s][A
+
+테스트: 457it [00:32, 16.19it/s][A
+
+테스트: 460it [00:32, 16.18it/s][A
+
+테스트: 462it [00:33,  9.02it/s][A
+
+테스트: 469it [00:33, 11.85it/s][A
+
+테스트: 477it [00:33, 18.25it/s][A
+
+테스트: 480it [00:33, 19.07it/s][A
+
+테스트: 483it [00:33, 17.08it/s][A
+
+테스트: 486it [00:34, 18.99it/s][A
+테스트: 487it [00:34, 14.27it/s]
+
+전체 진행률:   1%|▏         | 2/150 [11:28<13:37:36, 331.47s/it]
+
+Epoch 2: 0it [00:00, ?it/s][A
+
+Epoch 2: 1it [00:00,  1.05it/s][A
+
+Epoch 2: 3it [00:01,  3.27it/s][A
+
+Epoch 2: 5it [00:01,  5.04it/s][A
+
+Epoch 2: 7it [00:01,  6.98it/s][A
+
+Epoch 2: 9it [00:01,  8.93it/s][A
+Epoch 2: 9it [00:01,  5.10it/s]
+
+전체 진행률:   1%|▏         | 2/150 [11:29<14:10:46, 344.91s/it]
 Traceback (most recent call last):
-  File "train_custom.py", line 15, in <module>
-    from sklearn.metrics import auc, roc_curve, precision_recall_curve
-ModuleNotFoundError: No module named 'sklearn'
+  File "C:\Users\User\Documents\repos\SHIBAL\train_custom.py", line 420, in <module>
+    main()
+  File "C:\Users\User\Documents\repos\SHIBAL\train_custom.py", line 387, in main
+    cost = train(train_loader, model, optimizer, scheduler, device, step, use_multi_gpu)
+  File "C:\Users\User\Documents\repos\SHIBAL\train_custom.py", line 150, in train
+    for step, (ninput, nlabel, ainput, alabel, ncategory, acategory) in tqdm(enumerate(loader), desc=f"Epoch {epoch}"):
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\tqdm\std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\utils\data\dataloader.py", line 733, in __next__
+    data = self._next_data()
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\utils\data\dataloader.py", line 1515, in _next_data
+    return self._process_data(data, worker_id)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\utils\data\dataloader.py", line 1550, in _process_data
+    data.reraise()
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\_utils.py", line 750, in reraise
+    raise exception
+RuntimeError: Caught RuntimeError in DataLoader worker process 1.
+Original Traceback (most recent call last):
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\utils\data\_utils\worker.py", line 349, in _worker_loop
+    data = fetcher.fetch(index)  # type: ignore[possibly-undefined]
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\utils\data\_utils\fetch.py", line 55, in fetch
+    return self.collate_fn(data)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\utils\data\_utils\collate.py", line 398, in default_collate
+    return collate(batch, collate_fn_map=default_collate_fn_map)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\utils\data\_utils\collate.py", line 211, in collate
+    return [
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\utils\data\_utils\collate.py", line 212, in <listcomp>
+    collate(samples, collate_fn_map=collate_fn_map)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\utils\data\_utils\collate.py", line 155, in collate
+    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\utils\data\_utils\collate.py", line 270, in collate_tensor_fn
+    storage = elem._typed_storage()._new_shared(numel, device=elem.device)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\storage.py", line 1198, in _new_shared
+    untyped_storage = torch.UntypedStorage._new_shared(
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\storage.py", line 410, in _new_shared
+    return cls._new_using_filename_cpu(size)
+RuntimeError: Couldn't open shared file mapping: <torch_8516_4141937513_1957>, error code: <1455>
+
