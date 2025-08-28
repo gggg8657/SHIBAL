@@ -34,11 +34,11 @@ GPU:
 Epoch 0:   0%|                                                                                                                                                                                            | 0/2082 [00:00<?, ?it/s]
 전체 진행률:   0%|                                                                                                                                                                                          | 0/50 [00:00<?, ?it/s]
 Traceback (most recent call last):
-  File "C:\Users\User\Documents\repos\SHIBAL\train_custom_e2e.py", line 629, in <module>
+  File "C:\Users\User\Documents\repos\SHIBAL\train_custom_e2e.py", line 630, in <module>
     main()
-  File "C:\Users\User\Documents\repos\SHIBAL\train_custom_e2e.py", line 556, in main
+  File "C:\Users\User\Documents\repos\SHIBAL\train_custom_e2e.py", line 557, in main
     train_loss = train(train_loader, model, optimizer, scheduler, device, epoch, use_multi_gpu)
-  File "C:\Users\User\Documents\repos\SHIBAL\train_custom_e2e.py", line 325, in train
+  File "C:\Users\User\Documents\repos\SHIBAL\train_custom_e2e.py", line 326, in train
     outputs = model(input_data)
   File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\module.py", line 1751, in _wrapped_call_impl
     return self._call_impl(*args, **kwargs)
@@ -60,12 +60,12 @@ Original Traceback (most recent call last):
     return self._call_impl(*args, **kwargs)
   File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\module.py", line 1762, in _call_impl
     return forward_call(*args, **kwargs)
-  File "C:\Users\User\Documents\repos\SHIBAL\train_custom_e2e.py", line 237, in forward
+  File "C:\Users\User\Documents\repos\SHIBAL\train_custom_e2e.py", line 238, in forward
     output = self.stead_model(features)
   File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\module.py", line 1751, in _wrapped_call_impl
     return self._call_impl(*args, **kwargs)
   File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\module.py", line 1762, in _call_impl
     return forward_call(*args, **kwargs)
-  File "C:\Users\User\Documents\repos\SHIBAL\model.py", line 113, in forward
-    raise ValueError(f"예상되지 않은 텐서 차원: {x.dim()}, 형태: {x.shape}")
-ValueError: 예상되지 않은 텐서 차원: 3, 형태: torch.Size([8, 1, 400])
+  File "C:\Users\User\Documents\repos\SHIBAL\model.py", line 133, in forward
+    raise ValueError(f"채널 차원을 감지할 수 없습니다: {x.shape}, init_dim={self.init_dim}")
+ValueError: 채널 차원을 감지할 수 없습니다: torch.Size([8, 1, 1, 1, 400]), init_dim=32
