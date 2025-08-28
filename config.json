@@ -1,18 +1,19 @@
 {
     "data": {
-        "train_list": "custom_data/balanced_train.txt",
-        "test_list": "custom_data/balanced_test.txt",
+        "train_list": "custom_data/original_images_train.txt",
+        "valid_list": "custom_data/original_images_valid.txt",
+        "test_list": "custom_data/original_images_test.txt",
         "model_path": "saved_models/888tiny.pkl"
     },
     "training": {
-        "comment": "custom_balanced",
+        "comment": "e2e_tiny_original",
         "dropout_rate": 0.4,
         "attn_dropout_rate": 0.1,
-        "lr": 2e-4,
+        "lr": 1e-4,
         "batch_size": 16,
-        "model_name": "custom_model",
+        "model_name": "e2e_tiny_original",
         "model_arch": "tiny",
-        "max_epoch": 100,
+        "max_epoch": 50,
         "warmup": 1,
         "save_dir": "./ckpt"
     },

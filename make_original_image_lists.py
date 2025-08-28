@@ -27,57 +27,41 @@ def create_image_lists(segments_data, output_dir, train_ratio=0.7, test_ratio=0.
     
     for segment in segments_data:
         try:
-            # 이미지 경로 추출
-            image_path = segment.get('image_path', '')
-            if not image_path:
+            # 이미지 경로 추출 (images 배열에서)
+            images = segment.get('images', [])
+            if not images:
                 continue
             
             # 라벨 추출
-            label = segment.get('label', 'normal')
-            category = segment.get('category', 'unknown')
+            label = segment.get('description_en', 'normal')  # description_en 사용
+            category = segment.get('description', 'unknown')  # description 사용
             
-            # Windows 경로를 Unix 경로로 변환
-            image_path = image_path.replace('\\', '/')
-            
-            # 절대 경로인 경우 상대 경로로 변환
-            if image_path.startswith('C:/') or image_path.startswith('D:/'):
-                # 상위 디렉토리에서 이미지 찾기
-                relative_path = None
-                for root, dirs, files in os.walk('..'):
-                    for file in files:
-                        if file in image_path or os.path.basename(image_path) == file:
-                            relative_path = os.path.join(root, file)
-                            break
-                    if relative_path:
-                        break
-                
-                if relative_path:
-                    image_path = relative_path
-                else:
-                    print(f"⚠️ 이미지 파일을 찾을 수 없음: {image_path}")
+            # 각 이미지에 대해 처리
+            for image_path in images:
+                try:
+                    # Windows 경로를 그대로 유지 (윈도우 PC에서 실행할 예정)
+                    # image_path = image_path.replace('\\', '/')  # 이 줄 제거
+                    
+                    # 이미지 확장자 확인만 수행
+                    if not image_path.lower().endswith(('.jpg', '.jpeg', '.png', '.bmp', '.tiff')):
+                        print(f"⚠️ 지원하지 않는 이미지 형식: {image_path}")
+                        continue
+                    
+                    # 라벨을 숫자로 변환
+                    if label.lower() in ['normal', '정상']:
+                        label_num = 0
+                        normal_images.append((image_path, label_num, category))
+                    elif label.lower() in ['abnormal', '비정상', 'anomaly', 'violence', 'abnormal movement', 'baggage movement', 'collapse', 'suspicious behavior']:
+                        label_num = 1
+                        abnormal_images.append((image_path, label_num, category))
+                    else:
+                        print(f"⚠️ 알 수 없는 라벨: {label}")
+                        continue
+                        
+                except Exception as e:
+                    print(f"❌ 이미지 처리 실패: {image_path}, 에러: {e}")
                     continue
-            
-            # 이미지 파일 존재 확인
-            if not os.path.exists(image_path):
-                print(f"⚠️ 이미지 파일이 존재하지 않음: {image_path}")
-                continue
-            
-            # 이미지 확장자 확인
-            if not image_path.lower().endswith(('.jpg', '.jpeg', '.png', '.bmp', '.tiff')):
-                print(f"⚠️ 지원하지 않는 이미지 형식: {image_path}")
-                continue
-            
-            # 라벨을 숫자로 변환
-            if label.lower() in ['normal', '정상']:
-                label_num = 0
-                normal_images.append((image_path, label_num, category))
-            elif label.lower() in ['abnormal', '비정상', 'anomaly', 'violence', 'abnormal movement', 'baggage movement', 'collapse', 'suspicious behavior']:
-                label_num = 1
-                abnormal_images.append((image_path, label_num, category))
-            else:
-                print(f"⚠️ 알 수 없는 라벨: {label}")
-                continue
-                
+                    
         except Exception as e:
             print(f"❌ 세그먼트 처리 실패: {e}")
             continue
@@ -110,7 +94,7 @@ def create_image_lists(segments_data, output_dir, train_ratio=0.7, test_ratio=0.
     
     print(f"\n=== 데이터 분할 결과 ===")
     print(f"훈련: 정상 {len(normal_train)}개, 비정상 {len(abnormal_train)}개 (총 {len(normal_train) + len(abnormal_train)}개)")
-    print(f"검증: 정상 {len(normal_valid)}개, 비정상 {len(abnormal_valid)}개 (총 {len(normal_valid) + len(abnormal_valid)}개)")
+    print(f"검증: 정상 {len(normal_valid)}개, 비정상 {len(normal_valid)}개 (총 {len(normal_valid) + len(abnormal_valid)}개)")
     print(f"테스트: 정상 {len(normal_test)}개, 비정상 {len(abnormal_test)}개 (총 {len(normal_test) + len(abnormal_test)}개)")
     
     # 리스트 파일 생성
