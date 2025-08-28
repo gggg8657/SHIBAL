@@ -230,9 +230,14 @@ class EndToEndModel(nn.Module):
         # 차원 맞추기
         features = self.feature_adapter(features)  # [B, 400]
         
-        # STEAD 모델 입력 형태로 변환: [B, 1, 400] -> [B, 1, 1, 1, 400]
-        # STEAD 모델은 (B, T, H, W, C) 형태를 기대
-        features = features.unsqueeze(1).unsqueeze(1).unsqueeze(1)  # [B, 1, 1, 1, 400]
+        # STEAD 모델 입력 형태로 변환: [B, 400] -> [B, 32, 1, 1, 1]
+        # STEAD 모델은 (B, C, T, H, W) 형태를 기대하고 init_dim=32
+        # 400차원을 32차원으로 줄이기 위해 추가 어댑터 사용
+        if not hasattr(self, 'dim_adapter'):
+            self.dim_adapter = nn.Linear(400, 32).to(features.device)
+        
+        features = self.dim_adapter(features)  # [B, 32]
+        features = features.unsqueeze(2).unsqueeze(3).unsqueeze(4)  # [B, 32, 1, 1, 1]
         
         # STEAD 모델 통과
         output = self.stead_model(features)
