@@ -217,53 +217,41 @@ class EndToEndModel(nn.Module):
             self.stead_model = Model(dropout=dropout, attn_dropout=attn_dropout,
                                    ff_mult=ff_mult, dims=tuple(dims), depths=tuple(depths))
         
-        # Feature 차원 맞추기
-        self.feature_adapter = nn.Linear(self.feature_dim, 400)  # STEAD 입력 차원
+        # Feature 차원 맞추기 (CNN 출력 -> STEAD 입력)
+        self.feature_adapter = nn.Linear(self.feature_dim, 400)
+        
+        # STEAD 모델의 init_dim에 맞추기 위한 어댑터
+        self.dim_adapter = nn.Linear(400, 32)  # 400 -> 32 (tiny 모델)
     
     def forward(self, x):
-        # 이미지 → 특징 추출
-        batch_size = x.size(0)
+        # 배치 크기가 1인 경우 복제하여 2로 만들기 (BatchNorm 문제 해결)
+        if x.size(0) == 1:
+            x = x.repeat(2, 1, 1, 1)
+            need_squeeze = True
+        else:
+            need_squeeze = False
         
         # CNN 특징 추출
-        features = self.feature_extractor(x)  # [B, 512]
+        features = self.feature_extractor(x)  # [B, 512] 또는 [B, 256]
         
-        # 차원 맞추기
+        # 차원 맞추기 (CNN 출력 -> STEAD 입력)
         features = self.feature_adapter(features)  # [B, 400]
         
-        # STEAD 모델 입력 형태로 변환: [B, 400] -> [B, 32, 1, 1, 1]
-        if not hasattr(self, 'dim_adapter'):
-            self.dim_adapter = nn.Linear(400, 32).to(features.device)
-        
+        # STEAD 모델의 init_dim에 맞추기
         features = self.dim_adapter(features)  # [B, 32]
+        
+        # STEAD 모델 입력 형태로 변환: [B, 32] -> [B, 32, 1, 1, 1] (B, C, T, H, W)
         features = features.unsqueeze(2).unsqueeze(3).unsqueeze(4)  # [B, 32, 1, 1, 1]
         
-        # STEAD 모델이 제대로 초기화되었는지 확인
-        try:
-            # BatchNorm 문제 해결: eval 모드로 전환
-            self.stead_model.eval()
-            with torch.no_grad():
-                output = self.stead_model(features)
-            self.stead_model.train()  # 다시 train 모드로
-        except Exception as e:
-            # STEAD 모델 문제 해결
-            print(f"⚠️ STEAD 모델 문제 감지: {e}, 간단한 출력으로 대체")
-            # 간단한 출력 생성 - 배치 크기에 맞춤
-            output = features.mean(dim=[2, 3, 4])  # [B, 32]
-            output = output.unsqueeze(1)  # [B, 1, 32]
+        # STEAD 모델 통과
+        output = self.stead_model(features)
         
-        # 튜플 출력 처리
-        if isinstance(output, tuple):
-            output = output[0]  # 첫 번째 요소(logits)만 사용
-        
-        # 출력 차원을 [B, 1]로 맞춤 (이진 분류)
-        if output.dim() > 2:
-            output = output.mean(dim=-1)  # 마지막 차원을 평균으로 압축
-        if output.size(-1) != 1:
-            # 마지막 차원이 1이 아니면 1로 맞춤
-            if output.size(-1) > 1:
-                output = output.mean(dim=-1, keepdim=True)  # [B, 1]
+        # 배치 크기가 1이었던 경우 첫 번째 결과만 반환
+        if need_squeeze:
+            if isinstance(output, tuple):
+                output = (output[0][0:1], output[1][0:1])
             else:
-                output = output.unsqueeze(-1)  # [B, 1]
+                output = output[0:1]
         
         return output
 def load_config(config_path):
