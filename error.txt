@@ -2,8 +2,9 @@
 
 === 설정 정보 ===
 데이터:
-  - 훈련: custom_data/custom_train.txt
-  - 테스트: custom_data/custom_test.txt
+  - 훈련: custom_data/original_images_train.txt
+  - 검증: custom_data/original_images_valid.txt
+  - 테스트: custom_data/original_images_test.txt
   - 모델: saved_models/888tiny.pkl
 훈련:
   - 모델: tiny
@@ -17,4 +18,60 @@ GPU:
 [GPU] 2개 GPU 사용: [0, 1]
   GPU 0: NVIDIA GeForce RTX 4090 (24.0GB)
   GPU 1: NVIDIA GeForce RTX 4090 (24.0GB)
-❌ 데이터 로더 생성 실패: invalid literal for int() with base 10: '강타'
+[E2E] 33298개 이미지 로드됨
+[E2E] 정상: 21781개, 비정상: 11517개
+[E2E] 4756개 이미지 로드됨
+[E2E] 정상: 3111개, 비정상: 1645개
+[E2E] 9515개 이미지 로드됨
+[E2E] 정상: 6224개, 비정상: 3291개
+훈련 데이터: 33298개
+검증 데이터: 4756개
+테스트 데이터: 9515개
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet18_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet18_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Downloading: "https://download.pytorch.org/models/resnet18-f37072fd.pth" to C:\Users\User/.cache\torch\hub\checkpoints\resnet18-f37072fd.pth
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 44.7M/44.7M [00:27<00:00, 1.73MB/s]
+[OK] STEAD 모델 부분 로드: saved_models/888tiny.pkl
+[GPU] DataParallel 활성화 (GPU [0, 1] 병렬)
+
+=== End-to-End 훈련 시작 ===
+Epoch 0:   0%|                                                                                                                                                                                            | 0/2082 [00:00<?, ?it/s]
+전체 진행률:   0%|                                                                                                                                                                                          | 0/50 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\repos\SHIBAL\train_custom_e2e.py", line 620, in <module>
+    main()
+  File "C:\Users\User\Documents\repos\SHIBAL\train_custom_e2e.py", line 547, in main
+    train_loss = train(train_loader, model, optimizer, scheduler, device, epoch, use_multi_gpu)
+  File "C:\Users\User\Documents\repos\SHIBAL\train_custom_e2e.py", line 316, in train
+    outputs = model(input_data)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\parallel\data_parallel.py", line 194, in forward
+    outputs = self.parallel_apply(replicas, inputs, module_kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\parallel\data_parallel.py", line 213, in parallel_apply
+    return parallel_apply(
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\parallel\parallel_apply.py", line 127, in parallel_apply
+    output.reraise()
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\_utils.py", line 750, in reraise
+    raise exception
+RuntimeError: Caught RuntimeError in replica 0 on device 0.
+Original Traceback (most recent call last):
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\parallel\parallel_apply.py", line 97, in _worker
+    output = module(*input, **kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\User\Documents\repos\SHIBAL\train_custom_e2e.py", line 222, in forward
+    features = self.feature_adapter(features)  # [B, 400]
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (4096x1 and 512x400)
