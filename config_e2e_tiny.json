@@ -3,7 +3,7 @@
         "train_list": "custom_data/original_images_train.txt",
         "valid_list": "custom_data/original_images_valid.txt",
         "test_list": "custom_data/original_images_test.txt",
-        "model_path": "saved_models/888tiny.pkl"
+        "model_path": null
     },
     "training": {
         "comment": "e2e_tiny_original",
