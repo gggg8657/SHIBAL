@@ -244,6 +244,7 @@ def print_config(config):
     print("\n=== 설정 정보 ===")
     print(f"데이터:")
     print(f"  - 훈련: {config['data']['train_list']}")
+    print(f"  - 검증: {config['data'].get('valid_list', '없음')}")
     print(f"  - 테스트: {config['data']['test_list']}")
     print(f"  - 모델: {config['data']['model_path']}")
     
