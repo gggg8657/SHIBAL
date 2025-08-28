@@ -443,6 +443,7 @@ def main():
     
     # 데이터 로더 생성
     try:
+        # 훈련 데이터
         train_loader = DataLoader(
             EndToEndDataset(train_list, transform=transform, test_mode=False),
             batch_size=config['training']['batch_size'],
@@ -451,6 +452,17 @@ def main():
             pin_memory=False
         )
         
+        # 검증 데이터 (validation set)
+        valid_list = config['data'].get('valid_list', train_list)  # 기본값은 train_list
+        valid_loader = DataLoader(
+            EndToEndDataset(valid_list, transform=transform, test_mode=True),
+            batch_size=config['training']['batch_size'],
+            shuffle=False,
+            num_workers=0,  # Windows 호환성
+            pin_memory=False
+        )
+        
+        # 테스트 데이터
         test_loader = DataLoader(
             EndToEndDataset(test_list, transform=transform, test_mode=True),
             batch_size=config['training']['batch_size'],
@@ -460,6 +472,7 @@ def main():
         )
         
         print(f"훈련 데이터: {len(train_loader.dataset)}개")
+        print(f"검증 데이터: {len(valid_loader.dataset)}개")
         print(f"테스트 데이터: {len(test_loader.dataset)}개")
         
     except Exception as e:
@@ -520,20 +533,55 @@ def main():
     
     # 훈련 루프
     test_info = {"epoch": [], "test_AUC": [], "test_PR": []}
+    valid_info = {"epoch": [], "valid_AUC": [], "valid_PR": []}
+    
+    # Early Stopping 설정
+    best_valid_auc = 0.0
+    patience = 10
+    patience_counter = 0
     
     print("\n=== End-to-End 훈련 시작 ===")
     for epoch in tqdm.tqdm(range(config['training']['max_epoch']), desc="전체 진행률"):
         # 훈련
         train_loss = train(train_loader, model, optimizer, scheduler, device, epoch, use_multi_gpu)
         
+        # 검증 (매 에포크마다)
+        valid_roc_auc, valid_pr_auc = test(valid_loader, model, device)
+        valid_info["epoch"].append(epoch + 1)
+        valid_info["valid_AUC"].append(valid_roc_auc)
+        valid_info["valid_PR"].append(valid_pr_auc)
+        print(f"Epoch {epoch+1} - 검증: ROC AUC: {valid_roc_auc:.4f}, PR AUC: {valid_pr_auc:.4f}")
+        
+        # Best Model 저장 (검증 성능 기준)
+        if valid_roc_auc > best_valid_auc:
+            best_valid_auc = valid_roc_auc
+            patience_counter = 0
+            
+            # Best Model 저장
+            if use_multi_gpu:
+                state_dict = model.module.state_dict()
+            else:
+                state_dict = model.state_dict()
+            
+            torch.save(state_dict, os.path.join(savepath, 'model_best.pth'))
+            print(f"[BEST] 새로운 최고 성능 모델 저장: ROC AUC {valid_roc_auc:.4f}")
+        else:
+            patience_counter += 1
+        
+        # Early Stopping 체크
+        if patience_counter >= patience:
+            print(f"[STOP] {patience} 에포크 동안 성능 개선 없음. 조기 종료.")
+            break
+        
         # 테스트 (매 10 에포크마다)
         if (epoch + 1) % 10 == 0:
-            roc_auc, pr_auc = test(test_loader, model, device)
+            test_roc_auc, test_pr_auc = test(test_loader, model, device)
             test_info["epoch"].append(epoch + 1)
-            test_info["test_AUC"].append(roc_auc)
-            test_info["test_PR"].append(pr_auc)
+            test_info["test_AUC"].append(test_roc_auc)
+            test_info["test_PR"].append(test_roc_auc)
+            print(f"Epoch {epoch+1} - 테스트: ROC AUC: {test_roc_auc:.4f}, PR AUC: {test_pr_auc:.4f}")
         
-        # 모델 저장
+        # 주기적 모델 저장
         if (epoch + 1) % 20 == 0:
             if use_multi_gpu:
                 state_dict = model.module.state_dict()
@@ -545,7 +593,7 @@ def main():
         
         scheduler.step()
         
-        print(f"Epoch {epoch+1}/{config['training']['max_epoch']}, Loss: {train_loss:.4f}")
+        print(f"Epoch {epoch+1}/{config['training']['max_epoch']}, Loss: {train_loss:.4f}, Best Valid AUC: {best_valid_auc:.4f}, Patience: {patience_counter}/{patience}")
     
     # 최종 모델 저장
     if use_multi_gpu:
@@ -554,8 +602,18 @@ def main():
         state_dict = model.state_dict()
     
     torch.save(state_dict, os.path.join(savepath, 'model_final.pth'))
+    
+    # 훈련 결과 요약
+    print(f"\n=== 훈련 결과 요약 ===")
+    print(f"최고 검증 ROC AUC: {best_valid_auc:.4f}")
+    print(f"최종 테스트 ROC AUC: {test_info['test_AUC'][-1] if test_info['test_AUC'] else 'N/A'}")
+    print(f"총 훈련 에포크: {len(valid_info['valid_AUC'])}")
+    
     print(f"\n[COMPLETE] End-to-End 훈련 완료!")
     print(f"모델 저장됨: {savepath}")
+    print(f"  - Best Model: model_best.pth (검증 성능 기준)")
+    print(f"  - Final Model: model_final.pth (마지막 에포크)")
+    print(f"  - 주기적 저장: model_epoch_X.pth (20 에포크마다)")
 
 if __name__ == "__main__":
     main()
