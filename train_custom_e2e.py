@@ -60,7 +60,7 @@ class EndToEndDataset(torch.utils.data.Dataset):
         self.test_mode = test_mode
         
         # 데이터 리스트 로드
-        with open(data_list_path, 'r') as f:
+        with open(data_list_path, 'r', encoding='utf-8') as f:
             for line in f:
                 line = line.strip()
                 if line:
@@ -252,7 +252,7 @@ def setup_gpu(config, gpu_ids_arg=None):
 def parse_args():
     """커맨드라인 아규먼트 파싱"""
     parser = argparse.ArgumentParser(description='STEAD End-to-End 훈련')
-    parser.add_argument('--config', type=str, required=True, help='설정 파일 경로')
+    parser.add_argument('--config', type=str, default='config_e2e_tiny.json', help='설정 파일 경로')
     parser.add_argument('--batch_size', type=int, help='배치 크기 오버라이드')
     parser.add_argument('--lr', type=float, help='학습률 오버라이드')
     parser.add_argument('--max_epoch', type=int, help='최대 에포크 오버라이드')
