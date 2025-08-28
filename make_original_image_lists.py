@@ -48,15 +48,13 @@ def create_image_lists(segments_data, output_dir, train_ratio=0.7, test_ratio=0.
                         continue
                     
                     # 라벨을 숫자로 변환
-                    if label.lower() in ['normal', '정상']:
+                    if label.lower() in ['normal', '정상', 'rest']:
                         label_num = 0
                         normal_images.append((image_path, label_num, category))
-                    elif label.lower() in ['abnormal', '비정상', 'anomaly', 'violence', 'abnormal movement', 'baggage movement', 'collapse', 'suspicious behavior']:
+                    else:
+                        # normal, rest를 제외한 모든 라벨을 abnormal로 분류
                         label_num = 1
                         abnormal_images.append((image_path, label_num, category))
-                    else:
-                        print(f"⚠️ 알 수 없는 라벨: {label}")
-                        continue
                         
                 except Exception as e:
                     print(f"❌ 이미지 처리 실패: {image_path}, 에러: {e}")
