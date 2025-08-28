@@ -330,24 +330,31 @@ def train(loader, model, optimizer, scheduler, device, epoch, use_multi_gpu):
         # Forward pass
         outputs = model(input_data)
         
+        # STEAD 모델은 (logits, features) 튜플을 반환
+        if isinstance(outputs, tuple):
+            logits, features = outputs
+        else:
+            logits = outputs
+            features = None
+        
         # Loss 계산
-        if outputs.dim() == 1:
-            outputs = outputs.unsqueeze(0)
+        if logits.dim() == 1:
+            logits = logits.unsqueeze(0)
         if labels.dim() == 1:
             labels = labels.unsqueeze(0)
         
         # BCE Loss
-        bce_loss = nn.BCEWithLogitsLoss()(outputs.squeeze(), labels.float())
+        bce_loss = nn.BCEWithLogitsLoss()(logits.squeeze(), labels.float())
         
         # Triplet Loss (간단한 버전)
-        if outputs.size(0) > 1:
+        if logits.size(0) > 1:
             # 정상/비정상 샘플 분리
             normal_mask = labels == 0
             abnormal_mask = labels == 1
             
             if normal_mask.sum() > 0 and abnormal_mask.sum() > 0:
-                normal_features = outputs[normal_mask]
-                abnormal_features = outputs[abnormal_mask]
+                normal_features = logits[normal_mask]
+                abnormal_features = logits[abnormal_mask]
                 
                 # 간단한 triplet loss
                 anchor = normal_features[0:1]
@@ -384,7 +391,14 @@ def test(loader, model, device):
             labels = labels.to(device, non_blocking=True)
             
             outputs = model(input_data)
-            pred = torch.sigmoid(outputs.squeeze())
+            
+            # STEAD 모델은 (logits, features) 튜플을 반환
+            if isinstance(outputs, tuple):
+                logits, features = outputs
+            else:
+                logits = outputs
+            
+            pred = torch.sigmoid(logits.squeeze())
             
             all_preds.extend(pred.cpu().detach().tolist())
             all_labels.extend(labels.cpu().detach().tolist())
