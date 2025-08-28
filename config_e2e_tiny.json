@@ -1,0 +1,29 @@
+{
+    "data": {
+        "train_list": "custom_data/custom_train.txt",
+        "test_list": "custom_data/custom_test.txt",
+        "model_path": "saved_models/888tiny.pkl"
+    },
+    "training": {
+        "comment": "e2e_tiny",
+        "dropout_rate": 0.4,
+        "attn_dropout_rate": 0.1,
+        "lr": 1e-4,
+        "batch_size": 16,
+        "model_name": "e2e_tiny",
+        "model_arch": "tiny",
+        "max_epoch": 50,
+        "warmup": 1,
+        "save_dir": "./ckpt"
+    },
+    "model": {
+        "ff_mult": 1,
+        "dims": [32, 32],
+        "depths": [1, 1]
+    },
+    "gpu": {
+        "use_multi_gpu": true,
+        "gpu_ids": [0, 1],
+        "auto_detect": true
+    }
+}
