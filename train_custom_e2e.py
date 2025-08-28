@@ -16,7 +16,38 @@ import tqdm
 # 상위 디렉토리 import를 위한 경로 추가
 sys.path.append('..')
 from model import Model
-from utils import Loss
+
+# Loss 클래스 정의 (utils.py에 없음)
+class TripletLoss(nn.Module):
+    def __init__(self):
+        super(TripletLoss, self).__init__()
+
+    def distance(self, x, y):
+        d = torch.cdist(x, y, p=2)
+        return d
+
+    def forward(self, feats, margin=100.0):
+        bs = len(feats)
+        n_feats = feats[:bs // 2]
+        a_feats = feats[bs // 2:]
+        n_d = self.distance(n_feats, n_feats)
+        a_d = self.distance(n_feats, a_feats)
+        n_d_max, _ = torch.max(n_d, dim=0)
+        a_d_min, _ = torch.min(a_d, dim=0)
+        a_d_min = margin - a_d_min
+        a_d_min = torch.max(torch.zeros(bs // 2).to(feats.device), a_d_min)
+        return torch.mean(n_d_max) + torch.mean(a_d_min)
+
+class Loss(nn.Module):
+    def __init__(self):
+        super(Loss, self).__init__()
+        self.criterion = nn.BCEWithLogitsLoss()
+        self.triplet = TripletLoss()
+
+    def forward(self, scores, feats, targets, alpha=0.01):
+        loss_ce = self.criterion(scores, targets)
+        loss_triplet = self.triplet(feats)
+        return loss_ce, alpha * loss_triplet
 
 class EndToEndDataset(torch.utils.data.Dataset):
     """End-to-End 학습을 위한 데이터셋 (이미지 → 라벨)"""
