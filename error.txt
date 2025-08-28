@@ -31,13 +31,21 @@ GPU:
 [GPU] DataParallel 활성화 (GPU [0, 1] 병렬)
 
 === End-to-End 훈련 시작 ===
-Epoch 0:   0%|                                                                                                                                                                                            | 0/2082 [00:01<?, ?it/s]
-전체 진행률:   0%|                                                                                                                                                                                          | 0/50 [00:01<?, ?it/s]
+Epoch 0:   0%|                                                                                                                                                                                            | 0/2082 [00:00<?, ?it/s]
+전체 진행률:   0%|                                                                                                                                                                                          | 0/50 [00:00<?, ?it/s]
 Traceback (most recent call last):
-  File "C:\Users\User\Documents\repos\SHIBAL\train_custom_e2e.py", line 635, in <module>
+  File "C:\Users\User\Documents\repos\SHIBAL\train_custom_e2e.py", line 649, in <module>
     main()
-  File "C:\Users\User\Documents\repos\SHIBAL\train_custom_e2e.py", line 562, in main
+  File "C:\Users\User\Documents\repos\SHIBAL\train_custom_e2e.py", line 576, in main
     train_loss = train(train_loader, model, optimizer, scheduler, device, epoch, use_multi_gpu)
-  File "C:\Users\User\Documents\repos\SHIBAL\train_custom_e2e.py", line 334, in train
-    if outputs.dim() == 1:
-AttributeError: 'tuple' object has no attribute 'dim'
+  File "C:\Users\User\Documents\repos\SHIBAL\train_custom_e2e.py", line 347, in train
+    bce_loss = nn.BCEWithLogitsLoss()(logits.squeeze(), labels.float())
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\modules\loss.py", line 821, in forward
+    return F.binary_cross_entropy_with_logits(
+  File "C:\Users\User\anaconda3\envs\VAD_p396\lib\site-packages\torch\nn\functional.py", line 3639, in binary_cross_entropy_with_logits
+    raise ValueError(
+ValueError: Target size (torch.Size([1, 16])) must be the same as input size (torch.Size([16]))
