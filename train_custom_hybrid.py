@@ -9,15 +9,13 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from torch.nn.parallel import DataParallel
-import torchvision.transforms as transforms
-from PIL import Image
 import tqdm
 
 # 상위 디렉토리 import를 위한 경로 추가
 sys.path.append('..')
 from model import Model
 
-# Loss 클래스 정의 (utils.py에 없음)
+# Loss 클래스 정의
 class TripletLoss(nn.Module):
     def __init__(self):
         super(TripletLoss, self).__init__()
@@ -49,14 +47,13 @@ class Loss(nn.Module):
         loss_triplet = self.triplet(feats)
         return loss_ce, alpha * loss_triplet
 
-class EndToEndDataset(torch.utils.data.Dataset):
-    """End-to-End 학습을 위한 데이터셋 (이미지 → 라벨)"""
+class HybridDataset(torch.utils.data.Dataset):
+    """Feature 기반이지만 End-to-End와 유사한 효과를 내는 데이터셋"""
     
-    def __init__(self, data_list_path, transform=None, test_mode=False):
+    def __init__(self, data_list_path, test_mode=False):
         self.data_list = []
         self.labels = []
         self.categories = []
-        self.transform = transform
         self.test_mode = test_mode
         
         # 데이터 리스트 로드
@@ -68,7 +65,7 @@ class EndToEndDataset(torch.utils.data.Dataset):
                     if '|' in line:
                         parts = line.split('|')
                         if len(parts) >= 3:
-                            image_path = parts[0]
+                            feature_path = parts[0]
                             label_str = parts[1].lower()
                             category = parts[2] if len(parts) > 2 else "unknown"
                             
@@ -78,44 +75,15 @@ class EndToEndDataset(torch.utils.data.Dataset):
                             elif label_str in ['abnormal', '1']:
                                 label = 1
                             else:
-                                print(f"⚠️ 알 수 없는 라벨: {label_str}, 건너뜀")
                                 continue
                             
-                            # Windows 경로 처리
-                            image_path = image_path.replace('\\', '/')
-                            
-                            # 이미지 파일 존재 확인 (Windows 경로 지원)
-                            if os.path.exists(image_path):
-                                self.data_list.append(image_path)
+                            # .npy 파일만 처리
+                            if feature_path.endswith('.npy') and os.path.exists(feature_path):
+                                self.data_list.append(feature_path)
                                 self.labels.append(label)
                                 self.categories.append(category)
-                            else:
-                                print(f"⚠️ 이미지 파일을 찾을 수 없음: {image_path}")
-                                continue
-                    else:
-                        # 공백으로 구분된 형식 처리 (기존 방식)
-                        parts = line.split()
-                        if len(parts) >= 3:
-                            image_path = parts[0]
-                            try:
-                                label = int(parts[1])
-                                category = parts[2] if len(parts) > 2 else "unknown"
-                                
-                                # Windows 경로 처리
-                                image_path = image_path.replace('\\', '/')
-                                
-                                if os.path.exists(image_path):
-                                    self.data_list.append(image_path)
-                                    self.labels.append(label)
-                                    self.categories.append(category)
-                                else:
-                                    print(f"⚠️ 이미지 파일을 찾을 수 없음: {image_path}")
-                                    continue
-                            except ValueError:
-                                print(f"⚠️ 라벨을 정수로 변환할 수 없음: {parts[1]}, 건너뜀")
-                                continue
         
-        print(f"[E2E] {len(self.data_list)}개 이미지 로드됨")
+        print(f"[HYBRID] {len(self.data_list)}개 feature 로드됨")
         
         # 정상/비정상 데이터 분리
         normal_indices = [i for i, label in enumerate(self.labels) if label == 0]
@@ -124,7 +92,7 @@ class EndToEndDataset(torch.utils.data.Dataset):
         self.n_len = len(normal_indices)
         self.a_len = len(abnormal_indices)
         
-        print(f"[E2E] 정상: {self.n_len}개, 비정상: {self.a_len}개")
+        print(f"[HYBRID] 정상: {self.n_len}개, 비정상: {self.a_len}개")
         
         # 인덱스 초기화
         self.n_ind = list(normal_indices)
@@ -148,54 +116,44 @@ class EndToEndDataset(torch.utils.data.Dataset):
                 random.shuffle(self.a_ind)
             data_idx = self.a_ind.pop()
         
-        # 이미지 로드 및 전처리
-        image_path = self.data_list[data_idx]
+        # Feature 로드
+        feature_path = self.data_list[data_idx]
         label = self.labels[data_idx]
         category = self.categories[data_idx]
         
         try:
-            image = Image.open(image_path).convert('RGB')
-            if self.transform:
-                image = self.transform(image)
+            # .npy 파일 로드
+            features = np.load(feature_path, allow_pickle=True, mmap_mode='r')
+            features = torch.from_numpy(features).float()
             
-            return image, label, category
+            # 차원 확인 및 조정
+            if features.dim() == 1:
+                features = features.unsqueeze(0)  # [400] -> [1, 400]
+            elif features.dim() > 2:
+                features = features.view(features.size(0), -1)  # Flatten
+            
+            return features, label, category
             
         except Exception as e:
-            print(f"이미지 로드 실패: {image_path}, 에러: {e}")
+            print(f"Feature 로드 실패: {feature_path}, 에러: {e}")
             # 에러 발생 시 더미 데이터 반환
-            dummy_image = torch.zeros(3, 224, 224)
-            return dummy_image, label, category
+            dummy_features = torch.zeros(1, 400)
+            return dummy_features, label, category
 
-class EndToEndModel(nn.Module):
-    """End-to-End 모델: X3D + STEAD"""
+class HybridModel(nn.Module):
+    """Feature 기반이지만 End-to-End와 유사한 효과를 내는 모델"""
     
     def __init__(self, model_arch='tiny', dropout=0.4, attn_dropout=0.1, 
                  ff_mult=1, dims=[32, 32], depths=[1, 1]):
         super().__init__()
         
-        # X3D Feature Extractor (경량화)
-        try:
-            import torchvision.models as models
-            # ResNet18 기반으로 경량화 (X3D 대신)
-            self.feature_extractor = models.resnet18(pretrained=True)
-            # 마지막 FC 레이어 제거
-            self.feature_extractor = nn.Sequential(*list(self.feature_extractor.children())[:-1])
-            self.feature_dim = 512
-        except:
-            # torchvision이 없는 경우 간단한 CNN
-            self.feature_extractor = nn.Sequential(
-                nn.Conv2d(3, 64, 3, padding=1),
-                nn.ReLU(),
-                nn.MaxPool2d(2),
-                nn.Conv2d(64, 128, 3, padding=1),
-                nn.ReLU(),
-                nn.MaxPool2d(2),
-                nn.Conv2d(128, 256, 3, padding=1),
-                nn.ReLU(),
-                nn.AdaptiveAvgPool2d((1, 1)),
-                nn.Flatten()
-            )
-            self.feature_dim = 256
+        # Feature Adapter (입력 차원 조정)
+        self.feature_adapter = nn.Sequential(
+            nn.Linear(400, 400),
+            nn.ReLU(),
+            nn.Dropout(dropout * 0.5),
+            nn.Linear(400, 400)
+        )
         
         # STEAD 모델
         if model_arch == 'base':
@@ -203,29 +161,21 @@ class EndToEndModel(nn.Module):
         else:
             self.stead_model = Model(dropout=dropout, attn_dropout=attn_dropout,
                                    ff_mult=ff_mult, dims=tuple(dims), depths=tuple(depths))
-        
-        # Feature 차원 맞추기
-        self.feature_adapter = nn.Linear(self.feature_dim, 400)  # STEAD 입력 차원
     
     def forward(self, x):
-        # 이미지 → 특징 추출
+        # Feature 전처리
         batch_size = x.size(0)
         
-        # ResNet의 경우
-        if hasattr(self.feature_extractor, 'avgpool'):
-            features = self.feature_extractor(x)  # [B, 512, 1, 1]
-            features = features.view(batch_size, -1)  # [B, 512]
-        else:
-            features = self.feature_extractor(x)  # [B, 256]
+        # 차원 조정
+        if x.dim() == 2:
+            x = x.unsqueeze(1)  # [B, 400] -> [B, 1, 400]
         
-        # 차원 맞추기
-        features = self.feature_adapter(features)  # [B, 400]
-        
-        # STEAD 모델 입력 형태로 변환
-        features = features.unsqueeze(1)  # [B, 1, 400]
+        # Feature Adapter 통과
+        x = self.feature_adapter(x.squeeze(-1))  # [B, 400]
+        x = x.unsqueeze(1)  # [B, 1, 400]
         
         # STEAD 모델 통과
-        output = self.stead_model(features)
+        output = self.stead_model(x)
         
         return output
 
@@ -291,7 +241,7 @@ def setup_gpu(config, gpu_ids_arg=None):
 
 def parse_args():
     """커맨드라인 아규먼트 파싱"""
-    parser = argparse.ArgumentParser(description='STEAD End-to-End 훈련')
+    parser = argparse.ArgumentParser(description='STEAD Hybrid 훈련')
     parser.add_argument('--config', type=str, default='config_e2e_tiny.json', help='설정 파일 경로')
     parser.add_argument('--batch_size', type=int, help='배치 크기 오버라이드')
     parser.add_argument('--lr', type=float, help='학습률 오버라이드')
@@ -434,17 +384,10 @@ def main():
     if torch.cuda.is_available():
         torch.backends.cudnn.benchmark = True
     
-    # 이미지 전처리
-    transform = transforms.Compose([
-        transforms.Resize((224, 224)),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-    ])
-    
     # 데이터 로더 생성
     try:
         train_loader = DataLoader(
-            EndToEndDataset(train_list, transform=transform, test_mode=False),
+            HybridDataset(train_list, test_mode=False),
             batch_size=config['training']['batch_size'],
             shuffle=True,
             num_workers=0,  # Windows 호환성
@@ -452,7 +395,7 @@ def main():
         )
         
         test_loader = DataLoader(
-            EndToEndDataset(test_list, transform=transform, test_mode=True),
+            HybridDataset(test_list, test_mode=True),
             batch_size=config['training']['batch_size'],
             shuffle=False,
             num_workers=0,  # Windows 호환성
@@ -466,9 +409,9 @@ def main():
         print(f"❌ 데이터 로더 생성 실패: {e}")
         return
     
-    # End-to-End 모델 생성
+    # Hybrid 모델 생성
     model_config = config['model']
-    model = EndToEndModel(
+    model = HybridModel(
         model_arch=config['training']['model_arch'],
         dropout=config['training']['dropout_rate'],
         attn_dropout=config['training']['attn_dropout_rate'],
@@ -487,7 +430,7 @@ def main():
             for key, value in model_ckpt.items():
                 if key.startswith('stead_model.'):
                     stead_state_dict[key] = value
-                elif not key.startswith('feature_extractor.') and not key.startswith('feature_adapter.'):
+                elif not key.startswith('feature_adapter.'):
                     stead_state_dict[f'stead_model.{key}'] = value
             
             if stead_state_dict:
@@ -509,7 +452,7 @@ def main():
     # 체크포인트 저장 디렉토리 생성
     config_name = os.path.splitext(os.path.basename(args.config))[0]
     savepath = os.path.join(config['training']['save_dir'], 
-                           f"e2e_{config_name}_{config['training']['lr']}_{config['training']['batch_size']}_{config['training']['comment']}")
+                           f"hybrid_{config_name}_{config['training']['lr']}_{config['training']['batch_size']}_{config['training']['comment']}")
     os.makedirs(savepath, exist_ok=True)
     
     # 옵티마이저 및 스케줄러 설정
@@ -521,7 +464,7 @@ def main():
     # 훈련 루프
     test_info = {"epoch": [], "test_AUC": [], "test_PR": []}
     
-    print("\n=== End-to-End 훈련 시작 ===")
+    print("\n=== Hybrid 훈련 시작 ===")
     for epoch in tqdm.tqdm(range(config['training']['max_epoch']), desc="전체 진행률"):
         # 훈련
         train_loss = train(train_loader, model, optimizer, scheduler, device, epoch, use_multi_gpu)
@@ -554,7 +497,7 @@ def main():
         state_dict = model.state_dict()
     
     torch.save(state_dict, os.path.join(savepath, 'model_final.pth'))
-    print(f"\n[COMPLETE] End-to-End 훈련 완료!")
+    print(f"\n[COMPLETE] Hybrid 훈련 완료!")
     print(f"모델 저장됨: {savepath}")
 
 if __name__ == "__main__":

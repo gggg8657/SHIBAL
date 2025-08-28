@@ -1,16 +1,16 @@
 {
     "data": {
-        "train_list": "custom_data/custom_train.txt",
-        "test_list": "custom_data/custom_test.txt",
+        "train_list": "custom_data/original_images.txt",
+        "test_list": "custom_data/original_images.txt",
         "model_path": "saved_models/888tiny.pkl"
     },
     "training": {
-        "comment": "e2e_tiny",
+        "comment": "e2e_tiny_original",
         "dropout_rate": 0.4,
         "attn_dropout_rate": 0.1,
         "lr": 1e-4,
         "batch_size": 16,
-        "model_name": "e2e_tiny",
+        "model_name": "e2e_tiny_original",
         "model_arch": "tiny",
         "max_epoch": 50,
         "warmup": 1,
