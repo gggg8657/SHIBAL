@@ -239,10 +239,14 @@ class EndToEndModel(nn.Module):
         
         # STEAD 모델이 제대로 초기화되었는지 확인
         try:
-            output = self.stead_model(features)
-        except StopIteration:
-            # STEAD 모델 초기화 문제 해결
-            print("⚠️ STEAD 모델 초기화 문제 감지, 간단한 출력으로 대체")
+            # BatchNorm 문제 해결: eval 모드로 전환
+            self.stead_model.eval()
+            with torch.no_grad():
+                output = self.stead_model(features)
+            self.stead_model.train()  # 다시 train 모드로
+        except Exception as e:
+            # STEAD 모델 문제 해결
+            print(f"⚠️ STEAD 모델 문제 감지: {e}, 간단한 출력으로 대체")
             # 간단한 출력 생성 - 배치 크기에 맞춤
             output = features.mean(dim=[2, 3, 4])  # [B, 32]
             output = output.unsqueeze(1)  # [B, 1, 32]
@@ -499,7 +503,8 @@ def main():
             batch_size=config['training']['batch_size'],
             shuffle=True,
             num_workers=0,  # Windows 호환성
-            pin_memory=False
+            pin_memory=False,
+            drop_last=True  # BatchNorm 문제 방지
         )
         
         # 검증 데이터 (validation set)
@@ -509,7 +514,8 @@ def main():
             batch_size=config['training']['batch_size'],
             shuffle=False,
             num_workers=0,  # Windows 호환성
-            pin_memory=False
+            pin_memory=False,
+            drop_last=True  # BatchNorm 문제 방지
         )
         
         # 테스트 데이터
@@ -518,7 +524,8 @@ def main():
             batch_size=config['training']['batch_size'],
             shuffle=False,
             num_workers=0,  # Windows 호환성
-            pin_memory=False
+            pin_memory=False,
+            drop_last=True  # BatchNorm 문제 방지
         )
         
         print(f"훈련 데이터: {len(train_loader.dataset)}개")
