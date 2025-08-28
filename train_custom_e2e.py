@@ -230,8 +230,9 @@ class EndToEndModel(nn.Module):
         # 차원 맞추기
         features = self.feature_adapter(features)  # [B, 400]
         
-        # STEAD 모델 입력 형태로 변환
-        features = features.unsqueeze(1)  # [B, 1, 400]
+        # STEAD 모델 입력 형태로 변환: [B, 1, 400] -> [B, 1, 1, 1, 400]
+        # STEAD 모델은 (B, T, H, W, C) 형태를 기대
+        features = features.unsqueeze(1).unsqueeze(1).unsqueeze(1)  # [B, 1, 1, 1, 400]
         
         # STEAD 모델 통과
         output = self.stead_model(features)
