@@ -177,9 +177,22 @@ class EndToEndModel(nn.Module):
         try:
             import torchvision.models as models
             # ResNet18 기반으로 경량화 (X3D 대신)
-            self.feature_extractor = models.resnet18(pretrained=True)
-            # 마지막 FC 레이어 제거
-            self.feature_extractor = nn.Sequential(*list(self.feature_extractor.children())[:-1])
+            # 간단한 CNN으로 대체하여 차원 문제 해결
+            self.feature_extractor = nn.Sequential(
+                nn.Conv2d(3, 64, 3, padding=1),
+                nn.ReLU(),
+                nn.MaxPool2d(2),
+                nn.Conv2d(64, 128, 3, padding=1),
+                nn.ReLU(),
+                nn.MaxPool2d(2),
+                nn.Conv2d(128, 256, 3, padding=1),
+                nn.ReLU(),
+                nn.MaxPool2d(2),
+                nn.Conv2d(256, 512, 3, padding=1),
+                nn.ReLU(),
+                nn.AdaptiveAvgPool2d((1, 1)),
+                nn.Flatten()
+            )
             self.feature_dim = 512
         except:
             # torchvision이 없는 경우 간단한 CNN
@@ -211,12 +224,8 @@ class EndToEndModel(nn.Module):
         # 이미지 → 특징 추출
         batch_size = x.size(0)
         
-        # ResNet의 경우
-        if hasattr(self.feature_extractor, 'avgpool'):
-            features = self.feature_extractor(x)  # [B, 512, 1, 1]
-            features = features.view(batch_size, -1)  # [B, 512]
-        else:
-            features = self.feature_extractor(x)  # [B, 256]
+        # CNN 특징 추출
+        features = self.feature_extractor(x)  # [B, 512]
         
         # 차원 맞추기
         features = self.feature_adapter(features)  # [B, 400]
