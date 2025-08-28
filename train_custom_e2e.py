@@ -490,11 +490,11 @@ def main():
             EndToEndDataset(train_list, transform=transform, test_mode=False),
             batch_size=config['training']['batch_size'],
             shuffle=True,
-            num_workers=4,  # GPU 활용률 향상
+            num_workers=8,  # GPU 활용률 대폭 향상
             pin_memory=True,  # GPU 전송 속도 향상
             drop_last=True,  # BatchNorm 문제 방지
             persistent_workers=True,  # 워커 재사용
-            prefetch_factor=2  # 미리 로딩
+            prefetch_factor=4  # 미리 로딩 증가
         )
         
         # 검증 데이터 (validation set)
@@ -503,7 +503,7 @@ def main():
             EndToEndDataset(valid_list, transform=transform, test_mode=True),
             batch_size=config['training']['batch_size'],
             shuffle=False,
-            num_workers=2,  # GPU 활용률 향상
+            num_workers=4,  # GPU 활용률 대폭 향상
             pin_memory=True,  # GPU 전송 속도 향상
             drop_last=True,  # BatchNorm 문제 방지
             persistent_workers=True  # 워커 재사용
@@ -514,7 +514,7 @@ def main():
             EndToEndDataset(test_list, transform=transform, test_mode=True),
             batch_size=config['training']['batch_size'],
             shuffle=False,
-            num_workers=2,  # GPU 활용률 향상
+            num_workers=4,  # GPU 활용률 대폭 향상
             pin_memory=True,  # GPU 전송 속도 향상
             drop_last=True,  # BatchNorm 문제 방지
             persistent_workers=True  # 워커 재사용

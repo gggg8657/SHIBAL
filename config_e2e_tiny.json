@@ -6,12 +6,12 @@
         "model_path": null
     },
     "training": {
-        "comment": "e2e_tiny_optimized",
+        "comment": "e2e_tiny_aggressive",
         "dropout_rate": 0.4,
         "attn_dropout_rate": 0.1,
-        "lr": 2e-4,
-        "batch_size": 64,
-        "model_name": "e2e_tiny_optimized",
+        "lr": 5e-4,
+        "batch_size": 128,
+        "model_name": "e2e_tiny_aggressive",
         "model_arch": "tiny",
         "max_epoch": 50,
         "warmup": 1,
